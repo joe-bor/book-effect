@@ -1,0 +1,33 @@
+{
+  "name": "spike",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@fugood/react-native-audio-pcm-stream": "^1.1.4",
+    "expo": "~56.0.3",
+    "expo-audio": "~56.0.9",
+    "expo-file-system": "~56.0.7",
+    "expo-sharing": "~56.0.12",
+    "expo-status-bar": "~56.0.4",
+    "react": "19.2.3",
+    "react-native": "0.85.3",
+    "react-native-fs": "^2.20.0",
+    "react-native-sound": "^0.13.0",
+    "whisper.rn": "^0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/react": "~19.2.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.7"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}
