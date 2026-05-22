@@ -1,15 +1,22 @@
 {
   "expo": {
-    "name": "spike",
-    "slug": "spike",
-    "version": "1.0.0",
+    "name": "Book Effect Spike",
+    "slug": "book-effect-spike",
+    "version": "0.1.0",
     "orientation": "portrait",
+    "scheme": "bookeffectspike",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "ios": {
+      "bundleIdentifier": "com.joebor.bookeffect.spike",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Book Effect Spike listens locally to measure read-aloud speech recognition latency."
+      },
       "supportsTablet": true
     },
     "android": {
+      "package": "com.joebor.bookeffect.spike",
+      "permissions": ["RECORD_AUDIO"],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -21,9 +28,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-audio",
-      "expo-sharing"
-    ]
+    "plugins": ["expo-audio"]
   }
 }
