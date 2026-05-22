@@ -135,7 +135,9 @@ We will walk through these before or during Phase 1. Do not install paid service
 - Install CocoaPods.
 - Create a free Expo account.
 - Install or use EAS CLI.
-- Confirm Node works for the Expo version we scaffold with. Current local Node is `v22.22.1`; if Expo tooling objects, use an LTS Node version for this repo.
+- Use the repo-pinned Node version from `.nvmrc`: `v22.22.1`.
+- Confirm `node -v` prints `v22.22.1` and `npm -v` prints a compatible npm 10 version before running Expo commands.
+- If a non-interactive agent shell resolves `/usr/local/bin/node` inside `spike/`, prefix commands with `env PATH="$HOME/.nvm/versions/node/v22.22.1/bin:$PATH"` to use the pinned Node version.
 
 ## Expected Deliverable
 

@@ -2,6 +2,10 @@
   "name": "spike",
   "version": "1.0.0",
   "main": "index.ts",
+  "engines": {
+    "node": ">=22.13.0 <23",
+    "npm": ">=10.9.0"
+  },
   "dependencies": {
     "@fugood/react-native-audio-pcm-stream": "^1.1.4",
     "expo": "~56.0.3",

@@ -67,6 +67,20 @@ adb version
 
 Expected now: Node/npm work. Full Xcode, Watchman, CocoaPods, Android Studio/platform tools, and `adb` may be missing on the first pass.
 
+Use the repo-pinned Node version before running Expo or npm commands:
+
+```bash
+nvm use
+```
+
+Expected Node/npm baseline: `node -v` prints `v22.22.1`; `npm -v` prints a compatible npm 10 version.
+
+If an agent shell still resolves `node` to `/usr/local/bin/node` from inside `spike/`, prefix spike commands with the pinned Node path:
+
+```bash
+env PATH="$HOME/.nvm/versions/node/v22.22.1/bin:$PATH" npm run typecheck
+```
+
 - [ ] **Step 3: Walk the user through missing GUI installs**
 
 If full Xcode is missing, have the user install Xcode from the Mac App Store, open it once, accept licenses, install components, and sign in with the Apple ID.
@@ -80,6 +94,8 @@ Stop here if either device build toolchain is blocked by a manual installation t
 Run the same commands from Step 2.
 
 Expected before scaffolding: `xcodebuild -version`, `pod --version`, and `adb version` succeed if we are preparing both platforms. If iOS setup is deferred, document that Phase 1 starts Android-first.
+
+Also confirm `node -v` still prints `v22.22.1` in the shell used for Expo/npm work.
 
 ## Task 2: Scaffold The Expo Spike
 
