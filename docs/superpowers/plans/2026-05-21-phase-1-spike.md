@@ -115,10 +115,10 @@ Run from `spike/`:
 
 ```bash
 npm view sherpa-onnx name version repository.url
-npm view sherpa-onnx-react-native name version repository.url
+npm view react-native-sherpa-onnx name version repository.url
 ```
 
-Expected: `sherpa-onnx` exists. If a maintained React Native package is not available, create a short note in `spike/SherpaOnnxProvider.md` explaining the blocker and stop for a decision before building a custom bridge.
+Expected: `sherpa-onnx` and `react-native-sherpa-onnx` exist. If a maintained React Native package is not available, create a short note in `spike/SherpaOnnxProvider.md` explaining the blocker and stop for a decision before building a custom bridge.
 
 - [ ] **Step 4: Commit the scaffold**
 
@@ -848,7 +848,7 @@ Run:
 ```bash
 cd spike
 npm view sherpa-onnx name version
-npm view sherpa-onnx-react-native name version
+npm view react-native-sherpa-onnx name version
 ```
 
 If only the Node package is available, do not use it in React Native and do not fake the comparison.
@@ -866,12 +866,12 @@ The Phase 1 requirement is to compare Sherpa-ONNX against whisper.rn on the Gala
 
 Current finding:
 - `sherpa-onnx` is available for Node.
-- A maintained React Native package was not confirmed during the integration check.
+- `react-native-sherpa-onnx` is the current React Native wrapper candidate.
 
 Decision needed:
-- Build a small native bridge for the spike.
-- Replace this comparison with a different offline ASR candidate.
-- Defer Sherpa-ONNX and mark Phase 1 incomplete.
+- Validate `react-native-sherpa-onnx` against the spike's Expo prebuild/custom dev client flow.
+- Build a small native bridge for the spike if the wrapper fails.
+- Replace this comparison with a different offline ASR candidate only after surfacing the blocker.
 ```
 
 - [ ] **Step 3: Commit the result**
