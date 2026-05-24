@@ -1,9 +1,4 @@
-import type {
-  ContextOptions,
-  TranscribeOptions,
-  VadContextOptions,
-  VadOptions,
-} from 'whisper.rn/index';
+import type { ContextOptions, TranscribeOptions, VadContextOptions, VadOptions } from 'whisper.rn';
 import type {
   AudioStreamConfig,
   AudioStreamInterface,
@@ -404,7 +399,7 @@ export class WhisperRnProvider implements ASRProvider {
 }
 
 async function loadWhisperRnRuntime(): Promise<WhisperRnRuntime> {
-  const whisper = await import('whisper.rn/index');
+  const whisper = await import('whisper.rn');
   const realtime = await import('whisper.rn/realtime-transcription');
   const adapter = await import('whisper.rn/realtime-transcription/adapters/AudioPcmStreamAdapter');
   const fs = await import('react-native-fs');

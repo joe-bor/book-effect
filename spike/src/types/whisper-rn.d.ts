@@ -1,4 +1,4 @@
-declare module 'whisper.rn/index' {
+declare module 'whisper.rn' {
   export type TranscribeOptions = {
     language?: string;
     translate?: boolean;
@@ -73,7 +73,7 @@ declare module 'whisper.rn/index' {
 }
 
 declare module 'whisper.rn/realtime-transcription/types' {
-  import type { TranscribeOptions, TranscribeResult, VadOptions } from 'whisper.rn/index';
+  import type { TranscribeOptions, TranscribeResult, VadOptions } from 'whisper.rn';
   import type { WavFileWriterFs } from 'whisper.rn/realtime-transcription';
 
   export interface AudioStreamData {
@@ -180,7 +180,7 @@ declare module 'whisper.rn/realtime-transcription/types' {
 }
 
 declare module 'whisper.rn/realtime-transcription' {
-  import type { VadOptions } from 'whisper.rn/index';
+  import type { VadOptions } from 'whisper.rn';
   import type {
     AudioStreamInterface,
     RealtimeOptions,

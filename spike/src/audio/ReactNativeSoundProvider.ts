@@ -1,5 +1,5 @@
-import Sound = require('react-native-sound');
 import { Image } from 'react-native';
+import Sound from 'react-native-sound';
 
 import type { BookTrigger } from '../books/types';
 import type { AudioProvider } from './AudioProvider';

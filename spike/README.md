@@ -101,8 +101,8 @@ Then open the already-installed app on the device. Rebuild with `npm run android
 
 ## Task 12 Local Build Notes
 
-Last checked: May 22, 2026.
+Last checked: May 24, 2026.
 
-- Android: `adb devices` returned no attached devices, and the Android emulator tool returned no configured AVDs. `npm run android` therefore stopped with Expo CLI's "No Android connected device found" error before the app could install or open.
+- Android: `npm run android` completed a native debug build, installed the app on a Galaxy S10 (`SM_G973U`) over wireless debugging, and opened the installed development build through Metro. After clearing Metro's cache with `npm run start -- --clear`, the spike UI rendered on the phone and manual sound trigger buttons played audio.
 - iOS: full Xcode and CocoaPods are installed, and `npm run ios` reached native linking on an iOS simulator build. The build failed with duplicate RNFS symbols because both `react-native-fs@2.20.0` and `@dr.pogodin/react-native-fs@2.38.2` are linked as iOS Pods (`RNFS` and `ReactNativeFs`). This is recorded as a build blocker; no dependency changes were made in Task 12.
-- App visibility: the spike did not open on an Android device/emulator or iOS simulator during this check.
+- App visibility: the spike was visible on the Galaxy S10. It did not open on iOS during this check.
