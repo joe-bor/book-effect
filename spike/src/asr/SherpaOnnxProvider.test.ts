@@ -88,6 +88,25 @@ function createRuntime(): {
 }
 
 describe('SherpaOnnxProvider', () => {
+  it('defaults to the app document directory Sherpa model path', async () => {
+    const { runtime } = createRuntime();
+    runtime.documentDirectoryPath = '/data/user/0/com.joebor.bookeffect.spike/files';
+    const provider = new SherpaOnnxProvider({ runtime });
+
+    await provider.start(() => {});
+
+    expect(runtime.createStreamingSTT).toHaveBeenCalledWith(
+      expect.objectContaining({
+        modelPath: {
+          type: 'file',
+          path: '/data/user/0/com.joebor.bookeffect.spike/files/models/sherpa-onnx-streaming-zipformer-en-20M-2023-02-17',
+        },
+      }),
+    );
+
+    await provider.dispose();
+  });
+
   it('starts streaming recognition and maps PCM chunks to ASR events', async () => {
     const { runtime, pcm, stream } = createRuntime();
     const events: unknown[] = [];

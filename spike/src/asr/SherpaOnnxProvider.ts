@@ -9,14 +9,12 @@ import type {
 import type { PcmLiveStreamHandle, PcmLiveStreamOptions } from 'react-native-sherpa-onnx/audio';
 import type { ASREventHandler, ASRProvider } from './ASRProvider';
 
-const DEFAULT_MODEL_PATH: ModelPathConfig = {
-  type: 'auto',
-  path: 'models/sherpa-onnx-streaming-zipformer-en',
-};
+const DEFAULT_MODEL_DIR = 'models/sherpa-onnx-streaming-zipformer-en-20M-2023-02-17';
 
 type Unsubscribe = () => void;
 
 export type SherpaOnnxRuntime = {
+  documentDirectoryPath?: string;
   createStreamingSTT(options: StreamingSttInitOptions): Promise<StreamingSttEngine>;
   createPcmLiveStream(options?: PcmLiveStreamOptions): PcmLiveStreamHandle;
 };
@@ -166,7 +164,7 @@ export class SherpaOnnxProvider implements ASRProvider {
 
   private buildStreamingOptions(): StreamingSttInitOptions {
     const options: StreamingSttInitOptions = {
-      modelPath: this.options.modelPath ?? DEFAULT_MODEL_PATH,
+      modelPath: this.resolveModelPath(),
       modelType: this.options.modelType ?? 'auto',
       enableEndpoint: this.options.enableEndpoint ?? true,
       decodingMethod: this.options.decodingMethod ?? 'greedy_search',
@@ -202,6 +200,26 @@ export class SherpaOnnxProvider implements ASRProvider {
     }
 
     return options;
+  }
+
+  private resolveModelPath(): ModelPathConfig {
+    if (this.options.modelPath !== undefined) {
+      return this.options.modelPath;
+    }
+
+    const documentDirectoryPath = this.runtime?.documentDirectoryPath;
+
+    if (documentDirectoryPath !== undefined) {
+      return {
+        type: 'file',
+        path: `${documentDirectoryPath}/${DEFAULT_MODEL_DIR}`,
+      };
+    }
+
+    return {
+      type: 'auto',
+      path: DEFAULT_MODEL_DIR,
+    };
   }
 
   private buildPcmOptions(): Required<PcmLiveStreamOptions> {
@@ -252,10 +270,15 @@ export class SherpaOnnxProvider implements ASRProvider {
 }
 
 async function loadSherpaOnnxRuntime(): Promise<SherpaOnnxRuntime> {
-  const [{ createStreamingSTT }, { createPcmLiveStream }] = await Promise.all([
+  const [{ createStreamingSTT }, { createPcmLiveStream }, fs] = await Promise.all([
     import('react-native-sherpa-onnx/stt'),
     import('react-native-sherpa-onnx/audio'),
+    import('react-native-fs'),
   ]);
 
-  return { createStreamingSTT, createPcmLiveStream };
+  return {
+    documentDirectoryPath: fs.DocumentDirectoryPath,
+    createStreamingSTT,
+    createPcmLiveStream,
+  };
 }
