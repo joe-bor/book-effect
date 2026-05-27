@@ -20,6 +20,11 @@ import type { AudioProvider, AudioProviderName } from '../audio/AudioProvider';
 import { constructionChristmasBook } from '../books/constructionChristmas';
 import type { BookTrigger } from '../books/types';
 import type { SpikeEvent } from '../logging/EventLogger';
+import {
+  buildTrialLogFilename,
+  saveTrialLogSnapshot,
+  type SavedTrialLog,
+} from '../logging/localTrialLog';
 import { SpikeSession } from '../session/SpikeSession';
 
 type SessionPhase = 'idle' | 'starting' | 'running' | 'stopping';
@@ -100,6 +105,10 @@ export function SpikeScreen() {
     () => [...events].reverse().find((event) => event.type === 'manual.phraseEndCue'),
     [events],
   );
+  const lastLocalSave = useMemo(
+    () => [...events].reverse().find((event) => event.type === 'log.localSave.completed'),
+    [events],
+  );
 
   const isBusy = sessionPhase === 'starting' || sessionPhase === 'stopping';
   const isRunning = sessionPhase === 'running';
@@ -125,6 +134,77 @@ export function SpikeScreen() {
     },
     [selectedAsrProvider, selectedAudioProvider],
   );
+
+  const saveLogLocally = useCallback(
+    async (reason: 'manual' | 'stop' = 'manual'): Promise<SavedTrialLog> => {
+      const savedAt = Date.now();
+      const filename = buildTrialLogFilename(savedAt);
+      const pullPath = `cache/${filename}`;
+      const session = sessionRef.current;
+      const baseEvents = session?.logger.snapshot() ?? events;
+      const requestedEvent = buildUiEvent(
+        'log.localSave.requested',
+        selectedAsrProvider,
+        selectedAudioProvider,
+        {
+          eventCount: baseEvents.length + 1,
+          filename,
+          pullPath,
+          reason,
+        },
+      );
+      let eventsToSave: SpikeEvent[];
+
+      if (session !== null) {
+        session.logger.record(requestedEvent);
+        eventsToSave = session.logger.snapshot();
+        setEvents(eventsToSave);
+      } else {
+        eventsToSave = [...events, requestedEvent].slice(-loggerCapacity);
+        setEvents(eventsToSave);
+      }
+
+      const saved = await saveTrialLogSnapshot({
+        events: eventsToSave,
+        now: () => savedAt,
+        createFile: (localFilename) => new File(Paths.cache, localFilename),
+      });
+      const completedEvent = buildUiEvent(
+        'log.localSave.completed',
+        selectedAsrProvider,
+        selectedAudioProvider,
+        {
+          eventCount: saved.eventCount,
+          filename: saved.filename,
+          pullPath: saved.pullPath,
+          reason,
+          uri: saved.uri,
+        },
+      );
+      const currentSession = sessionRef.current;
+
+      if (currentSession !== null) {
+        currentSession.logger.record(completedEvent);
+        setEvents(currentSession.logger.snapshot());
+      } else {
+        setEvents((currentEvents) => [...currentEvents, completedEvent].slice(-loggerCapacity));
+      }
+
+      setMessage(`Saved ${saved.pullPath}`);
+      return saved;
+    },
+    [events, selectedAsrProvider, selectedAudioProvider],
+  );
+
+  const saveLogLocallyFromButton = useCallback(async () => {
+    try {
+      await saveLogLocally();
+    } catch (error) {
+      const errorMessage = formatError(error);
+      recordEvent('provider.error', { phase: 'localSave', message: errorMessage });
+      setMessage(errorMessage);
+    }
+  }, [recordEvent, saveLogLocally]);
 
   const startSession = useCallback(async () => {
     if (activeProvidersRef.current !== null || sessionPhase !== 'idle') {
@@ -181,20 +261,23 @@ export function SpikeScreen() {
 
     try {
       await session?.stop();
-      await Promise.allSettled([
-        activeProviders?.asr.dispose() ?? Promise.resolve(),
-        activeProviders?.audio.dispose() ?? Promise.resolve(),
-      ]);
-      setMessage('Session stopped');
+      const savedLog = session !== null ? await saveLogLocally('stop') : undefined;
+      setMessage(
+        savedLog !== undefined ? `Session stopped. Saved ${savedLog.pullPath}` : 'Session stopped',
+      );
     } catch (error) {
       const errorMessage = formatError(error);
       recordEvent('provider.error', { phase: 'stop', message: errorMessage });
       setMessage(errorMessage);
     } finally {
+      await Promise.allSettled([
+        activeProviders?.asr.dispose() ?? Promise.resolve(),
+        activeProviders?.audio.dispose() ?? Promise.resolve(),
+      ]);
       setSessionPhase('idle');
       refreshEvents();
     }
-  }, [recordEvent, refreshEvents, sessionPhase]);
+  }, [recordEvent, refreshEvents, saveLogLocally, sessionPhase]);
 
   const markPhraseEndCue = useCallback(() => {
     recordEvent('manual.phraseEndCue', {
@@ -330,6 +413,13 @@ export function SpikeScreen() {
           />
           <ActionButton label="Mark Phrase End Cue" disabled={isBusy} onPress={markPhraseEndCue} />
           <ActionButton
+            label="Save Log Locally"
+            disabled={isBusy || events.length === 0}
+            onPress={() => {
+              void saveLogLocallyFromButton();
+            }}
+          />
+          <ActionButton
             label="Export Log"
             disabled={isBusy || events.length === 0}
             onPress={exportLog}
@@ -339,6 +429,7 @@ export function SpikeScreen() {
         <Text style={styles.meta}>
           Events: {events.length}
           {lastCue !== undefined ? `  Last cue: ${formatTimestamp(lastCue.timestamp)}` : ''}
+          {formatLastLocalSave(lastLocalSave)}
         </Text>
       </View>
 
@@ -560,6 +651,12 @@ function formatLogLine(event: SpikeEvent): string {
   }
 
   return parts.join(' · ');
+}
+
+function formatLastLocalSave(event: SpikeEvent | undefined): string {
+  const pullPath = event?.payload?.pullPath;
+
+  return typeof pullPath === 'string' && pullPath.length > 0 ? `  Last save: ${pullPath}` : '';
 }
 
 function formatTimestamp(timestamp: number): string {
