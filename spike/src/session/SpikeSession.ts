@@ -38,18 +38,13 @@ export class SpikeSession {
   }
 
   private async handleAsrEvent(event: ASREvent): Promise<void> {
-    const textPayload =
-      'text' in event
-        ? {
-            payload: { text: event.text },
-          }
-        : {};
+    const payload = buildAsrEventPayload(event);
 
     this.logger.record({
       type: `asr.${event.type}`,
       timestamp: event.timestamp,
       providers: { asr: this.options.asr.name, audio: this.options.audio.name },
-      ...textPayload,
+      ...(payload !== undefined ? { payload } : {}),
     });
 
     if (event.type !== 'partial' && event.type !== 'final') {
@@ -72,5 +67,27 @@ export class SpikeSession {
         await this.options.audio.play(trigger.id);
       }
     }
+  }
+}
+
+function buildAsrEventPayload(event: ASREvent): Record<string, unknown> | undefined {
+  switch (event.type) {
+    case 'partial':
+    case 'final':
+      return { text: event.text };
+    case 'error':
+      return { message: event.message };
+    case 'diag': {
+      const payload: Record<string, unknown> = { stage: event.stage };
+      if (event.detail !== undefined) {
+        Object.assign(payload, event.detail);
+      }
+      return payload;
+    }
+    case 'vadStart':
+    case 'vadEnd':
+      return event.confidence !== undefined ? { confidence: event.confidence } : undefined;
+    default:
+      return undefined;
   }
 }

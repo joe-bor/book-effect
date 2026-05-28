@@ -119,6 +119,9 @@ export class WhisperRnProvider implements ASRProvider {
   private whisperContext: ReleasableWhisperContext | undefined;
   private whisperVadContext: ReleasableWhisperVadContext | undefined;
   private isStarted = false;
+  private firstVadEventLogged = false;
+  private firstPartialLogged = false;
+  private firstFinalLogged = false;
 
   constructor(options: WhisperRnProviderOptions = {}) {
     this.options = options;
@@ -131,37 +134,57 @@ export class WhisperRnProvider implements ASRProvider {
     }
 
     this.onEvent = onEvent;
+    this.firstVadEventLogged = false;
+    this.firstPartialLogged = false;
+    this.firstFinalLogged = false;
 
     try {
+      this.emitDiag('start.begin');
       this.runtime = this.options.runtime ?? (await loadWhisperRnRuntime());
+      this.emitDiag('runtime.loaded', {
+        documentDirectoryPath: this.runtime.documentDirectoryPath,
+      });
       const modelPath = this.resolveModelPath(this.options.modelPath, DEFAULT_MODEL_FILE);
       const vadModelPath = this.resolveModelPath(this.options.vadModelPath, DEFAULT_VAD_MODEL_FILE);
+      this.emitDiag('modelPaths.resolved', { modelPath, vadModelPath });
 
       await this.ensureModelFile(modelPath, 'Whisper model');
       await this.ensureModelFile(vadModelPath, 'Whisper VAD model');
+      this.emitDiag('modelFiles.checked');
 
       this.whisperContext = await this.runtime.initWhisper(this.buildWhisperOptions(modelPath));
-      this.whisperVadContext = await this.runtime.initWhisperVad(
+      this.emitDiag('whisperContext.created');
+      const rawWhisperVadContext = await this.runtime.initWhisperVad(
         this.buildVadContextOptions(vadModelPath),
       );
+      this.whisperVadContext = this.instrumentVadContext(rawWhisperVadContext);
+      this.emitDiag('whisperVadContext.created');
 
       const realtimeVad = this.runtime.createRealtimeVad(
         this.whisperVadContext,
         this.buildRealtimeVadOptions(),
       );
-      const audioStream = this.runtime.createAudioStream();
+      this.emitDiag('realtimeVad.created');
+      const rawAudioStream = this.runtime.createAudioStream();
+      const audioStream = this.instrumentAudioStream(rawAudioStream);
+      this.emitDiag('audioStream.created');
 
       this.transcriber = this.runtime.createTranscriber(
         this.buildTranscriberDependencies(realtimeVad, audioStream),
         this.buildRealtimeOptions(),
         this.buildCallbacks(),
       );
+      this.emitDiag('transcriber.created');
 
+      this.emitDiag('transcriber.start.begin');
       await this.transcriber.start();
+      this.emitDiag('transcriber.start.done');
       this.isStarted = true;
+      this.emitDiag('start.done');
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       this.emitError(message);
+      this.emitDiag('start.error', { message });
       await this.releaseResources();
       throw error;
     }
@@ -169,31 +192,50 @@ export class WhisperRnProvider implements ASRProvider {
 
   async stop(): Promise<void> {
     if (!this.isStarted || this.transcriber === undefined) {
+      this.emitDiag('stop.skip', { isStarted: this.isStarted });
       return;
     }
 
+    this.emitDiag('stop.begin');
+    this.emitDiag('transcriber.stop.begin');
     await this.transcriber.stop();
+    this.emitDiag('transcriber.stop.done');
     this.isStarted = false;
+    this.emitDiag('stop.done');
   }
 
   async dispose(): Promise<void> {
+    this.emitDiag('dispose.begin');
     await this.stop();
     await this.releaseResources();
     this.onEvent = undefined;
+    // onEvent is gone, so no diag possible past here.
   }
 
   private buildCallbacks(): RealtimeTranscriberCallbacks {
     return {
       onVad: (event) => {
+        if (!this.firstVadEventLogged) {
+          this.firstVadEventLogged = true;
+          this.emitDiag('realtime.firstVad', {
+            kind: event.type,
+            confidence: event.confidence,
+          });
+        }
         this.handleVadEvent(event);
       },
       onTranscribe: (event) => {
         this.handleTranscribeEvent(event);
       },
       onSliceTranscriptionStabilized: (text) => {
+        if (!this.firstFinalLogged) {
+          this.firstFinalLogged = true;
+          this.emitDiag('realtime.firstFinal', { length: text.length });
+        }
         this.emitTextEvent('final', text);
       },
       onError: (error) => {
+        this.emitDiag('realtime.error', { message: error });
         this.emitError(error);
       },
     };
@@ -220,10 +262,33 @@ export class WhisperRnProvider implements ASRProvider {
 
   private handleTranscribeEvent(event: RealtimeTranscribeEvent): void {
     if (event.type !== 'transcribe') {
+      this.emitDiag('realtime.transcribeEvent', {
+        kind: event.type,
+        sliceIndex: event.sliceIndex,
+        isCapturing: event.isCapturing,
+        processTimeMs: event.processTime,
+        recordingTimeMs: event.recordingTime,
+      });
       return;
     }
 
-    this.emitTextEvent('partial', event.data?.result);
+    const raw = event.data?.result ?? '';
+    this.emitDiag('realtime.transcribe', {
+      sliceIndex: event.sliceIndex,
+      rawLength: raw.length,
+      trimmedLength: raw.trim().length,
+      raw,
+      processTimeMs: event.processTime,
+      recordingTimeMs: event.recordingTime,
+      isCapturing: event.isCapturing,
+    });
+
+    if (!this.firstPartialLogged && raw.trim().length > 0) {
+      this.firstPartialLogged = true;
+      this.emitDiag('realtime.firstPartial', { length: raw.length });
+    }
+
+    this.emitTextEvent('partial', raw);
   }
 
   private emitTextEvent(type: 'partial' | 'final', text: string | undefined): void {
@@ -238,6 +303,152 @@ export class WhisperRnProvider implements ASRProvider {
 
   private emitError(message: string): void {
     this.onEvent?.({ type: 'error', timestamp: this.now(), message });
+  }
+
+  private emitDiag(stage: string, detail?: Record<string, unknown>): void {
+    this.onEvent?.({
+      type: 'diag',
+      timestamp: this.now(),
+      stage,
+      ...(detail !== undefined ? { detail } : {}),
+    });
+  }
+
+  private instrumentVadContext(context: ReleasableWhisperVadContext): ReleasableWhisperVadContext {
+    let inferenceCount = 0;
+    let segmentInferenceCount = 0;
+    return {
+      detectSpeechData: (data, options) => {
+        const callIndex = ++inferenceCount;
+        const startedAt = this.now();
+        return context.detectSpeechData(data, options).then(
+          (segments) => {
+            const elapsed = this.now() - startedAt;
+            if (segments.length > 0) {
+              segmentInferenceCount += 1;
+              if (segmentInferenceCount === 1 || segmentInferenceCount % 10 === 0) {
+                this.emitDiag('silero.segments', {
+                  callIndex,
+                  elapsedMs: elapsed,
+                  segmentCount: segments.length,
+                  segmentsTotal: segmentInferenceCount,
+                  firstT0: segments[0]?.t0,
+                  lastT1: segments[segments.length - 1]?.t1,
+                });
+              }
+            } else if (callIndex === 1 || callIndex % 20 === 0) {
+              this.emitDiag('silero.empty', {
+                callIndex,
+                elapsedMs: elapsed,
+                segmentsTotal: segmentInferenceCount,
+              });
+            }
+            return segments;
+          },
+          (error) => {
+            this.emitDiag('silero.error', {
+              callIndex,
+              elapsedMs: this.now() - startedAt,
+              message: errorMessage(error),
+            });
+            throw error;
+          },
+        );
+      },
+      release: () => context.release(),
+    };
+  }
+
+  private instrumentAudioStream(audioStream: AudioStreamInterface): AudioStreamInterface {
+    let frameCount = 0;
+    const wrapper: AudioStreamInterface = {
+      initialize: async (config) => {
+        this.emitDiag('audioStream.initialize.begin', {
+          sampleRate: config.sampleRate,
+          channels: config.channels,
+          bitsPerSample: config.bitsPerSample,
+          bufferSize: config.bufferSize,
+          audioSource: config.audioSource,
+        });
+        try {
+          await audioStream.initialize(config);
+          this.emitDiag('audioStream.initialize.done');
+        } catch (error) {
+          this.emitDiag('audioStream.initialize.error', { message: errorMessage(error) });
+          throw error;
+        }
+      },
+      start: async () => {
+        this.emitDiag('audioStream.start.begin');
+        try {
+          await audioStream.start();
+          this.emitDiag('audioStream.start.done');
+        } catch (error) {
+          this.emitDiag('audioStream.start.error', { message: errorMessage(error) });
+          throw error;
+        }
+      },
+      stop: async () => {
+        this.emitDiag('audioStream.stop.begin', { framesReceived: frameCount });
+        try {
+          await audioStream.stop();
+          this.emitDiag('audioStream.stop.done');
+        } catch (error) {
+          this.emitDiag('audioStream.stop.error', { message: errorMessage(error) });
+          throw error;
+        }
+      },
+      isRecording: () => audioStream.isRecording(),
+      onData: (callback) => {
+        audioStream.onData((data) => {
+          frameCount += 1;
+          if (frameCount === 1) {
+            this.emitDiag('audioStream.firstFrame', {
+              sampleRate: data.sampleRate,
+              channels: data.channels,
+              byteLength: data.data.byteLength,
+            });
+          } else if (frameCount === 50 || frameCount === 500) {
+            this.emitDiag('audioStream.framesReceived', { count: frameCount });
+          }
+          callback(data);
+        });
+      },
+      onError: (callback) => {
+        audioStream.onError((message) => {
+          this.emitDiag('audioStream.error', { message });
+          callback(message);
+        });
+      },
+      onStatusChange: (callback) => {
+        audioStream.onStatusChange((isRecording) => {
+          this.emitDiag('audioStream.statusChange', { isRecording });
+          callback(isRecording);
+        });
+      },
+      release: async () => {
+        this.emitDiag('audioStream.release.begin', { framesReceived: frameCount });
+        try {
+          await audioStream.release();
+          this.emitDiag('audioStream.release.done');
+        } catch (error) {
+          this.emitDiag('audioStream.release.error', { message: errorMessage(error) });
+          throw error;
+        }
+      },
+    };
+
+    if (audioStream.onEnd !== undefined) {
+      const upstreamOnEnd = audioStream.onEnd.bind(audioStream);
+      wrapper.onEnd = (callback) => {
+        upstreamOnEnd(() => {
+          this.emitDiag('audioStream.end');
+          callback();
+        });
+      };
+    }
+
+    return wrapper;
   }
 
   private resolveModelPath(configuredPath: string | undefined, fileName: string): string {
@@ -313,9 +524,11 @@ export class WhisperRnProvider implements ASRProvider {
       options.initialPrompt = this.options.initialPrompt;
     }
 
-    if (this.options.logger !== undefined) {
-      options.logger = this.options.logger;
-    }
+    const userLogger = this.options.logger;
+    options.logger = (message) => {
+      this.emitDiag('realtime.log', { message });
+      userLogger?.(message);
+    };
 
     return options;
   }
@@ -354,9 +567,11 @@ export class WhisperRnProvider implements ASRProvider {
       speechRateThreshold: this.options.speechRateThreshold ?? 0.3,
     };
 
-    if (this.options.logger !== undefined) {
-      options.logger = this.options.logger;
-    }
+    const userLogger = this.options.logger;
+    options.logger = (message) => {
+      this.emitDiag('vad.log', { message });
+      userLogger?.(message);
+    };
 
     return options;
   }
@@ -392,9 +607,34 @@ export class WhisperRnProvider implements ASRProvider {
     this.whisperContext = undefined;
     this.isStarted = false;
 
-    await transcriber?.release();
-    await vadContext?.release();
-    await whisperContext?.release();
+    if (transcriber !== undefined) {
+      this.emitDiag('transcriber.release.begin');
+      try {
+        await transcriber.release();
+        this.emitDiag('transcriber.release.done');
+      } catch (error) {
+        this.emitDiag('transcriber.release.error', { message: errorMessage(error) });
+      }
+    }
+    if (vadContext !== undefined) {
+      this.emitDiag('whisperVadContext.release.begin');
+      try {
+        await vadContext.release();
+        this.emitDiag('whisperVadContext.release.done');
+      } catch (error) {
+        this.emitDiag('whisperVadContext.release.error', { message: errorMessage(error) });
+      }
+    }
+    if (whisperContext !== undefined) {
+      this.emitDiag('whisperContext.release.begin');
+      try {
+        await whisperContext.release();
+        this.emitDiag('whisperContext.release.done');
+      } catch (error) {
+        this.emitDiag('whisperContext.release.error', { message: errorMessage(error) });
+      }
+    }
+    this.emitDiag('releaseResources.done');
   }
 }
 
@@ -419,4 +659,8 @@ async function loadWhisperRnRuntime(): Promise<WhisperRnRuntime> {
 
 function stripFileScheme(path: string): string {
   return path.replace(/^file:\/\//, '');
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }

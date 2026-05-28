@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
+import type { ASREvent } from './ASRProvider';
 import { WhisperRnProvider, type WhisperRnRuntime } from './WhisperRnProvider';
 
 function createRuntime(): {
@@ -72,11 +73,17 @@ function createRuntime(): {
   };
 }
 
+type NonDiagAsrEvent = Exclude<ASREvent, { type: 'diag' }>;
+
+function isNonDiag(event: { type: string }): event is NonDiagAsrEvent {
+  return event.type !== 'diag';
+}
+
 describe('WhisperRnProvider', () => {
   it('starts realtime transcription and maps native callbacks to ASR events', async () => {
     const harness = createRuntime();
     const { runtime, transcriber } = harness;
-    const events: unknown[] = [];
+    const events: { type: string }[] = [];
     const provider = new WhisperRnProvider({
       modelPath: '/models/ggml-tiny.en.bin',
       vadModelPath: '/models/ggml-silero-v6.2.0.bin',
@@ -137,7 +144,7 @@ describe('WhisperRnProvider', () => {
     });
     harness.callbacks?.onError?.('native failure');
 
-    expect(events).toEqual([
+    expect(events.filter(isNonDiag)).toEqual([
       { type: 'vadStart', timestamp: 100, confidence: 0.7 },
       { type: 'partial', text: 'big truck', timestamp: 42 },
       { type: 'final', text: 'big truck', timestamp: 42 },
@@ -149,7 +156,7 @@ describe('WhisperRnProvider', () => {
   it('emits an error when expected model files are missing', async () => {
     const { runtime } = createRuntime();
     vi.mocked(runtime.exists!).mockResolvedValue(false);
-    const events: unknown[] = [];
+    const events: { type: string }[] = [];
     const provider = new WhisperRnProvider({
       modelPath: '/models/ggml-tiny.en.bin',
       vadModelPath: '/models/ggml-silero-v6.2.0.bin',
@@ -161,7 +168,7 @@ describe('WhisperRnProvider', () => {
       'Missing Whisper model file',
     );
 
-    expect(events).toEqual([
+    expect(events.filter(isNonDiag)).toEqual([
       {
         type: 'error',
         timestamp: 7,

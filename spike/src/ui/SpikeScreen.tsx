@@ -561,7 +561,28 @@ function ActionButton({ label, disabled = false, style, onPress }: ActionButtonP
 
 function createAsrProvider(name: ASRProviderName): ASRProvider {
   if (name === 'whisper-rn') {
-    return new WhisperRnProvider();
+    // The default 500 ms vadInferenceIntervalMs caused multi-minute Stop Session
+    // hangs on the Galaxy S10 because silero inference is slower than the audio
+    // frame interval, so the VAD work queue kept growing until stop drained it.
+    // RingBufferVad also requires preRecordingBufferMs > inferenceIntervalMs.
+    //
+    // The default speechRateThreshold (0.3) measures speech against the FULL
+    // ring-buffer history. As the session grows the ratio drops below 0.3 even
+    // when silero returns valid segments, so speech_start never fires. 0.05 lets
+    // short phrases inside longer recordings cross the gate.
+    //
+    // audioSliceSec must hold more audio than the RingBufferVad delivers on
+    // speech_start. The provider's previous default (2 s) was smaller than the
+    // ring-buffer history once recording exceeded ~2 s of audio, which made
+    // SliceManager.addAudioData recurse to a JS stack overflow (slice index
+    // jumped to 6527 and Whisper transcribed only fragments). 30 s matches the
+    // whisper.rn default and gives the slice enough headroom for entire phrases.
+    return new WhisperRnProvider({
+      vadInferenceIntervalMs: 1000,
+      preRecordingBufferMs: 1500,
+      speechRateThreshold: 0.05,
+      audioSliceSec: 30,
+    });
   }
 
   return new SherpaOnnxProvider();

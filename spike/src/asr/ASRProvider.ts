@@ -5,7 +5,8 @@ export type ASREvent =
   | { type: 'final'; text: string; timestamp: number }
   | { type: 'vadStart'; timestamp: number; confidence?: number }
   | { type: 'vadEnd'; timestamp: number; confidence?: number }
-  | { type: 'error'; timestamp: number; message: string };
+  | { type: 'error'; timestamp: number; message: string }
+  | { type: 'diag'; timestamp: number; stage: string; detail?: Record<string, unknown> };
 
 export type ASREventHandler = (event: ASREvent) => void;
 
