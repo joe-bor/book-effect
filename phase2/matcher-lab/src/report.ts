@@ -1,26 +1,30 @@
 import type { ReplayReport } from './replay';
 
-/** Render a replay report as Markdown (used for stdout and the committed BASELINE.md). */
+/** Render a replay report as Markdown (used for stdout and the committed BASELINE.md / FUZZY.md). */
 export function formatReport(report: ReplayReport): string {
+  const recovered = report.results.filter((r) => r.fired && !r.trial.meta.success).length;
+  const regressed = report.results.filter((r) => !r.fired && r.trial.meta.success).length;
+
   const lines: string[] = [];
 
-  lines.push(`# Baseline replay — ${report.matcherName}`);
+  lines.push(`# Replay — ${report.matcherName}`);
   lines.push('');
   lines.push(
-    `Total fired: ${report.totalFired}/${report.totalTrials}  ·  mismatches: ${report.totalMismatches}`,
+    `Fired: ${report.totalFired}/${report.totalTrials}` +
+      `  ·  false fires: ${report.totalFalseFires}` +
+      `  ·  recovered vs Phase 1: ${recovered}` +
+      `  ·  regressed vs Phase 1: ${regressed}`,
   );
   lines.push('');
-  lines.push('| Provider | Trigger | Fired | Mismatches |');
-  lines.push('| --- | --- | ---: | ---: |');
+  lines.push('| Provider | Trigger | Fired |');
+  lines.push('| --- | --- | ---: |');
   for (const group of report.groups) {
-    lines.push(
-      `| ${group.provider} | ${group.slug} | ${group.fired}/${group.total} | ${group.mismatches} |`,
-    );
+    lines.push(`| ${group.provider} | ${group.slug} | ${group.fired}/${group.total} |`);
   }
   lines.push('');
 
   const misses = report.results.filter((r) => !r.fired);
-  lines.push(`## Misses (${misses.length}) — P2 recovery targets`);
+  lines.push(`## Misses (${misses.length}) — recovery targets`);
   lines.push('');
   if (misses.length === 0) {
     lines.push('_None._');

@@ -31,4 +31,8 @@ describe('baseline replay reproduces Phase 1', () => {
     expect(report.totalTrials).toBe(180);
     expect(report.totalMismatches).toBe(0);
   });
+
+  it('produces 0 false fires (only the expected trigger ever fires per trial)', () => {
+    expect(report.totalFalseFires).toBe(0);
+  });
 });

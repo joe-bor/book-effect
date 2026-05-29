@@ -24,7 +24,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 |---|--------|------------|----------------------------------|--------|
 | 1 | [P0 — Preserve corpus](./phase-2-prompts/P0-preserve-corpus.md) | A0 | — | **done** (`phase2/corpus/`, 365 files; counts validated vs `docs/03`) |
 | 2 | [P1 — Replay harness + baseline](./phase-2-prompts/P1-replay-harness.md) | A | P0 | **done** (`phase2/matcher-lab/`; baseline 27/23/21 + 30/30/30, 0 mismatches, 23 tests) |
-| 3 | [P2 — Fuzzy / token matcher](./phase-2-prompts/P2-fuzzy-matcher.md) | A | P1 | todo |
+| 3 | [P2 — Fuzzy / token matcher](./phase-2-prompts/P2-fuzzy-matcher.md) | A | P1 | **done** (179/180 = 99.4%; 18/19 sherpa misses recovered, 0 false fires; see `docs/08`) |
 | 4 | [P3 — Cursor + corridors + arming](./phase-2-prompts/P3-cursor-corridors.md) | A | P2 | todo |
 | — | **◆ GATE 1 (synthetic replay)** | — | P2, P3 | — |
 | 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | todo |

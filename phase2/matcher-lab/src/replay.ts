@@ -4,6 +4,7 @@ import type { Matcher, Trigger } from './matchers/types';
 export type TrialResult = {
   trial: Trial;
   firedTriggerIds: string[];
+  falseFiredTriggerIds: string[]; // fired triggers other than the trial's expected one
   fired: boolean; // did the trial's EXPECTED trigger fire?
   mismatch: boolean; // replayed `fired` disagrees with recorded meta.success
 };
@@ -23,18 +24,26 @@ export type ReplayReport = {
   totalFired: number;
   totalTrials: number;
   totalMismatches: number;
+  totalFalseFires: number;
 };
 
 /**
  * Replay a matcher over every trial. For each trial we arm the full trigger set (as the live
  * spike did) and ask whether the trial's expected trigger fired, then compare to the recorded
- * success so we can prove the harness reproduces Phase 1.
+ * success so we can prove the harness reproduces Phase 1 and track unexpected (false) fires.
  */
 export function replay(trials: Trial[], triggers: Trigger[], matcher: Matcher): ReplayReport {
   const results: TrialResult[] = trials.map((trial) => {
     const firedTriggerIds = matcher.run(trial.chunks, triggers).map((f) => f.triggerId);
     const fired = firedTriggerIds.includes(trial.triggerId);
-    return { trial, firedTriggerIds, fired, mismatch: fired !== trial.meta.success };
+    const falseFiredTriggerIds = firedTriggerIds.filter((id) => id !== trial.triggerId);
+    return {
+      trial,
+      firedTriggerIds,
+      falseFiredTriggerIds,
+      fired,
+      mismatch: fired !== trial.meta.success,
+    };
   });
 
   const groupMap = new Map<string, GroupScore>();
@@ -63,5 +72,6 @@ export function replay(trials: Trial[], triggers: Trigger[], matcher: Matcher): 
     totalFired: results.filter((r) => r.fired).length,
     totalTrials: results.length,
     totalMismatches: results.filter((r) => r.mismatch).length,
+    totalFalseFires: results.reduce((sum, r) => sum + r.falseFiredTriggerIds.length, 0),
   };
 }

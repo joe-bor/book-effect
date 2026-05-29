@@ -14,10 +14,12 @@ describe('formatReport', () => {
   );
   const md = formatReport(report);
 
-  it('names the matcher and reports totals + harness fidelity', () => {
+  it('names the matcher and reports totals, false fires, and fidelity vs Phase 1', () => {
     expect(md).toContain('baseline-substring');
     expect(md).toContain('161/180');
-    expect(md).toContain('mismatches: 0');
+    expect(md).toContain('false fires: 0');
+    expect(md).toContain('recovered vs Phase 1: 0');
+    expect(md).toContain('regressed vs Phase 1: 0');
   });
 
   it('shows each provider/trigger fired count', () => {
@@ -28,7 +30,7 @@ describe('formatReport', () => {
     expect(md).toContain('30/30');
   });
 
-  it('surfaces sherpa miss text as P2 recovery targets', () => {
-    expect(md.toLowerCase()).toContain('guest'); // MASSIVE GUEST substitution miss
+  it('surfaces sherpa miss text as recovery targets', () => {
+    expect(md.toLowerCase()).toContain('guest');
   });
 });
