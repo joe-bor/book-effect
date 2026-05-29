@@ -1,6 +1,6 @@
 # Phase 1 Spike Results
 
-Last updated: May 28, 2026.
+Last updated: May 29, 2026.
 
 Phase: Phase 1 Spike, decision-quality Android ASR comparison. Phase 2 has not started. This document does not define the v1 product architecture, PRD, or test plan.
 
@@ -186,7 +186,7 @@ For audio playback, keep both `expo-audio` and `react-native-sound` unresolved o
 
 ## Phase 2 Impact
 
-Do not begin Phase 2 from this document alone.
+Phase 1 has enough Android ASR evidence to wrap and move into Phase 2 planning. The evidence supports planning, not implementation: Phase 2 still needs an explicit product/architecture/test breakdown before code starts.
 
 When Phase 2 planning is approved, plan around:
 
@@ -196,3 +196,5 @@ When Phase 2 planning is approved, plan around:
 - True audio playback-start measurement.
 - Matcher cost measurement.
 - The unresolved iOS duplicate RNFS native symbol blocker recorded in `spike/README.md`.
+
+Use `docs/04-phase-2-planning-prompt.md` as the handoff prompt for a fresh Phase 2 planning context.
