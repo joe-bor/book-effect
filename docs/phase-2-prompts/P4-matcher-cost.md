@@ -9,7 +9,12 @@ and decide whether v1 can keep it in JS or needs a native module.
 ## Before you start
 - **Requires:** [P3](./P3-cursor-corridors.md) `done` (full alignment engine). P2 is the minimum,
   but measure the P3 engine since that is what v1 would run.
-- **Consumes:** the alignment engine + corpus in `phase2/matcher-lab/`.
+- **Consumes:** the P3 engine `SessionTracker` (`phase2/matcher-lab/src/engine/sessionTracker.ts`)
+  + the synthetic full-read fixtures (`readStream`, `book.ts`) + corpus in `phase2/matcher-lab/`.
+- **Heads-up on the harness:** `SessionTracker` is **not** a `Matcher` — it exposes
+  `process(chunk)` + getters, not `run(chunks, triggers)`. The existing `replay.ts` harness only
+  drives `Matcher.run`, so it **does not apply here**; write a small standalone benchmark driver
+  around `SessionTracker.process()`.
 - **Read first:** `docs/05-phase-2-plan.md` (§Out of scope — "native matcher module"),
   `docs/00-vision.md` (the bet: JS matcher unless data proves it risks UI/latency),
   `docs/03-spike-results.md` (§"Matcher JS Cost" — currently unmeasured).
@@ -25,8 +30,13 @@ is a hypothesis until measured.
   differ and flag it for v1.
 
 ## Scope — do this
-1. Instrument per-eval wall-clock cost of a full matcher+cursor+corridor evaluation.
-2. Replay the corpus at 5 Hz and report p50/p95/max per-eval cost, plus window sizes used.
+1. Instrument the per-eval wall-clock cost of one full `SessionTracker.process(chunk)` — the whole
+   path (cursor alignment + corridor arming/expiry + fire matching), not just `FuzzyMatcher.run`.
+2. Drive it with the **synthetic full-read fixtures** (`readStream` over the book) so the windowed
+   alignment runs at the full window sizes a real continuous read uses, rather than the short
+   isolated carriers (which keep the cursor near 0 and under-exercise the work). Report p50/p95/max
+   per-eval cost and the `DEFAULT_SESSION_OPTIONS` window sizes used (lookAhead 120, recentWindow
+   12, lookBehind 10). The corpus can be a secondary cross-check, not the headline input.
 3. State a clear recommendation: keep in JS for v1, or flag for a native module — with the number
    that justifies it (e.g. p95 well under one 5 Hz frame = 200 ms, with comfortable headroom).
 
