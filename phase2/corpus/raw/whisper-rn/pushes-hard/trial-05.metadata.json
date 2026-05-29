@@ -1,0 +1,25 @@
+{
+  "provider": "whisper-rn",
+  "phraseSlug": "pushes-hard",
+  "triggerId": "trigger-3",
+  "carrier": "working at full speed all day he pushes hard to clear the way",
+  "trialNumber": 5,
+  "startedAt": "2026-05-28T19:46:38.016Z",
+  "playbackStartAt": "2026-05-28T19:46:48.253Z",
+  "playbackEndAt": "2026-05-28T19:46:52.792Z",
+  "stopStartedAt": "2026-05-28T19:47:10.802Z",
+  "stoppedAt": "2026-05-28T19:47:19.767Z",
+  "cacheFilename": "cache/book-effect-spike-log-1779997636068.json",
+  "success": true,
+  "triggerEventCount": 1,
+  "allTriggerIds": [
+    "trigger-3"
+  ],
+  "hostEndToTriggerMs": 3652,
+  "vadStartToTriggerMs": 7187,
+  "stopDurationMs": 0,
+  "latestPartial": "Working at full speed all day he pushes hard to clear the way.",
+  "latestFinal": null,
+  "providerErrors": [],
+  "eventCount": 81
+}

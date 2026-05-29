@@ -22,7 +22,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 
 | # | Prompt | Workstream | Depends on (must be `done`/PASS) | Status |
 |---|--------|------------|----------------------------------|--------|
-| 1 | [P0 — Preserve corpus](./phase-2-prompts/P0-preserve-corpus.md) | A0 | — | todo |
+| 1 | [P0 — Preserve corpus](./phase-2-prompts/P0-preserve-corpus.md) | A0 | — | **done** (`phase2/corpus/`, 365 files; counts validated vs `docs/03`) |
 | 2 | [P1 — Replay harness + baseline](./phase-2-prompts/P1-replay-harness.md) | A | P0 | todo |
 | 3 | [P2 — Fuzzy / token matcher](./phase-2-prompts/P2-fuzzy-matcher.md) | A | P1 | todo |
 | 4 | [P3 — Cursor + corridors + arming](./phase-2-prompts/P3-cursor-corridors.md) | A | P2 | todo |

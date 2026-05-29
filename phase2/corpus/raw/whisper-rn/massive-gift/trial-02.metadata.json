@@ -1,0 +1,25 @@
+{
+  "provider": "whisper-rn",
+  "phraseSlug": "massive-gift",
+  "triggerId": "trigger-2",
+  "carrier": "in his way a massive gift",
+  "trialNumber": 2,
+  "startedAt": "2026-05-28T19:27:46.184Z",
+  "playbackStartAt": "2026-05-28T19:27:56.729Z",
+  "playbackEndAt": "2026-05-28T19:27:59.200Z",
+  "stopStartedAt": "2026-05-28T19:28:12.207Z",
+  "stoppedAt": "2026-05-28T19:28:21.008Z",
+  "cacheFilename": "cache/book-effect-spike-log-1779996497142.json",
+  "success": true,
+  "triggerEventCount": 1,
+  "allTriggerIds": [
+    "trigger-2"
+  ],
+  "hostEndToTriggerMs": 5222,
+  "vadStartToTriggerMs": 6834,
+  "stopDurationMs": 0,
+  "latestPartial": "In his way a massive gift.",
+  "latestFinal": null,
+  "providerErrors": [],
+  "eventCount": 58
+}

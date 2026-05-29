@@ -1,0 +1,818 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 681472992.776441,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:17:27.098Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473141.7479,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "start.begin"
+    },
+    "wallClock": "2026-05-28T19:17:27.247Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473141.920764,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "runtime.loaded",
+      "documentDirectoryPath": "/data/user/0/com.joebor.bookeffect.spike/files"
+    },
+    "wallClock": "2026-05-28T19:17:27.247Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473141.957743,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "modelPaths.resolved",
+      "modelPath": "/data/user/0/com.joebor.bookeffect.spike/files/models/ggml-tiny.en.bin",
+      "vadModelPath": "/data/user/0/com.joebor.bookeffect.spike/files/models/ggml-silero-v6.2.0.bin"
+    },
+    "wallClock": "2026-05-28T19:17:27.247Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473157.5579,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "modelFiles.checked"
+    },
+    "wallClock": "2026-05-28T19:17:27.262Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473299.188056,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "whisperContext.created"
+    },
+    "wallClock": "2026-05-28T19:17:27.404Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473302.997223,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "whisperVadContext.created"
+    },
+    "wallClock": "2026-05-28T19:17:27.408Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473303.716858,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtimeVad.created"
+    },
+    "wallClock": "2026-05-28T19:17:27.408Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473303.793108,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.created"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473303.882691,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "transcriber.created"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473303.892691,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "transcriber.start.begin"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473303.953525,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.initialize.begin",
+      "sampleRate": 16000,
+      "channels": 1,
+      "bitsPerSample": 16,
+      "bufferSize": 16384,
+      "audioSource": 6
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.388941,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.initialize.done"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.440139,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.start.begin"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.526754,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.statusChange",
+      "isRecording": true
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.55717,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Audio recording: started"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.575764,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.start.done"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.610191,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Realtime transcription started"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.62165,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "transcriber.start.done"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681473304.628108,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "start.done"
+    },
+    "wallClock": "2026-05-28T19:17:27.409Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681474990.504722,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.firstFrame",
+      "sampleRate": 16000,
+      "channels": 1,
+      "byteLength": 16384
+    },
+    "wallClock": "2026-05-28T19:17:29.095Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681475529.088368,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "silero.empty",
+      "callIndex": 1,
+      "elapsedMs": 20.95718801021576,
+      "segmentsTotal": 0
+    },
+    "wallClock": "2026-05-28T19:17:29.634Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681478647.381543,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "silero.segments",
+      "callIndex": 4,
+      "elapsedMs": 64.38369798660278,
+      "segmentCount": 1,
+      "segmentsTotal": 1,
+      "firstT0": 295,
+      "lastT1": 410
+    },
+    "wallClock": "2026-05-28T19:17:32.752Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681478647.504408,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] VAD: Speech Start detected"
+    },
+    "wallClock": "2026-05-28T19:17:32.752Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681478647.551856,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.firstVad",
+      "kind": "speech_start",
+      "confidence": 0.28076171875
+    },
+    "wallClock": "2026-05-28T19:17:32.752Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 1779995852752,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "confidence": 0.28076171875
+    },
+    "wallClock": "2026-05-28T19:17:32.752Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681480013.403418,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is dead lie.",
+      "processTimeMs": 1366,
+      "recordingTimeMs": 4096,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:34.118Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681480013.465814,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.firstPartial",
+      "length": 21
+    },
+    "wallClock": "2026-05-28T19:17:34.118Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681480013.479564,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is dead lie."
+    },
+    "wallClock": "2026-05-28T19:17:34.118Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681480013.59446,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is dead lie.\""
+    },
+    "wallClock": "2026-05-28T19:17:34.118Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681481379.514251,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is deadline.",
+      "processTimeMs": 1366,
+      "recordingTimeMs": 5120,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:35.484Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681481379.60149,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is deadline."
+    },
+    "wallClock": "2026-05-28T19:17:35.484Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 681481379.659459,
+    "triggerId": "trigger-1",
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:17:35.484Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681481380.289667,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is deadline.\""
+    },
+    "wallClock": "2026-05-28T19:17:35.485Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681484138.945916,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is deadline.",
+      "processTimeMs": 2759,
+      "recordingTimeMs": 6144,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:38.244Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681484139.031073,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is deadline."
+    },
+    "wallClock": "2026-05-28T19:17:38.244Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681484139.186333,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is deadline.\""
+    },
+    "wallClock": "2026-05-28T19:17:38.244Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681485584.07727,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is deadline.",
+      "processTimeMs": 1445,
+      "recordingTimeMs": 7168,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:39.689Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681485584.156645,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is deadline."
+    },
+    "wallClock": "2026-05-28T19:17:39.689Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681485584.28951,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is deadline.\""
+    },
+    "wallClock": "2026-05-28T19:17:39.689Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681487060.583467,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is deadline.",
+      "processTimeMs": 1476,
+      "recordingTimeMs": 8192,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:41.165Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681487060.692738,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is deadline."
+    },
+    "wallClock": "2026-05-28T19:17:41.165Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681487060.902582,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is deadline.\""
+    },
+    "wallClock": "2026-05-28T19:17:41.166Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681488062.457425,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "silero.segments",
+      "callIndex": 13,
+      "elapsedMs": 269.41807293891907,
+      "segmentCount": 1,
+      "segmentsTotal": 10,
+      "firstT0": 295,
+      "lastT1": 435
+    },
+    "wallClock": "2026-05-28T19:17:42.167Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681488554.603206,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is deadline.",
+      "processTimeMs": 1493,
+      "recordingTimeMs": 9216,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:42.659Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681488554.664717,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is deadline."
+    },
+    "wallClock": "2026-05-28T19:17:42.659Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681488554.753831,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is deadline.\""
+    },
+    "wallClock": "2026-05-28T19:17:42.659Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681491717.166486,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.transcribe",
+      "sliceIndex": 0,
+      "rawLength": 21,
+      "trimmedLength": 21,
+      "raw": "The word is deadline.",
+      "processTimeMs": 3162,
+      "recordingTimeMs": 10240,
+      "isCapturing": true
+    },
+    "wallClock": "2026-05-28T19:17:45.822Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681491717.238257,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "The word is deadline."
+    },
+    "wallClock": "2026-05-28T19:17:45.822Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681491717.347007,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Transcribed speech segment 0 (Final=false): \"The word is deadline.\""
+    },
+    "wallClock": "2026-05-28T19:17:45.822Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681491990.945132,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "stop.begin"
+    },
+    "wallClock": "2026-05-28T19:17:46.096Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681491990.999559,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "transcriber.stop.begin"
+    },
+    "wallClock": "2026-05-28T19:17:46.096Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681491991.028049,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.stop.begin",
+      "framesReceived": 34
+    },
+    "wallClock": "2026-05-28T19:17:46.096Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681492132.355132,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.statusChange",
+      "isRecording": false
+    },
+    "wallClock": "2026-05-28T19:17:46.237Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681492132.444299,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Audio recording: stopped"
+    },
+    "wallClock": "2026-05-28T19:17:46.237Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681492132.484038,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "audioStream.stop.done"
+    },
+    "wallClock": "2026-05-28T19:17:46.237Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681493248.19909,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "realtime.log",
+      "message": "[RealtimeTranscriber] Realtime transcription stopped"
+    },
+    "wallClock": "2026-05-28T19:17:47.353Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681493248.254038,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "transcriber.stop.done"
+    },
+    "wallClock": "2026-05-28T19:17:47.353Z"
+  },
+  {
+    "type": "asr.diag",
+    "timestamp": 681493248.264819,
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "stage": "stop.done"
+    },
+    "wallClock": "2026-05-28T19:17:47.353Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 681493248.280027,
+    "wallClock": "2026-05-28T19:17:47.353Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 681493248.383934,
+    "wallClock": "2026-05-28T19:17:47.353Z",
+    "providers": {
+      "asr": "whisper-rn",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 61,
+      "filename": "book-effect-spike-log-1779995867353.json",
+      "pullPath": "cache/book-effect-spike-log-1779995867353.json",
+      "reason": "stop"
+    }
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "provider": "sherpa-onnx",
+  "phraseSlug": "massive-gift",
+  "triggerId": "trigger-2",
+  "carrier": "in his way a massive gift",
+  "trialNumber": 23,
+  "startedAt": "2026-05-28T18:54:44.616Z",
+  "playbackStartAt": "2026-05-28T18:54:55.736Z",
+  "playbackEndAt": "2026-05-28T18:54:58.210Z",
+  "stopStartedAt": "2026-05-28T18:55:04.211Z",
+  "stoppedAt": "2026-05-28T18:55:09.550Z",
+  "cacheFilename": "cache/book-effect-spike-log-1779994506484.json",
+  "success": true,
+  "triggerEventCount": 1,
+  "allTriggerIds": [
+    "trigger-2"
+  ],
+  "hostEndToTriggerMs": -600,
+  "vadStartToTriggerMs": 1353,
+  "stopDurationMs": 1,
+  "latestPartial": "IN HIS WAY A MASSIVE GIFT",
+  "latestFinal": "IN HIS WAY A MASSIVE GIFT",
+  "providerErrors": [],
+  "eventCount": 12
+}

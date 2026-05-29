@@ -1,0 +1,121 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 680066025.314374,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:54:00.130Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 680072036.638382,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:54:06.141Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680072036.704111,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS"
+    },
+    "wallClock": "2026-05-28T18:54:06.141Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680072375.107757,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY"
+    },
+    "wallClock": "2026-05-28T18:54:06.480Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680072737.388226,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MAS"
+    },
+    "wallClock": "2026-05-28T18:54:06.842Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680073023.497444,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MASSIVE GU"
+    },
+    "wallClock": "2026-05-28T18:54:07.128Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680073383.389788,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MASSIVE GUEST"
+    },
+    "wallClock": "2026-05-28T18:54:07.488Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 680074635.817652,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MASSIVE GUEST"
+    },
+    "wallClock": "2026-05-28T18:54:08.741Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 680074635.974371,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:54:08.741Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 680082264.784107,
+    "wallClock": "2026-05-28T18:54:16.370Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 680082264.871295,
+    "wallClock": "2026-05-28T18:54:16.370Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 11,
+      "filename": "book-effect-spike-log-1779994456370.json",
+      "pullPath": "cache/book-effect-spike-log-1779994456370.json",
+      "reason": "stop"
+    }
+  }
+]

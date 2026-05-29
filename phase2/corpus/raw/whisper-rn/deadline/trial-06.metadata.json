@@ -1,0 +1,25 @@
+{
+  "provider": "whisper-rn",
+  "phraseSlug": "deadline",
+  "triggerId": "trigger-1",
+  "carrier": "the word is deadline",
+  "trialNumber": 6,
+  "startedAt": "2026-05-28T19:14:54.851Z",
+  "playbackStartAt": "2026-05-28T19:15:05.146Z",
+  "playbackEndAt": "2026-05-28T19:15:07.343Z",
+  "stopStartedAt": "2026-05-28T19:15:17.353Z",
+  "stoppedAt": "2026-05-28T19:15:23.516Z",
+  "cacheFilename": "cache/book-effect-spike-log-1779995720330.json",
+  "success": true,
+  "triggerEventCount": 1,
+  "allTriggerIds": [
+    "trigger-1"
+  ],
+  "hostEndToTriggerMs": 2721,
+  "vadStartToTriggerMs": 4024,
+  "stopDurationMs": 1,
+  "latestPartial": "The word is deadline.",
+  "latestFinal": null,
+  "providerErrors": [],
+  "eventCount": 58
+}

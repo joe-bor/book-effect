@@ -1,0 +1,179 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 681070904.137532,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:45.009Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 681079490.593414,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:53.595Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681079490.65805,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS"
+    },
+    "wallClock": "2026-05-28T19:10:53.595Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681079825.310758,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED"
+    },
+    "wallClock": "2026-05-28T19:10:53.930Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681080109.974039,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAV"
+    },
+    "wallClock": "2026-05-28T19:10:54.215Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681080407.668779,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUS"
+    },
+    "wallClock": "2026-05-28T19:10:54.512Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681080831.357112,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUSHES"
+    },
+    "wallClock": "2026-05-28T19:10:54.936Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681081107.177685,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUSHES HARD TO"
+    },
+    "wallClock": "2026-05-28T19:10:55.212Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681081388.018101,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUSHES HARD TO CLEAR"
+    },
+    "wallClock": "2026-05-28T19:10:55.493Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681081772.866382,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUSHES HARD TO CLEAR THE"
+    },
+    "wallClock": "2026-05-28T19:10:55.878Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681082016.16482,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-28T19:10:56.121Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 681082016.332632,
+    "triggerId": "trigger-3",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:56.121Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 681083325.852528,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULSPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-28T19:10:57.431Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 681083325.990757,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:57.431Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 681092038.504399,
+    "wallClock": "2026-05-28T19:11:06.143Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 681092038.601431,
+    "wallClock": "2026-05-28T19:11:06.143Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 16,
+      "filename": "book-effect-spike-log-1779995466143.json",
+      "pullPath": "cache/book-effect-spike-log-1779995466143.json",
+      "reason": "stop"
+    }
+  }
+]
