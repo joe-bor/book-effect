@@ -26,7 +26,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 | 2 | [P1 — Replay harness + baseline](./phase-2-prompts/P1-replay-harness.md) | A | P0 | **done** (`phase2/matcher-lab/`; baseline 27/23/21 + 30/30/30, 0 mismatches, 23 tests) |
 | 3 | [P2 — Fuzzy / token matcher](./phase-2-prompts/P2-fuzzy-matcher.md) | A | P1 | **done** (179/180 = 99.4%; 18/19 sherpa misses recovered, 0 false fires; see `docs/08`) |
 | 4 | [P3 — Cursor + corridors + arming](./phase-2-prompts/P3-cursor-corridors.md) | A | P2 | **done** (`phase2/matcher-lab/src/engine/`; 4 synthetic full-read fixtures: 0 false-stale, 0 wrong-occurrence, P2 recoveries preserved, cursor monotonic; see `docs/08`) |
-| — | **◆ GATE 1 (synthetic replay)** | — | P2, P3 | — |
+| — | **◆ GATE 1 (synthetic replay)** | — | P2, P3 | **PASS — on track** (synthetic; cost → P4, real read → P5). Founder call May 29, 2026; main line continues, no P9/P10 fork |
 | 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | todo |
 | 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | todo |
 | — | **◆ GATE 2 (real human read)** | — | P5 | — |
@@ -80,6 +80,11 @@ preserve replay fuzzy  cursor  synthetic  cost  human   real-human  audio  susta
 - **Leads to:** ◆ GATE 1.
 
 ### ◆ GATE 1 — synthetic replay decision
+**Decided May 29, 2026: PASS — on track.** Recovery 99.4%, 0 false-stale, 0 wrong-occurrence on the
+synthetic full-read fixtures (see `docs/08` §P3 / §Gate 1). Keep Sherpa + fuzzy + cursor; continue
+→ P4 → P5; no P9/P10 fork. Caveat: synthetic TTS only — cost is confirmed in P4 and the decisive
+evidence is the P5 real-human read; revisit via Q4/Q5 if either disappoints.
+
 Evaluate against [05 §Q3](./05-phase-2-plan.md#q3--evidence-that-lets-us-keep-sherpa--fuzzy-matching).
 - **PASS** (≥95% recovery, 0 false-stale, 0 wrong-occurrence): continue → P4, then P5.
 - **PARTIAL/FAIL:** diagnose *where* it fails using the [Q4/Q5 discriminator](./05-phase-2-plan.md#q5--evidence-that-justifies-jumping-to-phoneme-matching-early-f--p10).

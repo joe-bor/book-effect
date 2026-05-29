@@ -148,7 +148,14 @@ mechanics, `readStream` synthesis, and the four full-read fixtures). Full suite:
 - Single constant set, not swept; values are research starting points, not tuned against human
   data (that is Gate 2 work).
 
-## Gate 1 status — evaluable on position + recovery; decision deferred
+## Gate 1 — PASS (on track); cost confirmation folded into P4
+
+**Call (founder, May 29, 2026): PASS, on track.** On the synthetic recovery + position signals
+Gate 1 clears the §Q3 bar, so we **keep Sherpa + fuzzy + cursor** and continue the main line
+(P4 → P5); we do **not** open the P9/P10 forks. This is a *PASS-on-track*, not a final PASS: it
+rests entirely on synthetic TTS, the matcher-cost signal is confirmed in **P4**, and the decisive
+real-human evidence is **P5 / Gate 2**. If P4 shows cost is not sub-frame, or Gate 2 fails, revisit
+via the Q4/Q5 discriminator.
 
 Against `docs/05-phase-2-plan.md` §Q3 (synthetic-corpus signals), on **synthetic TTS / synthetic
 read-throughs only**:
@@ -163,5 +170,5 @@ read-throughs only**:
 
 Three of the four synthetic §Q3 signals are green; the cost signal is **P4** and the real-human
 signal is **P5 / Gate 2**. Every number above is on synthetic `say -v Samantha` TTS and synthetic
-read-throughs, so it is the fast Gate-1 signal only. **The Gate 1 PASS/PARTIAL/FAIL call is not
-made here** — surface the numbers and decide at the ◆ Gate 1 step in `docs/06-phase-2-runbook.md`.
+read-throughs, so it is the fast Gate-1 signal only — which is why the call above is *on track*
+rather than final.
