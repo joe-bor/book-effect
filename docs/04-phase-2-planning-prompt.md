@@ -1,11 +1,11 @@
 # Phase 2 Planning Handoff Prompt
 
-Use this prompt to start a fresh context for Book Effect Phase 2 planning. It intentionally asks for planning and decomposition only, not implementation.
+Use this prompt to start a fresh context from `main` for Book Effect Phase 2 planning. It intentionally asks for planning and decomposition only, not implementation.
 
 ```text
-We just wrapped the Book Effect Phase 1 spike on branch `codex/phase-1-spike`.
+We just wrapped the Book Effect Phase 1 spike. The spike branch `codex/phase-1-spike` has been pushed and merged into `main`.
 
-Please review the current repo state first, especially:
+Please start from the latest `main` branch and review the current repo state first, especially:
 
 - `docs/00-vision.md`
 - `docs/01-spike-plan.md`
