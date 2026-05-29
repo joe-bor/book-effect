@@ -1,17 +1,19 @@
 # Alignment Replay Results (P1–P5)
 
-Status: in progress. Last updated May 29, 2026 (through P4).
+Status: in progress. Last updated May 29, 2026 (through P5 / Gate 2).
 
 Offline results from `phase2/matcher-lab` replaying the committed Phase 1 corpus
 (`phase2/corpus/raw`) through candidate matchers. Regenerate the numbers with:
 
 ```bash
-cd phase2/matcher-lab && npm run replay   # P1/P2: writes BASELINE.md and FUZZY.md
-cd phase2/matcher-lab && npm run bench    # P4: prints per-eval cost at 5 Hz
+cd phase2/matcher-lab && npm run replay        # P1/P2: writes BASELINE.md and FUZZY.md
+cd phase2/matcher-lab && npm run bench         # P4: prints per-eval cost at 5 Hz
+cd phase2/matcher-lab && npm run replay:human  # P5: P2/P3 engine over phase2/corpus/real-human
 ```
 
-All results below are on **synthetic `say -v Samantha` TTS** (the Phase 1 corpus). No human or
-child speech yet — that is P5 (Gate 2) / Gate 3. Treat these as the fast Gate-1 signal only.
+Results **P1–P4 below are on synthetic `say -v Samantha` TTS** (the Phase 1 corpus) — the fast
+Gate-1 signal only. **§P5 is the first real adult human read** (Galaxy S10, Sherpa), the Gate-2
+evidence. Child speech is still deferred to Gate 3.
 
 ## P1 — Harness fidelity (baseline substring matcher)
 
@@ -220,3 +222,111 @@ All four synthetic §Q3 signals are now green (cost cleared the frame budget wit
 P4); only the real-human signal **P5 / Gate 2** remains. Every number above is on synthetic
 `say -v Samantha` TTS and synthetic read-throughs, so it is the fast Gate-1 signal only — which is
 why the call above is *on track* rather than final.
+
+## P5 — Real adult human read on the Galaxy S10 (Gate 2 evidence)
+
+The first non-synthetic evidence. One adult read the verbatim book aloud on the gate device
+(Galaxy S10 `SM-G973U`) with the **Sherpa** provider; the spike logged the live Sherpa stream. The
+**7 continuous full reads** are committed under `phase2/corpus/real-human/` (see the corpus
+MANIFEST §Real-human). We then replayed each read's ordered `asr.partial`/`asr.final` through the
+**P2/P3 `SessionTracker`** (fuzzy fire + forward-only cursor + corridors, `DEFAULT_SESSION_OPTIONS`)
+— `npm run replay:human`.
+
+This is the decisive test the synthetic corpus could not give: real coarticulation, a real human
+cadence, real Sherpa errors on a real voice, and a continuous read where the cursor and corridors
+must hold against ASR noise across the whole 202-token book.
+
+### Results (7 reads × 3 triggers = 21 occurrences; verified by `npm run replay:human`)
+
+| Trigger | Phrase | Recovery | Phrase-end→fire latency (signed ms) |
+| --- | --- | ---: | --- |
+| trigger-1 | `deadline` | **6/7 (86%)** | n=6 · p50 62 · p95 2699 · min −1435 · max 3414 |
+| trigger-3 | `pushes hard to clear the way` | **7/7 (100%)** | n=7 · p50 −114 · p95 381 · min −375 · max 416 |
+| trigger-2 | `massive gift` | **7/7 (100%)** | n=7 · p50 −53 · p95 111 · min −265 · max 120 |
+
+**Total recovery: 20/21 (95.2%). False-stale: 0. Wrong-occurrence: 0.** Every one of the 20 fires
+landed **in-corridor** (cursor within `[wordIndex − armLead, wordIndex + maxLookback]`); the cursor
+advanced monotonically to the end of the book on all 7 reads.
+
+For comparison, the spike's **live naive exact-substring matcher** fired **19/21** on the same audio
+(one read fired only 1/3). The P2/P3 fuzzy+cursor engine recovered **20/21**, catching one of the
+two live misses; both miss the same single recognition corruption (below).
+
+### The one miss (the floor, again recognition-layer)
+
+`deadline` in read `…787310` was recognized as **`"STEAD LINE"`** — the recognizer corrupted the
+*onset* (`d → st`) **and** split the word. Adjacent-token merge yields `steadline`, which is >1 edit
+from `deadline`, and the single-word edit budget is **0** (loosening it invites false fires — see
+P2). This is a **recognition failure, not a matching failure**: no fair text-level matcher should
+force it. It is the human-voice analog of the synthetic `"INE"` floor (P2), and it is why
+`deadline`, a bare single word, is the most fragile trigger.
+
+### Latency — how to read the signed delta (addresses the `docs/03` caveat)
+
+Latency here is `fire-chunk wallClock − phrase-end-cue wallClock`, both on the device clock — i.e.
+**how long after the reader finished saying the phrase did the recognized text first cross the
+trigger.** This is the first time latency is measured against the actual target definition.
+
+- **Negative is common and good:** the matcher fires off a *partial* the instant the trigger token
+  is recognized, often before the reader's manual cue tap lands (human reaction time). The phrase
+  triggers are tight — `pushes hard…` p95 381 ms, `massive gift` p95 111 ms — effectively firing at
+  phrase-end. (`massive gift` typically fires on a window ending `"…A MASSIVE"`, before `gift` is
+  even emitted, via the 1-token edit budget.)
+- **`deadline` is noisy** (p95 2699 ms, one 3414 ms outlier): in those reads Sherpa emitted the word
+  several seconds late. That is **recognizer emission lag, not matcher cost** (P4 put the matcher at
+  p95 3.3 ms). It still fired in-corridor, but the user-perceived latency on a slow single-word
+  emission is the real risk to watch on-device.
+
+Excluding the single-word recognizer-lag outliers, every fire is well within the ~1.5 s gate
+target; the phrase triggers clear it with room to spare.
+
+### New error shapes not seen in synthetic data (these feed the E-vs-F call)
+
+The synthetic sherpa misses were clean and few (split compound, one 1-token substitution, one
+dropped token). Real human + Sherpa added shapes the TTS corpus never produced:
+
+1. **Onset-corruption + split** — `deadline → "stead line"`. Not a clean split (`dead line`, which
+   we recover) but the leading phoneme itself wrong, pushing it past the 0-edit single-word budget.
+   This is the only miss and the clearest *new* shape.
+2. **Pervasive context-word substitution around the trigger** — `Bulldozer's →` "those are's" /
+   "while doze are's" / "all those who's" / "pull dozers"; `full tilt →` "fultilt"/"full silt";
+   `awesome → "osum"/"autumn"`. Synthetic TTS never garbled neighbors like this. It did **not** cost
+   recovery (the trigger *tokens* survived) but it is constant low-grade noise the forward cursor
+   had to absorb — and did, without drifting or arming the wrong position.
+3. **Repeated-context near-misses survived.** `clear` and `way` recur (`pushes hard to clear the
+   way` vs the later `in his way`, `this way and that`, `clears the site`), yet `pushes-hard` fired
+   **exactly once, in its corridor** — the first real (non-fixture) wrong-occurrence stress, passed.
+4. **Recognizer emission lag** — the multi-second `deadline` delay (#deadline latency above), a
+   timing shape absent from the prompt synthetic stream where emission was prompt.
+
+**E-vs-F read:** the only failure is recognition-layer (Sherpa misheard the phonemes), which points
+at the Q4/Q5 **recognition wall (P9, Sherpa-specific)** rather than the text/matcher layer (P10) —
+consistent with P2's decision not to loosen the single-word budget or add phonetic backoff. The
+text-layer tolerance again proved sufficient for everything except a true mis-recognition.
+
+## Gate 2 — PASS signal (founder call pending, same as Gate 1)
+
+Against `docs/05-phase-2-plan.md` §Q3, now on **real adult human speech (Sherpa, S10)**:
+
+| §Q3 / Gate-2 signal | Bar | P5 result (real human) |
+| --- | --- | --- |
+| Trigger recovery, real adult read | ≥ 95% | **95.2%** (20/21) |
+| In-corridor fires within ~1.5 s | yes | **yes** for phrase triggers (p95 ≤ 0.4 s); `deadline` clears it except recognizer-lag outliers |
+| False-stale fires | 0 | **0** across all 7 continuous reads |
+| Wrong-occurrence fires | 0 | **0** (incl. the repeated `clear`/`way` context) |
+
+All four real-human signals clear the bar. Per the Gate-1 precedent (the gate decision is the
+founder's), this is recorded as a **PASS signal**: on real adult speech, **Sherpa + fuzzy + cursor
+holds**, so the recommendation is to keep it as the v1 path and continue the main line to
+[P6](./phase-2-prompts/P6-audio-latency.md) (audio-output latency), **not** to open the P9/P10 forks.
+
+Honest caveats on the strength of this signal:
+
+- **n = 7 reads, one adult reader** (21 occurrences). A gate signal, not a population study. The
+  95.2% sits right on the 95% line — one more `deadline`-style miss would drop it under.
+- **`deadline` (single word) is the weak point**: 86% recovery and the multi-second emission-lag
+  outliers. If v1 leans on bare single-word triggers, expect this to be the failure mode; the fix is
+  recognition-layer (P9), not the matcher.
+- **Device JS-thread cost still unconfirmed.** P5 replayed the recorded streams **offline**; the
+  P4 device caveat (real on-S10 matcher cost contending with Sherpa + UI) is not yet closed.
+- **Child speech (Gate 3) untouched.** This is adult-only.

@@ -1,0 +1,2524 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 739889974.294938,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:18.066Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 739894009.768687,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:22.102Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739894009.829885,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN"
+    },
+    "wallClock": "2026-05-29T22:00:22.102Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739894346.466291,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A"
+    },
+    "wallClock": "2026-05-29T22:00:22.438Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739894617.154572,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG"
+    },
+    "wallClock": "2026-05-29T22:00:22.709Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739895019.197072,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRU"
+    },
+    "wallClock": "2026-05-29T22:00:23.111Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739895355.670666,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION"
+    },
+    "wallClock": "2026-05-29T22:00:23.448Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739895620.105197,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT"
+    },
+    "wallClock": "2026-05-29T22:00:23.712Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739896909.391082,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S"
+    },
+    "wallClock": "2026-05-29T22:00:25.001Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739897218.078686,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO"
+    },
+    "wallClock": "2026-05-29T22:00:25.310Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739897517.080456,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW"
+    },
+    "wallClock": "2026-05-29T22:00:25.609Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739897877.08056,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR"
+    },
+    "wallClock": "2026-05-29T22:00:25.969Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739898221.602331,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS"
+    },
+    "wallClock": "2026-05-29T22:00:26.314Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739898509.565196,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT"
+    },
+    "wallClock": "2026-05-29T22:00:26.602Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739899409.50957,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST"
+    },
+    "wallClock": "2026-05-29T22:00:27.501Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739899884.018372,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG"
+    },
+    "wallClock": "2026-05-29T22:00:27.976Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739900120.371185,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POS"
+    },
+    "wallClock": "2026-05-29T22:00:28.212Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739900397.878111,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF"
+    },
+    "wallClock": "2026-05-29T22:00:28.490Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739900710.763372,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR"
+    },
+    "wallClock": "2026-05-29T22:00:28.803Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739901687.828007,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEA"
+    },
+    "wallClock": "2026-05-29T22:00:29.780Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739902019.734673,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM"
+    },
+    "wallClock": "2026-05-29T22:00:30.112Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739902359.568892,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLA"
+    },
+    "wallClock": "2026-05-29T22:00:30.451Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739902619.572954,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING"
+    },
+    "wallClock": "2026-05-29T22:00:30.712Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739903016.577277,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO"
+    },
+    "wallClock": "2026-05-29T22:00:31.109Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739903355.968735,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR"
+    },
+    "wallClock": "2026-05-29T22:00:31.448Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739904192.03686,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH"
+    },
+    "wallClock": "2026-05-29T22:00:32.284Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739904602.339099,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS"
+    },
+    "wallClock": "2026-05-29T22:00:32.694Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739904886.009568,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING"
+    },
+    "wallClock": "2026-05-29T22:00:32.978Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739905199.182745,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON"
+    },
+    "wallClock": "2026-05-29T22:00:33.291Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739905521.069464,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW"
+    },
+    "wallClock": "2026-05-29T22:00:33.613Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739906497.864359,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW THEY HAVE"
+    },
+    "wallClock": "2026-05-29T22:00:34.590Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739906846.69639,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW THEY HAVE A MAJ"
+    },
+    "wallClock": "2026-05-29T22:00:34.939Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739907090.930817,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW THEY HAVE A MAJOR JO"
+    },
+    "wallClock": "2026-05-29T22:00:35.183Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739907384.223265,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW THEY HAVE A MAJOR JOB TO"
+    },
+    "wallClock": "2026-05-29T22:00:35.476Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739907836.691911,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW THEY HAVE A MAJOR JOB TO DO"
+    },
+    "wallClock": "2026-05-29T22:00:35.929Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 739909395.052066,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "DOWN IN A BIG CONSTRUCTION SIGHT THERE'S WORK TO NEW FOR CHRISTMAS NIGHT THE LAST BIG POSIT OF THE YEAR THE TEAM IS SLAMMING INTO GEAR SO MUCH IS RIDING ON THE CREW THEY HAVE A MAJOR JOB TO DO"
+    },
+    "wallClock": "2026-05-29T22:00:37.487Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 739909395.305973,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:37.487Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 739909717.933941,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:37.810Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739909718.000868,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPE"
+    },
+    "wallClock": "2026-05-29T22:00:37.810Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739910016.026077,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL"
+    },
+    "wallClock": "2026-05-29T22:00:38.108Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739910362.862431,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW"
+    },
+    "wallClock": "2026-05-29T22:00:38.455Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739911341.290347,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS"
+    },
+    "wallClock": "2026-05-29T22:00:39.433Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739911614.115138,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING"
+    },
+    "wallClock": "2026-05-29T22:00:39.706Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739911910.813524,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT"
+    },
+    "wallClock": "2026-05-29T22:00:40.003Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739913216.321752,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE"
+    },
+    "wallClock": "2026-05-29T22:00:41.308Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739913520.255606,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS"
+    },
+    "wallClock": "2026-05-29T22:00:41.612Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739913862.309044,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE"
+    },
+    "wallClock": "2026-05-29T22:00:41.954Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739914213.269617,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE RACING"
+    },
+    "wallClock": "2026-05-29T22:00:42.305Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739914845.519512,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE RACING AT"
+    },
+    "wallClock": "2026-05-29T22:00:42.937Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739915110.698939,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE RACING AT FULL"
+    },
+    "wallClock": "2026-05-29T22:00:43.203Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739915416.66821,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE RACING AT FULL TILT"
+    },
+    "wallClock": "2026-05-29T22:00:43.509Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 739917011.379251,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE RACING AT FULL TILT"
+    },
+    "wallClock": "2026-05-29T22:00:45.103Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 739917011.550293,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:45.103Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 739917715.813053,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:45.808Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739917715.876386,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMP"
+    },
+    "wallClock": "2026-05-29T22:00:45.808Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739918018.726646,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT"
+    },
+    "wallClock": "2026-05-29T22:00:46.111Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739918374.942323,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK"
+    },
+    "wallClock": "2026-05-29T22:00:46.467Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739918620.122375,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN"
+    },
+    "wallClock": "2026-05-29T22:00:46.712Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739919018.619146,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT"
+    },
+    "wallClock": "2026-05-29T22:00:47.111Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739919621.141854,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE"
+    },
+    "wallClock": "2026-05-29T22:00:47.713Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739919930.453573,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT"
+    },
+    "wallClock": "2026-05-29T22:00:48.022Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739920216.436073,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE"
+    },
+    "wallClock": "2026-05-29T22:00:48.308Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739920594.668781,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE"
+    },
+    "wallClock": "2026-05-29T22:00:48.687Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739920912.001802,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT"
+    },
+    "wallClock": "2026-05-29T22:00:49.004Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739921192.209354,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT"
+    },
+    "wallClock": "2026-05-29T22:00:49.284Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739922197.018624,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL"
+    },
+    "wallClock": "2026-05-29T22:00:50.289Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739922497.311228,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE"
+    },
+    "wallClock": "2026-05-29T22:00:50.589Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739922803.371801,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S"
+    },
+    "wallClock": "2026-05-29T22:00:50.895Z"
+  },
+  {
+    "type": "manual.phraseEndCue",
+    "timestamp": 739922872.546384,
+    "wallClock": "2026-05-29T22:00:50.964Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "latestPartial": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S",
+      "latestFinal": "ESPECIAL HOW IS HIS BEING BUILT THE TRUCKS ARE RACING AT FULL TILT"
+    }
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739923094.655759,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLI"
+    },
+    "wallClock": "2026-05-29T22:00:51.187Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739923425.964301,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLINE IS"
+    },
+    "wallClock": "2026-05-29T22:00:51.518Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 739923426.086801,
+    "triggerId": "trigger-1",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:51.518Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739923790.676228,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLINE IS ALMOST"
+    },
+    "wallClock": "2026-05-29T22:00:51.883Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739924093.064352,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLINE IS ALMOST HERE"
+    },
+    "wallClock": "2026-05-29T22:00:52.185Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 739925699.329716,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLINE IS ALMOST HERE"
+    },
+    "wallClock": "2026-05-29T22:00:53.791Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 739925699.500341,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:53.791Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 739926583.961747,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:00:54.676Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739926584.022893,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE"
+    },
+    "wallClock": "2026-05-29T22:00:54.676Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739926989.606226,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LO"
+    },
+    "wallClock": "2026-05-29T22:00:55.082Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739927299.85508,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF"
+    },
+    "wallClock": "2026-05-29T22:00:55.392Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739927593.542841,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND"
+    },
+    "wallClock": "2026-05-29T22:00:55.685Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739927930.843361,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR"
+    },
+    "wallClock": "2026-05-29T22:00:56.023Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739929501.187371,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING"
+    },
+    "wallClock": "2026-05-29T22:00:57.593Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739930202.837892,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL"
+    },
+    "wallClock": "2026-05-29T22:00:58.295Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739930517.476069,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED"
+    },
+    "wallClock": "2026-05-29T22:00:58.609Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739930820.361746,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL"
+    },
+    "wallClock": "2026-05-29T22:00:58.912Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739931114.436641,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY"
+    },
+    "wallClock": "2026-05-29T22:00:59.206Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739931813.275756,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR"
+    },
+    "wallClock": "2026-05-29T22:00:59.905Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739932718.683724,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHE"
+    },
+    "wallClock": "2026-05-29T22:01:00.811Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739932991.884245,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES"
+    },
+    "wallClock": "2026-05-29T22:01:01.084Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739933473.684505,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD"
+    },
+    "wallClock": "2026-05-29T22:01:01.566Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739933719.929818,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLE"
+    },
+    "wallClock": "2026-05-29T22:01:01.812Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739933984.039088,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE"
+    },
+    "wallClock": "2026-05-29T22:01:02.076Z"
+  },
+  {
+    "type": "manual.phraseEndCue",
+    "timestamp": 739934221.342838,
+    "wallClock": "2026-05-29T22:01:02.313Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "latestPartial": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLE",
+      "latestFinal": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLINE IS ALMOST HERE"
+    }
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739934346.267526,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-29T22:01:02.438Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 739934346.411692,
+    "triggerId": "trigger-3",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:02.438Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739935601.974244,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR"
+    },
+    "wallClock": "2026-05-29T22:01:03.694Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739935976.478098,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOUR"
+    },
+    "wallClock": "2026-05-29T22:01:04.068Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739936208.753306,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS"
+    },
+    "wallClock": "2026-05-29T22:01:04.301Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739936618.077369,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS"
+    },
+    "wallClock": "2026-05-29T22:01:04.710Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739937218.702472,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS"
+    },
+    "wallClock": "2026-05-29T22:01:05.311Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739937515.364764,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY"
+    },
+    "wallClock": "2026-05-29T22:01:05.607Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739937819.338253,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT"
+    },
+    "wallClock": "2026-05-29T22:01:05.911Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739938497.146274,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCL"
+    },
+    "wallClock": "2026-05-29T22:01:06.589Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739938811.764764,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES"
+    },
+    "wallClock": "2026-05-29T22:01:06.904Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739939116.963409,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE S"
+    },
+    "wallClock": "2026-05-29T22:01:07.209Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739939462.274711,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT"
+    },
+    "wallClock": "2026-05-29T22:01:07.554Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739939820.827419,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO"
+    },
+    "wallClock": "2026-05-29T22:01:07.913Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739940116.601898,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME"
+    },
+    "wallClock": "2026-05-29T22:01:08.209Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739940472.118669,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT"
+    },
+    "wallClock": "2026-05-29T22:01:08.564Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739941006.72695,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE"
+    },
+    "wallClock": "2026-05-29T22:01:09.099Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739941462.842835,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS"
+    },
+    "wallClock": "2026-05-29T22:01:09.555Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739941721.475752,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY"
+    },
+    "wallClock": "2026-05-29T22:01:09.813Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739942003.841064,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO"
+    },
+    "wallClock": "2026-05-29T22:01:10.096Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739942321.502314,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY"
+    },
+    "wallClock": "2026-05-29T22:01:10.413Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739942611.123564,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT"
+    },
+    "wallClock": "2026-05-29T22:01:10.703Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739943322.254293,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT"
+    },
+    "wallClock": "2026-05-29T22:01:11.414Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739943615.776793,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN"
+    },
+    "wallClock": "2026-05-29T22:01:11.708Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739943954.174501,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN HIS WAY"
+    },
+    "wallClock": "2026-05-29T22:01:12.046Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739944617.877313,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN HIS WAY A MA"
+    },
+    "wallClock": "2026-05-29T22:01:12.710Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739944938.314188,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN HIS WAY A MASSIVE"
+    },
+    "wallClock": "2026-05-29T22:01:13.030Z"
+  },
+  {
+    "type": "manual.phraseEndCue",
+    "timestamp": 739944939.171428,
+    "wallClock": "2026-05-29T22:01:13.031Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "latestPartial": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN HIS WAY A MA",
+      "latestFinal": "THE IMPORTANT WORK CAN'T WAIT THEY'RE GET IT DONE AND MAKE IT GREAT ALL THOSE WHO'S DEADLINE IS ALMOST HERE"
+    }
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739945196.532365,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN HIS WAY A MASSIVE GIFT"
+    },
+    "wallClock": "2026-05-29T22:01:13.288Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 739945196.680542,
+    "triggerId": "trigger-2",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:13.289Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 739945803.832365,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "HE HAS A LOT OF GROUND SO CLEAR WORKING AT FULL SPEED ALL DAY ROAR HE PUSHES HARD TO CLEAR THE WAY FOR HOURS HE POWERS THIS WAY AND THAT INCLUDES THE SIGHT IN NO TIME FLAT HE TURNS AWAY TO ANY SHIFT BUT IN HIS WAY A MASSIVE GIFT"
+    },
+    "wallClock": "2026-05-29T22:01:13.896Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 739945803.899396,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:13.896Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 739946819.69799,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:14.912Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739946819.760125,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH"
+    },
+    "wallClock": "2026-05-29T22:01:14.912Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739947116.229187,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE"
+    },
+    "wallClock": "2026-05-29T22:01:15.208Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739947821.14726,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON"
+    },
+    "wallClock": "2026-05-29T22:01:15.913Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739948115.638145,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM"
+    },
+    "wallClock": "2026-05-29T22:01:16.208Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739948465.853562,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD"
+    },
+    "wallClock": "2026-05-29T22:01:16.558Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739949015.34877,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT"
+    },
+    "wallClock": "2026-05-29T22:01:17.107Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739949466.880957,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED"
+    },
+    "wallClock": "2026-05-29T22:01:17.559Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739949704.551061,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF"
+    },
+    "wallClock": "2026-05-29T22:01:17.796Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739950016.066374,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A"
+    },
+    "wallClock": "2026-05-29T22:01:18.108Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739950312.748926,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE"
+    },
+    "wallClock": "2026-05-29T22:01:18.405Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739950592.842988,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD"
+    },
+    "wallClock": "2026-05-29T22:01:18.685Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739951595.3533,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN"
+    },
+    "wallClock": "2026-05-29T22:01:19.687Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739951973.545383,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOM"
+    },
+    "wallClock": "2026-05-29T22:01:20.065Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739952218.941685,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CAR"
+    },
+    "wallClock": "2026-05-29T22:01:20.311Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739952617.714862,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON"
+    },
+    "wallClock": "2026-05-29T22:01:20.710Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739952977.219394,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL"
+    },
+    "wallClock": "2026-05-29T22:01:21.069Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739953220.175018,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID"
+    },
+    "wallClock": "2026-05-29T22:01:21.312Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739954216.948403,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM"
+    },
+    "wallClock": "2026-05-29T22:01:22.309Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739954531.375851,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING"
+    },
+    "wallClock": "2026-05-29T22:01:22.623Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739954816.889028,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JO"
+    },
+    "wallClock": "2026-05-29T22:01:22.909Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739955115.631736,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB"
+    },
+    "wallClock": "2026-05-29T22:01:23.208Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739955389.083663,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM"
+    },
+    "wallClock": "2026-05-29T22:01:23.481Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739955834.934965,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE"
+    },
+    "wallClock": "2026-05-29T22:01:23.927Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739956717.343246,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMER"
+    },
+    "wallClock": "2026-05-29T22:01:24.809Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739957049.23809,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRI"
+    },
+    "wallClock": "2026-05-29T22:01:25.141Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739957475.662361,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS"
+    },
+    "wallClock": "2026-05-29T22:01:25.568Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739957720.294444,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BO"
+    },
+    "wallClock": "2026-05-29T22:01:25.812Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739958035.126423,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER"
+    },
+    "wallClock": "2026-05-29T22:01:26.127Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739959321.029599,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT"
+    },
+    "wallClock": "2026-05-29T22:01:27.413Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739960956.846057,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EX"
+    },
+    "wallClock": "2026-05-29T22:01:29.049Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739961222.460901,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVAT"
+    },
+    "wallClock": "2026-05-29T22:01:29.314Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739961554.137724,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR"
+    },
+    "wallClock": "2026-05-29T22:01:29.646Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739961820.283973,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS"
+    },
+    "wallClock": "2026-05-29T22:01:29.912Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739962210.509963,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME"
+    },
+    "wallClock": "2026-05-29T22:01:30.302Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739962553.2934,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO"
+    },
+    "wallClock": "2026-05-29T22:01:30.645Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739962820.706265,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE"
+    },
+    "wallClock": "2026-05-29T22:01:30.913Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739963411.058921,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE HE IS"
+    },
+    "wallClock": "2026-05-29T22:01:31.503Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739963818.556004,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE HE IS ROLLING"
+    },
+    "wallClock": "2026-05-29T22:01:31.910Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739964418.12616,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE HE IS ROLLING DIGGING"
+    },
+    "wallClock": "2026-05-29T22:01:32.510Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739965033.526056,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE HE IS ROLLING DIGGING EVERY"
+    },
+    "wallClock": "2026-05-29T22:01:33.125Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739965421.62616,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE HE IS ROLLING DIGGING EVERYWHERE"
+    },
+    "wallClock": "2026-05-29T22:01:33.514Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 739966067.012461,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "WITH CABLE RIBBON FROM THE YARD IT STOPPED OFF WITH A TANKEE CARD AN AWESOME CARBON STILL LAID CUSTOM BEING JOB CUSTOM MADE AMERIC CHRISTMAS BODOSER GOOD NIGHT EXCAVATOR HAS NO TIME TO SPARE HE IS ROLLING DIGGING EVERYWHERE"
+    },
+    "wallClock": "2026-05-29T22:01:34.159Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 739966067.077149,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:34.159Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 739966319.726368,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:34.412Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739966319.790899,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOP"
+    },
+    "wallClock": "2026-05-29T22:01:34.412Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739966589.633242,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING"
+    },
+    "wallClock": "2026-05-29T22:01:34.682Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739967309.591628,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING"
+    },
+    "wallClock": "2026-05-29T22:01:35.402Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739967585.969805,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT"
+    },
+    "wallClock": "2026-05-29T22:01:35.678Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739967910.314857,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL"
+    },
+    "wallClock": "2026-05-29T22:01:36.002Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739968207.908346,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST"
+    },
+    "wallClock": "2026-05-29T22:01:36.300Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739968918.481367,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE"
+    },
+    "wallClock": "2026-05-29T22:01:37.010Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739969219.773502,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS"
+    },
+    "wallClock": "2026-05-29T22:01:37.312Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739969574.984283,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF"
+    },
+    "wallClock": "2026-05-29T22:01:37.667Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739969812.756054,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUND"
+    },
+    "wallClock": "2026-05-29T22:01:37.905Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739970237.092408,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION"
+    },
+    "wallClock": "2026-05-29T22:01:38.329Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739970808.631835,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST"
+    },
+    "wallClock": "2026-05-29T22:01:38.901Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739971817.313397,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOU"
+    },
+    "wallClock": "2026-05-29T22:01:39.909Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739972085.484647,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS RO"
+    },
+    "wallClock": "2026-05-29T22:01:40.177Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739972420.99449,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN"
+    },
+    "wallClock": "2026-05-29T22:01:40.513Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739973062.469542,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A"
+    },
+    "wallClock": "2026-05-29T22:01:41.154Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739973431.509282,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK"
+    },
+    "wallClock": "2026-05-29T22:01:41.523Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739973720.317615,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND"
+    },
+    "wallClock": "2026-05-29T22:01:41.812Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739974070.386781,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS"
+    },
+    "wallClock": "2026-05-29T22:01:42.162Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739975025.753552,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS"
+    },
+    "wallClock": "2026-05-29T22:01:43.118Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739975321.528239,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLA"
+    },
+    "wallClock": "2026-05-29T22:01:43.413Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739975611.94751,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FA"
+    },
+    "wallClock": "2026-05-29T22:01:43.704Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739975917.29402,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT"
+    },
+    "wallClock": "2026-05-29T22:01:44.009Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739976219.564645,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON"
+    },
+    "wallClock": "2026-05-29T22:01:44.311Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739976599.083291,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS"
+    },
+    "wallClock": "2026-05-29T22:01:44.691Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739976919.372822,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE"
+    },
+    "wallClock": "2026-05-29T22:01:45.011Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739977820.570894,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLO"
+    },
+    "wallClock": "2026-05-29T22:01:45.912Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739978219.350478,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK"
+    },
+    "wallClock": "2026-05-29T22:01:46.311Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739978547.592613,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN"
+    },
+    "wallClock": "2026-05-29T22:01:46.640Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739978822.254436,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEG"
+    },
+    "wallClock": "2026-05-29T22:01:46.914Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739979103.604592,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO"
+    },
+    "wallClock": "2026-05-29T22:01:47.196Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739979437.957613,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME"
+    },
+    "wallClock": "2026-05-29T22:01:47.530Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739980422.613446,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JO"
+    },
+    "wallClock": "2026-05-29T22:01:48.515Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739980720.46157,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS"
+    },
+    "wallClock": "2026-05-29T22:01:48.812Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739981050.284799,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS THEN"
+    },
+    "wallClock": "2026-05-29T22:01:49.142Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739981421.708289,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS THEN RIGHT"
+    },
+    "wallClock": "2026-05-29T22:01:49.514Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739981721.33756,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS THEN RIGHT AND RIGHT"
+    },
+    "wallClock": "2026-05-29T22:01:49.813Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739982059.773185,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS THEN RIGHT AND RIGHT ON"
+    },
+    "wallClock": "2026-05-29T22:01:50.152Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 739982334.395684,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS THEN RIGHT AND RIGHT ON TIME"
+    },
+    "wallClock": "2026-05-29T22:01:50.426Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 739983589.609642,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "SCOOPING JUGGING AT FULL BLAST HE THINKS OF THE FOUNDATION FAST CLOUDS ROLL IN A BRISK WIND BLOWS AS SNOWFLAKE FALLS RIGHT ON HIS NOSE THE CLOCK IN TOWN BEGINS TO CHIME HIS JOBS THEN RIGHT AND RIGHT ON TIME"
+    },
+    "wallClock": "2026-05-29T22:01:51.682Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 739983589.679746,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-29T22:01:51.682Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 739986350.030058,
+    "wallClock": "2026-05-29T22:01:54.442Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 739986350.357922,
+    "wallClock": "2026-05-29T22:01:54.442Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 214,
+      "filename": "book-effect-spike-log-1780092114442.json",
+      "pullPath": "cache/book-effect-spike-log-1780092114442.json",
+      "reason": "stop"
+    }
+  }
+]

@@ -85,9 +85,34 @@ Sherpa total: 71/90 (≈79%) — the P1 fuzzy-matcher baseline to beat (target �
   event, indicating complete logs. (P1 should still assert this programmatically.)
 - 0 provider errors across all 180 trials (both providers).
 
+## Real-human corpus (`real-human/`) — P5 / Gate 2
+
+Added by P5 ([`docs/phase-2-prompts/P5-gate2-human-read.md`](../../docs/phase-2-prompts/P5-gate2-human-read.md)).
+Captured May 29, 2026. **This is real adult human speech, not synthetic TTS** — the first non-`say`
+evidence in the corpus.
+
+- **Shape differs from `raw/`.** Each file is one **continuous full read** of the whole book in a
+  single spike session (a flat, append-only `SpikeEvent[]`), **not** an isolated single-phrase
+  carrier. There is no per-file `metadata.json`; ground truth is the book itself plus the reader's
+  `manual.phraseEndCue` presses.
+- Device: Samsung Galaxy S10 `SM-G973U`, ADB serial `RF8M304FJLA` (the gate device).
+- Provider: `sherpa-onnx` ASR + `expo-audio` (the Sherpa path under test for Gate 2).
+- Reader: one adult (the founder), reading the verbatim Construction Site excerpt at a natural pace.
+- Method: spike **Start Session → read 16 lines → Stop Session** (auto-saves to app cache), pulled
+  via `adb run-as com.joebor.bookeffect.spike cat cache/<file>`. The reader pressed **Mark Phrase
+  End Cue** right after each of the three trigger phrases (in reading order: `deadline` → `pushes
+  hard to clear the way` → `massive gift`) to timestamp phrase-end for the latency delta.
+- **7 reads** (`book-effect-spike-log-1780091567007 … 1780092216871.json`), each 205–232 events
+  (≈181–204 partials, 5–6 finals, **3 phrase-end cues**), all ending in `session.stop` and well
+  under the 500-event ring-buffer cap. 0 provider errors.
+- Replay: drive each read's ordered `asr.partial`/`asr.final` through the P2/P3 `SessionTracker`
+  via `phase2/matcher-lab` → `npm run replay:human`. Results in `docs/08-alignment-replay-results.md`
+  §P5.
+
 ## Known gaps / what is NOT here
 
-- **No real-human or child speech** — synthetic TTS only (P5 / Gate 2 / Gate 3 close this).
+- **No child speech** — adult only; child speech is deferred to Gate 3 (P10 trigger).
+- **Single adult reader, n=7 reads** (21 trigger occurrences) — a gate signal, not a population study.
 - **No iOS data** — iOS build is blocked (duplicate RNFS symbol; `spike/README.md`, P8).
 - **No true audio first-sample latency** — `hostEndToTriggerMs` is a Mac-clock proxy with caveats
   (separate clocks, AIFF trailing silence); P6 measures real playback-start latency.
