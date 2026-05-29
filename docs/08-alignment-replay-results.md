@@ -304,7 +304,12 @@ at the Q4/Q5 **recognition wall (P9, Sherpa-specific)** rather than the text/mat
 consistent with P2's decision not to loosen the single-word budget or add phonetic backoff. The
 text-layer tolerance again proved sufficient for everything except a true mis-recognition.
 
-## Gate 2 — PASS signal (founder call pending, same as Gate 1)
+## Gate 2 — PASS (founder call, May 29, 2026)
+
+**Call (founder, May 29, 2026): PASS.** On the first real adult read, **Sherpa + fuzzy + cursor
+holds** — kept as the v1 path; the A track is closed and the main line continues to
+[P6](./phase-2-prompts/P6-audio-latency.md), with no P9/P10 fork. Recorded in
+`docs/06-phase-2-runbook.md` §Gate 2.
 
 Against `docs/05-phase-2-plan.md` §Q3, now on **real adult human speech (Sherpa, S10)**:
 
@@ -315,12 +320,11 @@ Against `docs/05-phase-2-plan.md` §Q3, now on **real adult human speech (Sherpa
 | False-stale fires | 0 | **0** across all 7 continuous reads |
 | Wrong-occurrence fires | 0 | **0** (incl. the repeated `clear`/`way` context) |
 
-All four real-human signals clear the bar. Per the Gate-1 precedent (the gate decision is the
-founder's), this is recorded as a **PASS signal**: on real adult speech, **Sherpa + fuzzy + cursor
-holds**, so the recommendation is to keep it as the v1 path and continue the main line to
-[P6](./phase-2-prompts/P6-audio-latency.md) (audio-output latency), **not** to open the P9/P10 forks.
+All four real-human signals clear the bar, so the founder stamped **PASS** (above): keep Sherpa +
+fuzzy + cursor as the v1 path and continue the main line to
+[P6](./phase-2-prompts/P6-audio-latency.md) (audio-output latency), **not** open the P9/P10 forks.
 
-Honest caveats on the strength of this signal:
+Honest caveats carried forward despite the PASS:
 
 - **n = 7 reads, one adult reader** (21 occurrences). A gate signal, not a population study. The
   95.2% sits right on the 95% line — one more `deadline`-style miss would drop it under.

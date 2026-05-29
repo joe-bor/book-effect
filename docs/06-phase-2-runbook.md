@@ -28,9 +28,9 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 | 4 | [P3 — Cursor + corridors + arming](./phase-2-prompts/P3-cursor-corridors.md) | A | P2 | **done** (`phase2/matcher-lab/src/engine/`; 4 synthetic full-read fixtures: 0 false-stale, 0 wrong-occurrence, P2 recoveries preserved, cursor monotonic; see `docs/08`) |
 | — | **◆ GATE 1 (synthetic replay)** | — | P2, P3 | **PASS — on track** (synthetic; cost → P4, real read → P5). Founder call May 29, 2026; main line continues, no P9/P10 fork |
 | 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | todo |
-| 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | todo |
-| — | **◆ GATE 2 (real human read)** | — | P5 | — |
-| 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | todo |
+| 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | **done** (7 real-human reads in `phase2/corpus/real-human/`; 20/21 = 95.2% recovery, 0 false-stale, 0 wrong-occurrence, all in-corridor; see `docs/08` §P5) |
+| — | **◆ GATE 2 (real human read)** | — | P5 | **PASS** — founder call May 29, 2026; A track closed, main line → P6 |
+| 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **todo (next)** |
 | 8 | [P7 — Sustained continuous read](./phase-2-prompts/P7-sustained-session.md) | C | — (Sherpa path) | todo |
 | 9 | [P8 — iOS native unblock](./phase-2-prompts/P8-ios-unblock.md) | D | — | todo |
 | ⑂ | [P9 — Whisper rework (FORK)](./phase-2-prompts/P9-fork-whisper-rework.md) | E | inserted by Gate 1/2 | conditional |
@@ -104,6 +104,14 @@ Evaluate against [05 §Q3](./05-phase-2-plan.md#q3--evidence-that-lets-us-keep-s
 - **Leads to:** ◆ GATE 2.
 
 ### ◆ GATE 2 — real human read decision
+**Decided May 29, 2026: PASS.** On the first real adult read (Galaxy S10, Sherpa, 7 continuous
+reads) the P2/P3 engine hit 20/21 = 95.2% recovery with 0 false-stale and 0 wrong-occurrence, all
+fires in-corridor (see `docs/08` §P5 / §Gate 2). **Sherpa + fuzzy + cursor is the v1 path.** A track
+closed; main line continues → P6 → P7 → P8, then unlock the gated product docs; no P9/P10 fork. The
+sole miss (`deadline` → "stead line") is recognition-layer and was logged for the E-vs-F record;
+the single-word fragility is a watch-item for v1, not a gate-blocker.
+
+Original criteria:
 - **PASS** (triggers fire in-corridor within ~1.5s, no stale fires): **Sherpa + fuzzy is the v1
   path.** Stop the A track. Continue to P6/P7/P8, then unlock the gated product docs (PRD →
   architecture → test plan).
