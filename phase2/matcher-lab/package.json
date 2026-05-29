@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "replay": "tsx src/cli/replay.ts",
+    "bench": "tsx src/cli/benchmark.ts",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
