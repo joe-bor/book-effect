@@ -1,6 +1,6 @@
 # Alignment Replay Results (P1–P5)
 
-Status: in progress. Last updated May 29, 2026 (through P2).
+Status: in progress. Last updated May 29, 2026 (through P3).
 
 Offline results from `phase2/matcher-lab` replaying the committed Phase 1 corpus
 (`phase2/corpus/raw`) through candidate matchers. Regenerate the numbers with:
@@ -77,7 +77,7 @@ per YAGNI it stays out. This is itself evidence for the later phoneme fork (P10)
 adult TTS, text-level tolerance is sufficient and phonemes are not yet needed. Revisit only if
 P5 (real adult) or Gate 3 (child) shows phonetic-class failures the budget cannot catch.
 
-## What P2 does NOT yet prove (reads on to P3 / Gate 1)
+## What P2 does NOT yet prove (read on to P3 / Gate 1)
 
 - **No cursor, corridor, or arming.** The "0 false fires" result is on an **isolated-carrier**
   corpus — each trial contains exactly one trigger phrase, so wrong-occurrence is impossible by
@@ -86,6 +86,82 @@ P5 (real adult) or Gate 3 (child) shows phonetic-class failures the budget canno
 - **No real speech.** Synthetic TTS only; **P5** is the first human read.
 - **No matcher cost number.** **P4** measures per-eval cost at 5 Hz.
 
-**Gate 1 status: not yet evaluable.** Recovery (99.4%) clears the ≥95% bar from
-`docs/05-phase-2-plan.md` §Q3, but Gate 1 also requires **0 false-stale and 0 wrong-occurrence
-fires on a full read-through**, which only exists after P3. Gate 1 is decided after P3.
+## P3 — Forward-only cursor + trigger corridors + arming
+
+P2's "0 false fires" was meaningless for the real risk: the recorded corpus is 180 **isolated
+single-phrase carriers**, so firing the wrong trigger is impossible by construction. P3 adds the
+**position layer** (`phase2/matcher-lab/src/engine/`) and tests it on **synthetic full-read
+fixtures** that simulate a continuous read of the whole 202-token book.
+
+Engine (`SessionTracker`): a **forward-only (monotonic) cursor** advanced by a windowed local
+alignment of the recent ASR tokens against the book (reusing the P2 Sellers DP, extended to return
+the matched end column — `approxSubstringAlign`); per-trigger states `pending → armed → fired |
+expired` keyed by `wordIndex` (arm at `cursor ≥ wordIndex − 12`; expire at `cursor > wordIndex +
+maxLookback`, phrase-length-aware: 10 single-word / 18 multi-word); a fire rule where only **armed**
+triggers match `phraseEditDistance ≤ editBudget` against the recent window and, for repeated
+phrases, the **nearest armed** trigger wins (fire-once + per-trigger cooldown); and a **minimal
+hard-freeze** that, after 3 low-confidence updates, stops arming and suppresses firing until a
+confident match re-acquires. Starting constants follow report-b §Position/Trigger and report-a
+§Q2/Q3.
+
+Fixtures are synthetic (token-by-token partials + a final per segment). They are the only way to
+exercise cursor advancement, corridors, and wrong-occurrence — the recorded carriers cannot.
+Real-human validation is **P5 / Gate 2**, not P3.
+
+### Results (verified by running the engine over each fixture)
+
+| Fixture | Triggers | In-corridor | False-stale | Wrong-occurrence | Cursor |
+| --- | --- | --- | --- | --- | --- |
+| Clean full read | 3/3 fire | ✅ all | **0** | **0** | monotonic → 202/202 |
+| Realistic (sherpa misses injected at triggers) | 3/3 fire | ✅ all | **0** | **0** | monotonic → 202/202 |
+| Repeated phrase (goodnight ×12 analog) | 3/3 occurrences | ✅ all | **0** | **0** | monotonic → end |
+| Off-script / silence mid-read | n/a during garbage | n/a | **0** | **0** | **drift 0** (froze), then re-acquired |
+
+- **Clean read:** deadline fired at cursor 68 (corridor [55,77]), pushes-hard at 91 ([75,105]),
+  massive-gift at 122 ([109,139]) — each armed and not stale.
+- **Realistic read (P2 recoveries preserved under the corridor):** the known sherpa miss shapes
+  injected at the trigger positions still fire in-corridor — deadline on `"bulldozer's dead line"`
+  (split compound via adjacent-token merge), pushes-hard with the leading `pushes` dropped, and
+  massive-gift on the `gift`→`guest` substitution. The corridor does not suppress the legitimate
+  fuzzy fires.
+- **Repeated-phrase stress:** a constructed 52-token book places `"goodnight moon"` at wordIndex
+  10 / 26 / 42, spaced wider than the corridor. Exactly **3 fires, one per occurrence**, each in
+  its own corridor (cursor 11 / 27 / 43), in order — and a trailing **echo** of the phrase past
+  all corridors fires **nothing**. This is the goodnight-×12 guard: only the occurrence whose
+  corridor is active fires.
+- **Off-script / silence:** a stretch of non-matching and empty chunks mid-read **does not advance
+  the cursor (drift 0)** and fires nothing; the engine enters hard-freeze, then re-acquires on the
+  next confident read and finishes all three triggers.
+- **Monotonicity:** asserted non-decreasing across every fixture, plus a direct unit test that a
+  low-confidence jump-back never rewinds the cursor.
+
+P3 added 24 vitest tests (book fixture, `approxSubstringAlign` end column, `SessionTracker`
+mechanics, `readStream` synthesis, and the four full-read fixtures). Full suite: **70 passing**;
+`npm run typecheck` and `npm run format:check` clean.
+
+### What P3 does NOT prove
+
+- **No real speech.** All fixtures are synthetic; the error shapes are hand-injected from the P1
+  sherpa misses. The first human read is **P5 / Gate 2**.
+- **No matcher cost number.** Per-eval cost at 5 Hz is **P4** — explicitly out of scope here
+  (correctness only).
+- Single constant set, not swept; values are research starting points, not tuned against human
+  data (that is Gate 2 work).
+
+## Gate 1 status — evaluable on position + recovery; decision deferred
+
+Against `docs/05-phase-2-plan.md` §Q3 (synthetic-corpus signals), on **synthetic TTS / synthetic
+read-throughs only**:
+
+| §Q3 signal | Bar | P2/P3 result |
+| --- | --- | --- |
+| Trigger recovery on replay corpus | ≥ 95% | **99.4%** (179/180; P2) |
+| Wrong-occurrence fires (goodnight ×12) | 0 | **0** across the full read-through + repeated-phrase fixture (P3) |
+| False-stale fires | 0 | **0** across clean / realistic / off-script reads (P3) |
+| Matcher cost at 5 Hz | < ~1 ms/eval | **not measured — P4** |
+| Real adult read on S10 | (Gate 2) | **not run — P5** |
+
+Three of the four synthetic §Q3 signals are green; the cost signal is **P4** and the real-human
+signal is **P5 / Gate 2**. Every number above is on synthetic `say -v Samantha` TTS and synthetic
+read-throughs, so it is the fast Gate-1 signal only. **The Gate 1 PASS/PARTIAL/FAIL call is not
+made here** — surface the numbers and decide at the ◆ Gate 1 step in `docs/06-phase-2-runbook.md`.
