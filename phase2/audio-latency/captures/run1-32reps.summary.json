@@ -1,0 +1,420 @@
+{
+  "schema": "book-effect-audio-latency-summary/1",
+  "audioPath": "/tmp/p6/book-effect-latency-probe-1780095723303.m4a",
+  "logPath": "/tmp/p6/book-effect-latency-probe-1780095723303.json",
+  "sampleRate": 44100,
+  "durationSec": 52.3,
+  "blindOnsetCrossCheck": 136,
+  "measuredFires": 64,
+  "clock": {
+    "offsetMs": 743542593.199732,
+    "slope": 0.9999992796207906,
+    "residualStdMs": 0.30441701923676806,
+    "sampleCount": 69
+  },
+  "pairing": {
+    "matched": 54,
+    "unmatchedFires": 12,
+    "extraOnsets": 0
+  },
+  "stats": [
+    {
+      "lib": "expo-audio",
+      "count": 32,
+      "p50": 197.44512957334518,
+      "p95": 216.30917789936066,
+      "max": 218.38671553134918,
+      "min": 177.32889914512634,
+      "mean": 197.4308627359569
+    },
+    {
+      "lib": "react-native-sound",
+      "count": 20,
+      "p50": 178.8909323811531,
+      "p95": 189.13059691786765,
+      "max": 190.17945396900177,
+      "min": 167.6118301153183,
+      "mean": 179.35650322437286
+    }
+  ],
+  "perFire": [
+    {
+      "lib": "expo-audio",
+      "index": -1,
+      "warmup": true,
+      "onsetMs": 716.9,
+      "latencyMs": 208.4
+    },
+    {
+      "lib": "expo-audio",
+      "index": 0,
+      "warmup": false,
+      "onsetMs": 1477.6,
+      "latencyMs": 198.2
+    },
+    {
+      "lib": "expo-audio",
+      "index": 1,
+      "warmup": false,
+      "onsetMs": 2236.9,
+      "latencyMs": 192.7
+    },
+    {
+      "lib": "expo-audio",
+      "index": 2,
+      "warmup": false,
+      "onsetMs": 2956.9,
+      "latencyMs": 192.3
+    },
+    {
+      "lib": "expo-audio",
+      "index": 3,
+      "warmup": false,
+      "onsetMs": 3717.4,
+      "latencyMs": 217.5
+    },
+    {
+      "lib": "expo-audio",
+      "index": 4,
+      "warmup": false,
+      "onsetMs": 4457.2,
+      "latencyMs": 204.1
+    },
+    {
+      "lib": "expo-audio",
+      "index": 5,
+      "warmup": false,
+      "onsetMs": 5176.9,
+      "latencyMs": 188.5
+    },
+    {
+      "lib": "expo-audio",
+      "index": 6,
+      "warmup": false,
+      "onsetMs": 5917.2,
+      "latencyMs": 193.3
+    },
+    {
+      "lib": "expo-audio",
+      "index": 7,
+      "warmup": false,
+      "onsetMs": 6677.3,
+      "latencyMs": 218.4
+    },
+    {
+      "lib": "expo-audio",
+      "index": 8,
+      "warmup": false,
+      "onsetMs": 7397.2,
+      "latencyMs": 203
+    },
+    {
+      "lib": "expo-audio",
+      "index": 9,
+      "warmup": false,
+      "onsetMs": 8117.6,
+      "latencyMs": 188.7
+    },
+    {
+      "lib": "expo-audio",
+      "index": 10,
+      "warmup": false,
+      "onsetMs": 8857.3,
+      "latencyMs": 192
+    },
+    {
+      "lib": "expo-audio",
+      "index": 11,
+      "warmup": false,
+      "onsetMs": 9597.2,
+      "latencyMs": 196.6
+    },
+    {
+      "lib": "expo-audio",
+      "index": 12,
+      "warmup": false,
+      "onsetMs": 10336.9,
+      "latencyMs": 200.7
+    },
+    {
+      "lib": "expo-audio",
+      "index": 13,
+      "warmup": false,
+      "onsetMs": 11056.9,
+      "latencyMs": 185.4
+    },
+    {
+      "lib": "expo-audio",
+      "index": 14,
+      "warmup": false,
+      "onsetMs": 11777.4,
+      "latencyMs": 187.2
+    },
+    {
+      "lib": "expo-audio",
+      "index": 15,
+      "warmup": false,
+      "onsetMs": 12516.9,
+      "latencyMs": 192.5
+    },
+    {
+      "lib": "expo-audio",
+      "index": 16,
+      "warmup": false,
+      "onsetMs": 13237.4,
+      "latencyMs": 177.3
+    },
+    {
+      "lib": "expo-audio",
+      "index": 17,
+      "warmup": false,
+      "onsetMs": 13997.2,
+      "latencyMs": 215.3
+    },
+    {
+      "lib": "expo-audio",
+      "index": 18,
+      "warmup": false,
+      "onsetMs": 14717.4,
+      "latencyMs": 201.9
+    },
+    {
+      "lib": "expo-audio",
+      "index": 19,
+      "warmup": false,
+      "onsetMs": 15437.2,
+      "latencyMs": 186.1
+    },
+    {
+      "lib": "expo-audio",
+      "index": 20,
+      "warmup": false,
+      "onsetMs": 16176.9,
+      "latencyMs": 191
+    },
+    {
+      "lib": "expo-audio",
+      "index": 21,
+      "warmup": false,
+      "onsetMs": 16896.9,
+      "latencyMs": 193.4
+    },
+    {
+      "lib": "expo-audio",
+      "index": 22,
+      "warmup": false,
+      "onsetMs": 17617.2,
+      "latencyMs": 193.8
+    },
+    {
+      "lib": "expo-audio",
+      "index": 23,
+      "warmup": false,
+      "onsetMs": 18357.6,
+      "latencyMs": 198.5
+    },
+    {
+      "lib": "expo-audio",
+      "index": 24,
+      "warmup": false,
+      "onsetMs": 19097.4,
+      "latencyMs": 203
+    },
+    {
+      "lib": "expo-audio",
+      "index": 25,
+      "warmup": false,
+      "onsetMs": 19836.9,
+      "latencyMs": 207.6
+    },
+    {
+      "lib": "expo-audio",
+      "index": 26,
+      "warmup": false,
+      "onsetMs": 20577.2,
+      "latencyMs": 211.8
+    },
+    {
+      "lib": "expo-audio",
+      "index": 27,
+      "warmup": false,
+      "onsetMs": 21277.2,
+      "latencyMs": 177.5
+    },
+    {
+      "lib": "expo-audio",
+      "index": 28,
+      "warmup": false,
+      "onsetMs": 22017.4,
+      "latencyMs": 198.6
+    },
+    {
+      "lib": "expo-audio",
+      "index": 29,
+      "warmup": false,
+      "onsetMs": 22737.2,
+      "latencyMs": 199.1
+    },
+    {
+      "lib": "expo-audio",
+      "index": 30,
+      "warmup": false,
+      "onsetMs": 23476.9,
+      "latencyMs": 203.2
+    },
+    {
+      "lib": "expo-audio",
+      "index": 31,
+      "warmup": false,
+      "onsetMs": 24217.6,
+      "latencyMs": 208.2
+    },
+    {
+      "lib": "react-native-sound",
+      "index": -1,
+      "warmup": true,
+      "onsetMs": 26973.7,
+      "latencyMs": 206.7
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 0,
+      "warmup": false,
+      "onsetMs": 27653.7,
+      "latencyMs": 170.7
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 2,
+      "warmup": false,
+      "onsetMs": 29093.9,
+      "latencyMs": 175.6
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 3,
+      "warmup": false,
+      "onsetMs": 29813.7,
+      "latencyMs": 177.2
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 4,
+      "warmup": false,
+      "onsetMs": 30533.6,
+      "latencyMs": 178.2
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 5,
+      "warmup": false,
+      "onsetMs": 31253.5,
+      "latencyMs": 180.4
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 7,
+      "warmup": false,
+      "onsetMs": 32693.7,
+      "latencyMs": 184.6
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 9,
+      "warmup": false,
+      "onsetMs": 34133.4,
+      "latencyMs": 188.3
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 10,
+      "warmup": false,
+      "onsetMs": 34853.8,
+      "latencyMs": 190.2
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 11,
+      "warmup": false,
+      "onsetMs": 35553.7,
+      "latencyMs": 172.4
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 12,
+      "warmup": false,
+      "onsetMs": 36274.1,
+      "latencyMs": 174.2
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 14,
+      "warmup": false,
+      "onsetMs": 37713.8,
+      "latencyMs": 177.9
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 15,
+      "warmup": false,
+      "onsetMs": 38433.7,
+      "latencyMs": 179.6
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 19,
+      "warmup": false,
+      "onsetMs": 41313.6,
+      "latencyMs": 186.9
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 20,
+      "warmup": false,
+      "onsetMs": 42034,
+      "latencyMs": 189.1
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 22,
+      "warmup": false,
+      "onsetMs": 43453.7,
+      "latencyMs": 172.5
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 23,
+      "warmup": false,
+      "onsetMs": 44173.6,
+      "latencyMs": 174.9
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 26,
+      "warmup": false,
+      "onsetMs": 46333.7,
+      "latencyMs": 179.8
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 27,
+      "warmup": false,
+      "onsetMs": 47054.1,
+      "latencyMs": 181.7
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 29,
+      "warmup": false,
+      "onsetMs": 48493.8,
+      "latencyMs": 185.2
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 30,
+      "warmup": false,
+      "onsetMs": 49193.7,
+      "latencyMs": 167.6
+    }
+  ]
+}

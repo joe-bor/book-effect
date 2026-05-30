@@ -25,8 +25,14 @@ export type OnsetOptions = {
   hopMs?: number;
   /** Energy window in ms. */
   windowMs?: number;
-  /** Fraction of (peak - floor) above floor to count as an onset. */
-  thresholdFraction?: number;
+  /**
+   * Onset threshold as a multiple of the noise floor (20th-percentile RMS). Floor-relative
+   * rather than peak-relative so clicks of differing loudness (e.g. expo-audio vs
+   * react-native-sound) are detected with the same gate.
+   */
+  floorRatio?: number;
+  /** Absolute RMS threshold floor, guards against near-silent recordings. */
+  absFloorMargin?: number;
   /** Minimum spacing between onsets in ms (refractory period). */
   refractoryMs?: number;
 };
@@ -34,9 +40,146 @@ export type OnsetOptions = {
 const DEFAULT_ONSET: Required<OnsetOptions> = {
   hopMs: 1,
   windowMs: 4,
-  thresholdFraction: 0.2,
+  floorRatio: 4,
+  absFloorMargin: 0.003,
   refractoryMs: 250,
 };
+
+/** Short-time RMS envelope. Returns frame energies plus the hop/window in samples. */
+function energyEnvelope(
+  samples: Float32Array,
+  sampleRate: number,
+  hopMs: number,
+  windowMs: number,
+): { energy: Float32Array; hop: number; win: number } {
+  const hop = Math.max(1, Math.round((hopMs / 1000) * sampleRate));
+  const win = Math.max(hop, Math.round((windowMs / 1000) * sampleRate));
+  const frameCount = Math.max(0, Math.floor((samples.length - win) / hop) + 1);
+  const energy = new Float32Array(frameCount);
+  for (let f = 0; f < frameCount; f += 1) {
+    const start = f * hop;
+    let sumSq = 0;
+    for (let i = 0; i < win; i += 1) {
+      const s = samples[start + i];
+      sumSq += s * s;
+    }
+    energy[f] = Math.sqrt(sumSq / win);
+  }
+  return { energy, hop, win };
+}
+
+export type GuidedOptions = {
+  hopMs?: number;
+  windowMs?: number;
+  /** Earliest plausible latency to search from after each command (ms). */
+  minLatencyMs?: number;
+  /** Latest plausible latency to search to after each command (ms). */
+  maxLatencyMs?: number;
+  /** Onset = first frame in the window reaching this fraction of the window's peak. */
+  peakFraction?: number;
+  /** A fire counts only if its window peak exceeds this multiple of the global noise floor. */
+  validityRatio?: number;
+};
+
+const DEFAULT_GUIDED: Required<GuidedOptions> = {
+  hopMs: 0.5,
+  windowMs: 3,
+  minLatencyMs: 20,
+  maxLatencyMs: 450,
+  peakFraction: 0.25,
+  // Real clicks land ~250x the noise floor; room noise stays under ~10x. A high gate
+  // keeps noise out of the "no click sounded" determination (e.g. dropped replays).
+  validityRatio: 30,
+};
+
+/**
+ * Guided onset detection. The probe log tells us when each fire was issued, and the clock
+ * fit maps the perf clock onto the recording timeline, so we know roughly where each click
+ * must be (within [minLatency, maxLatency] after the command). For each fire we search only
+ * that window and locate the click by its own local peak — amplitude-robust across libraries
+ * and immune to reverb tails / room noise that confuse a single global threshold. Fires
+ * whose window holds no transient above the noise floor are returned as unmatched.
+ */
+export function detectOnsetsGuided(
+  samples: Float32Array,
+  sampleRate: number,
+  fires: ProbeFire[],
+  clock: ClockFit,
+  options: GuidedOptions = {},
+): PairingResult {
+  const opts = { ...DEFAULT_GUIDED, ...options };
+  const { energy, hop } = energyEnvelope(
+    samples,
+    sampleRate,
+    opts.hopMs,
+    opts.windowMs,
+  );
+  const framesPerMs = sampleRate / 1000 / hop;
+  const globalFloor = percentile(Array.from(energy), 20);
+  const validityThreshold = Math.max(0.003, globalFloor * opts.validityRatio);
+
+  const paired: PairedFire[] = [];
+  const unmatchedFires: ProbeFire[] = [];
+
+  for (const fire of [...fires].sort((a, b) => a.tCmdPerf - b.tCmdPerf)) {
+    const baseFileMs = fire.tCmdPerf - clock.offsetMs;
+    const startFrame = Math.max(
+      0,
+      Math.floor((baseFileMs + opts.minLatencyMs) * framesPerMs),
+    );
+    const endFrame = Math.min(
+      energy.length - 1,
+      Math.ceil((baseFileMs + opts.maxLatencyMs) * framesPerMs),
+    );
+
+    if (endFrame <= startFrame) {
+      unmatchedFires.push(fire);
+      continue;
+    }
+
+    let peak = 0;
+    for (let f = startFrame; f <= endFrame; f += 1) {
+      if (energy[f] > peak) {
+        peak = energy[f];
+      }
+    }
+
+    if (peak < validityThreshold) {
+      unmatchedFires.push(fire);
+      continue;
+    }
+
+    const onsetThreshold = Math.max(globalFloor * 2, peak * opts.peakFraction);
+    let onsetFrame = -1;
+    for (let f = startFrame; f <= endFrame; f += 1) {
+      if (energy[f] >= onsetThreshold) {
+        onsetFrame = f;
+        break;
+      }
+    }
+
+    if (onsetFrame < 0) {
+      unmatchedFires.push(fire);
+      continue;
+    }
+
+    const onsetSample = refineOnset(
+      samples,
+      onsetFrame * hop,
+      hop,
+      hop * 2,
+      onsetThreshold * 0.5,
+    );
+    const onsetMs = (onsetSample / sampleRate) * 1000;
+    paired.push({
+      fire,
+      onsetMs,
+      latencyMs: clock.offsetMs + onsetMs - fire.tCmdPerf,
+    });
+  }
+
+  return { paired, unmatchedFires, extraOnsets: [] };
+}
 
 /**
  * Detects acoustic onsets and returns their times in milliseconds from sample 0.
@@ -50,28 +193,20 @@ export function detectOnsets(
   options: OnsetOptions = {},
 ): number[] {
   const opts = { ...DEFAULT_ONSET, ...options };
-  const hop = Math.max(1, Math.round((opts.hopMs / 1000) * sampleRate));
-  const win = Math.max(hop, Math.round((opts.windowMs / 1000) * sampleRate));
-
-  const frameCount = Math.max(0, Math.floor((samples.length - win) / hop) + 1);
-  const energy = new Float32Array(frameCount);
-  for (let f = 0; f < frameCount; f += 1) {
-    const start = f * hop;
-    let sumSq = 0;
-    for (let i = 0; i < win; i += 1) {
-      const s = samples[start + i];
-      sumSq += s * s;
-    }
-    energy[f] = Math.sqrt(sumSq / win);
-  }
+  const { energy, hop, win } = energyEnvelope(
+    samples,
+    sampleRate,
+    opts.hopMs,
+    opts.windowMs,
+  );
+  const frameCount = energy.length;
 
   if (frameCount === 0) {
     return [];
   }
 
   const floor = percentile(Array.from(energy), 20);
-  const peak = Math.max(...energy);
-  const threshold = floor + opts.thresholdFraction * (peak - floor);
+  const threshold = Math.max(opts.absFloorMargin, floor * opts.floorRatio);
   const preThreshold = floor + 0.5 * (threshold - floor);
   const refractoryFrames =
     Math.round((opts.refractoryMs / 1000) * sampleRate) / hop;

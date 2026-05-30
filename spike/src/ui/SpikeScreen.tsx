@@ -59,7 +59,7 @@ const latencyClickTrigger: BookTrigger = {
   sound: 'latency-click.wav',
   type: 'single-word',
 };
-const latencyProbeConfig = { reps: 32, warmups: 1, gapMs: 700, blockGapMs: 2000 };
+const latencyProbeConfig = { reps: 56, warmups: 1, gapMs: 700, blockGapMs: 2000 };
 // 44.1 kHz mono AAC keeps files small; the analyzer downmixes to mono regardless.
 const latencyRecordingOptions = { ...RecordingPresets.HIGH_QUALITY, numberOfChannels: 1 };
 

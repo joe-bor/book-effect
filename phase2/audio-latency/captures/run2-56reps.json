@@ -1,0 +1,1286 @@
+{
+  "schema": "book-effect-audio-latency-probe/1",
+  "startedAtWallClock": "2026-05-29T23:10:27.125Z",
+  "device": "galaxy-s10-SM-G973U",
+  "clickSound": "latency-click.wav",
+  "reps": 56,
+  "warmups": 1,
+  "gapMs": 700,
+  "blockGapMs": 2000,
+  "recordCallPerf": 744011494.573366,
+  "recordConfirmedPerf": 744011568.722429,
+  "recordingUri": "file:///data/user/0/com.joebor.bookeffect.spike/cache/Audio/recording-c1fdd4e3-d9d8-4c09-8480-20cf39594fa3.m4a",
+  "fires": [
+    {
+      "lib": "expo-audio",
+      "index": -1,
+      "warmup": true,
+      "tCmdPerf": 744012078.090241,
+      "tAfterPlayPerf": 744012115.609928
+    },
+    {
+      "lib": "expo-audio",
+      "index": 0,
+      "warmup": false,
+      "tCmdPerf": 744012834.250032,
+      "tAfterPlayPerf": 744012899.933418
+    },
+    {
+      "lib": "expo-audio",
+      "index": 1,
+      "warmup": false,
+      "tCmdPerf": 744013617.513365,
+      "tAfterPlayPerf": 744013629.733157
+    },
+    {
+      "lib": "expo-audio",
+      "index": 2,
+      "warmup": false,
+      "tCmdPerf": 744014334.426959,
+      "tAfterPlayPerf": 744014344.428105
+    },
+    {
+      "lib": "expo-audio",
+      "index": 3,
+      "warmup": false,
+      "tCmdPerf": 744015056.732063,
+      "tAfterPlayPerf": 744015074.122584
+    },
+    {
+      "lib": "expo-audio",
+      "index": 4,
+      "warmup": false,
+      "tCmdPerf": 744015789.783781,
+      "tAfterPlayPerf": 744015800.242167
+    },
+    {
+      "lib": "expo-audio",
+      "index": 5,
+      "warmup": false,
+      "tCmdPerf": 744016510.66977,
+      "tAfterPlayPerf": 744016527.516489
+    },
+    {
+      "lib": "expo-audio",
+      "index": 6,
+      "warmup": false,
+      "tCmdPerf": 744017246.706229,
+      "tAfterPlayPerf": 744017263.918937
+    },
+    {
+      "lib": "expo-audio",
+      "index": 7,
+      "warmup": false,
+      "tCmdPerf": 744017981.172322,
+      "tAfterPlayPerf": 744017999.093312
+    },
+    {
+      "lib": "expo-audio",
+      "index": 8,
+      "warmup": false,
+      "tCmdPerf": 744018716.42029,
+      "tAfterPlayPerf": 744018733.684613
+    },
+    {
+      "lib": "expo-audio",
+      "index": 9,
+      "warmup": false,
+      "tCmdPerf": 744019451.861592,
+      "tAfterPlayPerf": 744019470.933155
+    },
+    {
+      "lib": "expo-audio",
+      "index": 10,
+      "warmup": false,
+      "tCmdPerf": 744020186.381436,
+      "tAfterPlayPerf": 744020196.05805
+    },
+    {
+      "lib": "expo-audio",
+      "index": 11,
+      "warmup": false,
+      "tCmdPerf": 744020905.730133,
+      "tAfterPlayPerf": 744020921.27805
+    },
+    {
+      "lib": "expo-audio",
+      "index": 12,
+      "warmup": false,
+      "tCmdPerf": 744021641.176331,
+      "tAfterPlayPerf": 744021658.886591
+    },
+    {
+      "lib": "expo-audio",
+      "index": 13,
+      "warmup": false,
+      "tCmdPerf": 744022375.970706,
+      "tAfterPlayPerf": 744022389.17482
+    },
+    {
+      "lib": "expo-audio",
+      "index": 14,
+      "warmup": false,
+      "tCmdPerf": 744023111.749299,
+      "tAfterPlayPerf": 744023135.914716
+    },
+    {
+      "lib": "expo-audio",
+      "index": 15,
+      "warmup": false,
+      "tCmdPerf": 744023846.52857,
+      "tAfterPlayPerf": 744023862.697736
+    },
+    {
+      "lib": "expo-audio",
+      "index": 16,
+      "warmup": false,
+      "tCmdPerf": 744024581.529142,
+      "tAfterPlayPerf": 744024602.951069
+    },
+    {
+      "lib": "expo-audio",
+      "index": 17,
+      "warmup": false,
+      "tCmdPerf": 744025317.41185,
+      "tAfterPlayPerf": 744025335.713413
+    },
+    {
+      "lib": "expo-audio",
+      "index": 18,
+      "warmup": false,
+      "tCmdPerf": 744026052.915548,
+      "tAfterPlayPerf": 744026067.470704
+    },
+    {
+      "lib": "expo-audio",
+      "index": 19,
+      "warmup": false,
+      "tCmdPerf": 744026787.743933,
+      "tAfterPlayPerf": 744026805.736589
+    },
+    {
+      "lib": "expo-audio",
+      "index": 20,
+      "warmup": false,
+      "tCmdPerf": 744027522.406693,
+      "tAfterPlayPerf": 744027538.55112
+    },
+    {
+      "lib": "expo-audio",
+      "index": 21,
+      "warmup": false,
+      "tCmdPerf": 744028257.194714,
+      "tAfterPlayPerf": 744028272.866641
+    },
+    {
+      "lib": "expo-audio",
+      "index": 22,
+      "warmup": false,
+      "tCmdPerf": 744028991.755339,
+      "tAfterPlayPerf": 744029006.006068
+    },
+    {
+      "lib": "expo-audio",
+      "index": 23,
+      "warmup": false,
+      "tCmdPerf": 744029727.043932,
+      "tAfterPlayPerf": 744029738.448776
+    },
+    {
+      "lib": "expo-audio",
+      "index": 24,
+      "warmup": false,
+      "tCmdPerf": 744030445.576432,
+      "tAfterPlayPerf": 744030463.079661
+    },
+    {
+      "lib": "expo-audio",
+      "index": 25,
+      "warmup": false,
+      "tCmdPerf": 744031180.525286,
+      "tAfterPlayPerf": 744031198.448879
+    },
+    {
+      "lib": "expo-audio",
+      "index": 26,
+      "warmup": false,
+      "tCmdPerf": 744031915.039452,
+      "tAfterPlayPerf": 744031933.110442
+    },
+    {
+      "lib": "expo-audio",
+      "index": 27,
+      "warmup": false,
+      "tCmdPerf": 744032649.421744,
+      "tAfterPlayPerf": 744032663.725546
+    },
+    {
+      "lib": "expo-audio",
+      "index": 28,
+      "warmup": false,
+      "tCmdPerf": 744033384.499243,
+      "tAfterPlayPerf": 744033399.872056
+    },
+    {
+      "lib": "expo-audio",
+      "index": 29,
+      "warmup": false,
+      "tCmdPerf": 744034118.716951,
+      "tAfterPlayPerf": 744034137.783826
+    },
+    {
+      "lib": "expo-audio",
+      "index": 30,
+      "warmup": false,
+      "tCmdPerf": 744034854.248097,
+      "tAfterPlayPerf": 744034866.802003
+    },
+    {
+      "lib": "expo-audio",
+      "index": 31,
+      "warmup": false,
+      "tCmdPerf": 744035589.350805,
+      "tAfterPlayPerf": 744035604.816222
+    },
+    {
+      "lib": "expo-audio",
+      "index": 32,
+      "warmup": false,
+      "tCmdPerf": 744036324.455336,
+      "tAfterPlayPerf": 744036343.280336
+    },
+    {
+      "lib": "expo-audio",
+      "index": 33,
+      "warmup": false,
+      "tCmdPerf": 744037058.932158,
+      "tAfterPlayPerf": 744037082.217783
+    },
+    {
+      "lib": "expo-audio",
+      "index": 34,
+      "warmup": false,
+      "tCmdPerf": 744037793.469398,
+      "tAfterPlayPerf": 744037809.146325
+    },
+    {
+      "lib": "expo-audio",
+      "index": 35,
+      "warmup": false,
+      "tCmdPerf": 744038528.303929,
+      "tAfterPlayPerf": 744038545.471116
+    },
+    {
+      "lib": "expo-audio",
+      "index": 36,
+      "warmup": false,
+      "tCmdPerf": 744039263.280908,
+      "tAfterPlayPerf": 744039283.400908
+    },
+    {
+      "lib": "expo-audio",
+      "index": 37,
+      "warmup": false,
+      "tCmdPerf": 744039998.009814,
+      "tAfterPlayPerf": 744040013.303772
+    },
+    {
+      "lib": "expo-audio",
+      "index": 38,
+      "warmup": false,
+      "tCmdPerf": 744040733.577678,
+      "tAfterPlayPerf": 744040750.430282
+    },
+    {
+      "lib": "expo-audio",
+      "index": 39,
+      "warmup": false,
+      "tCmdPerf": 744041467.640803,
+      "tAfterPlayPerf": 744041484.173407
+    },
+    {
+      "lib": "expo-audio",
+      "index": 40,
+      "warmup": false,
+      "tCmdPerf": 744042202.69674,
+      "tAfterPlayPerf": 744042217.312104
+    },
+    {
+      "lib": "expo-audio",
+      "index": 41,
+      "warmup": false,
+      "tCmdPerf": 744042937.314396,
+      "tAfterPlayPerf": 744042954.667208
+    },
+    {
+      "lib": "expo-audio",
+      "index": 42,
+      "warmup": false,
+      "tCmdPerf": 744043672.644968,
+      "tAfterPlayPerf": 744043694.769604
+    },
+    {
+      "lib": "expo-audio",
+      "index": 43,
+      "warmup": false,
+      "tCmdPerf": 744044407.721583,
+      "tAfterPlayPerf": 744044422.240437
+    },
+    {
+      "lib": "expo-audio",
+      "index": 44,
+      "warmup": false,
+      "tCmdPerf": 744045138.915176,
+      "tAfterPlayPerf": 744045157.343249
+    },
+    {
+      "lib": "expo-audio",
+      "index": 45,
+      "warmup": false,
+      "tCmdPerf": 744045874.901634,
+      "tAfterPlayPerf": 744045892.66153
+    },
+    {
+      "lib": "expo-audio",
+      "index": 46,
+      "warmup": false,
+      "tCmdPerf": 744046609.836269,
+      "tAfterPlayPerf": 744046631.341947
+    },
+    {
+      "lib": "expo-audio",
+      "index": 47,
+      "warmup": false,
+      "tCmdPerf": 744047345.733561,
+      "tAfterPlayPerf": 744047356.713457
+    },
+    {
+      "lib": "expo-audio",
+      "index": 48,
+      "warmup": false,
+      "tCmdPerf": 744048063.959238,
+      "tAfterPlayPerf": 744048079.267311
+    },
+    {
+      "lib": "expo-audio",
+      "index": 49,
+      "warmup": false,
+      "tCmdPerf": 744048800.374185,
+      "tAfterPlayPerf": 744048820.690383
+    },
+    {
+      "lib": "expo-audio",
+      "index": 50,
+      "warmup": false,
+      "tCmdPerf": 744049536.106841,
+      "tAfterPlayPerf": 744049550.176997
+    },
+    {
+      "lib": "expo-audio",
+      "index": 51,
+      "warmup": false,
+      "tCmdPerf": 744050272.015747,
+      "tAfterPlayPerf": 744050286.493924
+    },
+    {
+      "lib": "expo-audio",
+      "index": 52,
+      "warmup": false,
+      "tCmdPerf": 744051007.225382,
+      "tAfterPlayPerf": 744051022.639705
+    },
+    {
+      "lib": "expo-audio",
+      "index": 53,
+      "warmup": false,
+      "tCmdPerf": 744051743.271528,
+      "tAfterPlayPerf": 744051758.756059
+    },
+    {
+      "lib": "expo-audio",
+      "index": 54,
+      "warmup": false,
+      "tCmdPerf": 744052478.848403,
+      "tAfterPlayPerf": 744052497.296423
+    },
+    {
+      "lib": "expo-audio",
+      "index": 55,
+      "warmup": false,
+      "tCmdPerf": 744053214.288038,
+      "tAfterPlayPerf": 744053230.623767
+    },
+    {
+      "lib": "react-native-sound",
+      "index": -1,
+      "warmup": true,
+      "tCmdPerf": 744055957.905953,
+      "tAfterPlayPerf": 744055958.921839
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 0,
+      "warmup": false,
+      "tCmdPerf": 744056677.069599,
+      "tAfterPlayPerf": 744056677.905589
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 1,
+      "warmup": false,
+      "tCmdPerf": 744057389.302984,
+      "tAfterPlayPerf": 744057390.248713
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 2,
+      "warmup": false,
+      "tCmdPerf": 744058108.00663,
+      "tAfterPlayPerf": 744058108.968973
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 3,
+      "warmup": false,
+      "tCmdPerf": 744058826.439963,
+      "tAfterPlayPerf": 744058827.250744
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 4,
+      "warmup": false,
+      "tCmdPerf": 744059542.612306,
+      "tAfterPlayPerf": 744059543.032723
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 5,
+      "warmup": false,
+      "tCmdPerf": 744060264.37767,
+      "tAfterPlayPerf": 744060265.37267
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 6,
+      "warmup": false,
+      "tCmdPerf": 744060983.491264,
+      "tAfterPlayPerf": 744060984.241941
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 7,
+      "warmup": false,
+      "tCmdPerf": 744061702.179753,
+      "tAfterPlayPerf": 744061703.040014
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 8,
+      "warmup": false,
+      "tCmdPerf": 744062420.88569,
+      "tAfterPlayPerf": 744062421.662097
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 9,
+      "warmup": false,
+      "tCmdPerf": 744063139.214128,
+      "tAfterPlayPerf": 744063139.919857
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 10,
+      "warmup": false,
+      "tCmdPerf": 744063858.473919,
+      "tAfterPlayPerf": 744063859.318502
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 11,
+      "warmup": false,
+      "tCmdPerf": 744064578.070481,
+      "tAfterPlayPerf": 744064578.808971
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 12,
+      "warmup": false,
+      "tCmdPerf": 744065297.212773,
+      "tAfterPlayPerf": 744065298.024596
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 13,
+      "warmup": false,
+      "tCmdPerf": 744066016.267825,
+      "tAfterPlayPerf": 744066017.031939
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 14,
+      "warmup": false,
+      "tCmdPerf": 744066736.181053,
+      "tAfterPlayPerf": 744066737.07897
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 15,
+      "warmup": false,
+      "tCmdPerf": 744067455.281366,
+      "tAfterPlayPerf": 744067456.048501
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 16,
+      "warmup": false,
+      "tCmdPerf": 744068174.521938,
+      "tAfterPlayPerf": 744068175.248709
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 17,
+      "warmup": false,
+      "tCmdPerf": 744068893.888865,
+      "tAfterPlayPerf": 744068894.681886
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 18,
+      "warmup": false,
+      "tCmdPerf": 744069607.138188,
+      "tAfterPlayPerf": 744069607.901573
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 19,
+      "warmup": false,
+      "tCmdPerf": 744070325.499021,
+      "tAfterPlayPerf": 744070326.295792
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 20,
+      "warmup": false,
+      "tCmdPerf": 744071043.22876,
+      "tAfterPlayPerf": 744071044.001989
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 21,
+      "warmup": false,
+      "tCmdPerf": 744071761.734697,
+      "tAfterPlayPerf": 744071762.523656
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 22,
+      "warmup": false,
+      "tCmdPerf": 744072479.132301,
+      "tAfterPlayPerf": 744072479.859072
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 23,
+      "warmup": false,
+      "tCmdPerf": 744073197.461468,
+      "tAfterPlayPerf": 744073198.229228
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 24,
+      "warmup": false,
+      "tCmdPerf": 744073915.768811,
+      "tAfterPlayPerf": 744073916.565582
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 25,
+      "warmup": false,
+      "tCmdPerf": 744074634.030425,
+      "tAfterPlayPerf": 744074634.903238
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 26,
+      "warmup": false,
+      "tCmdPerf": 744075352.124383,
+      "tAfterPlayPerf": 744075352.894436
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 27,
+      "warmup": false,
+      "tCmdPerf": 744076069.640529,
+      "tAfterPlayPerf": 744076070.4623
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 28,
+      "warmup": false,
+      "tCmdPerf": 744076787.803706,
+      "tAfterPlayPerf": 744076788.651883
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 29,
+      "warmup": false,
+      "tCmdPerf": 744077506.319799,
+      "tAfterPlayPerf": 744077507.086206
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 30,
+      "warmup": false,
+      "tCmdPerf": 744078224.421414,
+      "tAfterPlayPerf": 744078225.317247
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 31,
+      "warmup": false,
+      "tCmdPerf": 744078943.127195,
+      "tAfterPlayPerf": 744078943.974747
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 32,
+      "warmup": false,
+      "tCmdPerf": 744079660.901413,
+      "tAfterPlayPerf": 744079661.735163
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 33,
+      "warmup": false,
+      "tCmdPerf": 744080378.524121,
+      "tAfterPlayPerf": 744080379.364277
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 34,
+      "warmup": false,
+      "tCmdPerf": 744081096.968652,
+      "tAfterPlayPerf": 744081097.766673
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 35,
+      "warmup": false,
+      "tCmdPerf": 744081815.270475,
+      "tAfterPlayPerf": 744081816.106568
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 36,
+      "warmup": false,
+      "tCmdPerf": 744082533.203808,
+      "tAfterPlayPerf": 744082534.050422
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 37,
+      "warmup": false,
+      "tCmdPerf": 744083251.210005,
+      "tAfterPlayPerf": 744083251.973495
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 38,
+      "warmup": false,
+      "tCmdPerf": 744083969.456411,
+      "tAfterPlayPerf": 744083970.38537
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 39,
+      "warmup": false,
+      "tCmdPerf": 744084687.111203,
+      "tAfterPlayPerf": 744084687.892453
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 40,
+      "warmup": false,
+      "tCmdPerf": 744085405.622765,
+      "tAfterPlayPerf": 744085406.431723
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 41,
+      "warmup": false,
+      "tCmdPerf": 744086123.686463,
+      "tAfterPlayPerf": 744086124.518442
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 42,
+      "warmup": false,
+      "tCmdPerf": 744086841.646983,
+      "tAfterPlayPerf": 744086842.430525
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 43,
+      "warmup": false,
+      "tCmdPerf": 744087559.500056,
+      "tAfterPlayPerf": 744087560.531983
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 44,
+      "warmup": false,
+      "tCmdPerf": 744088278.764587,
+      "tAfterPlayPerf": 744088279.592191
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 45,
+      "warmup": false,
+      "tCmdPerf": 744088996.25292,
+      "tAfterPlayPerf": 744088996.979326
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 46,
+      "warmup": false,
+      "tCmdPerf": 744089714.089482,
+      "tAfterPlayPerf": 744089714.905211
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 47,
+      "warmup": false,
+      "tCmdPerf": 744090432.791305,
+      "tAfterPlayPerf": 744090433.653388
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 48,
+      "warmup": false,
+      "tCmdPerf": 744091150.58495,
+      "tAfterPlayPerf": 744091151.417971
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 49,
+      "warmup": false,
+      "tCmdPerf": 744091868.69396,
+      "tAfterPlayPerf": 744091869.526565
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 50,
+      "warmup": false,
+      "tCmdPerf": 744092587.012137,
+      "tAfterPlayPerf": 744092587.773491
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 51,
+      "warmup": false,
+      "tCmdPerf": 744093304.685679,
+      "tAfterPlayPerf": 744093305.532241
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 52,
+      "warmup": false,
+      "tCmdPerf": 744094023.707085,
+      "tAfterPlayPerf": 744094024.466876
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 53,
+      "warmup": false,
+      "tCmdPerf": 744094741.39198,
+      "tAfterPlayPerf": 744094742.235886
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 54,
+      "warmup": false,
+      "tCmdPerf": 744095459.11422,
+      "tAfterPlayPerf": 744095459.964324
+    },
+    {
+      "lib": "react-native-sound",
+      "index": 55,
+      "warmup": false,
+      "tCmdPerf": 744096177.620261,
+      "tAfterPlayPerf": 744096178.415678
+    }
+  ],
+  "clockSamples": [
+    {
+      "tPerf": 744012077.591231,
+      "durationMillis": 509
+    },
+    {
+      "tPerf": 744012833.450709,
+      "durationMillis": 1264
+    },
+    {
+      "tPerf": 744013617.448678,
+      "durationMillis": 2049
+    },
+    {
+      "tPerf": 744014334.386438,
+      "durationMillis": 2766
+    },
+    {
+      "tPerf": 744015056.62524,
+      "durationMillis": 3487
+    },
+    {
+      "tPerf": 744015789.703573,
+      "durationMillis": 4221
+    },
+    {
+      "tPerf": 744016510.565968,
+      "durationMillis": 4941
+    },
+    {
+      "tPerf": 744017246.606072,
+      "durationMillis": 5677
+    },
+    {
+      "tPerf": 744017981.071124,
+      "durationMillis": 6412
+    },
+    {
+      "tPerf": 744018716.318207,
+      "durationMillis": 7147
+    },
+    {
+      "tPerf": 744019451.737321,
+      "durationMillis": 7882
+    },
+    {
+      "tPerf": 744020186.290186,
+      "durationMillis": 8617
+    },
+    {
+      "tPerf": 744020905.630238,
+      "durationMillis": 9337
+    },
+    {
+      "tPerf": 744021641.073623,
+      "durationMillis": 10072
+    },
+    {
+      "tPerf": 744022375.877477,
+      "durationMillis": 10807
+    },
+    {
+      "tPerf": 744023111.643414,
+      "durationMillis": 11542
+    },
+    {
+      "tPerf": 744023846.426591,
+      "durationMillis": 12277
+    },
+    {
+      "tPerf": 744024581.416122,
+      "durationMillis": 13012
+    },
+    {
+      "tPerf": 744025317.299819,
+      "durationMillis": 13748
+    },
+    {
+      "tPerf": 744026052.804142,
+      "durationMillis": 14484
+    },
+    {
+      "tPerf": 744026787.637319,
+      "durationMillis": 15218
+    },
+    {
+      "tPerf": 744027522.301068,
+      "durationMillis": 15953
+    },
+    {
+      "tPerf": 744028257.096641,
+      "durationMillis": 16688
+    },
+    {
+      "tPerf": 744028991.666745,
+      "durationMillis": 17423
+    },
+    {
+      "tPerf": 744029726.934557,
+      "durationMillis": 18158
+    },
+    {
+      "tPerf": 744030445.479921,
+      "durationMillis": 18876
+    },
+    {
+      "tPerf": 744031180.423984,
+      "durationMillis": 19611
+    },
+    {
+      "tPerf": 744031914.938775,
+      "durationMillis": 20346
+    },
+    {
+      "tPerf": 744032649.326639,
+      "durationMillis": 21080
+    },
+    {
+      "tPerf": 744033384.402785,
+      "durationMillis": 21815
+    },
+    {
+      "tPerf": 744034118.621274,
+      "durationMillis": 22550
+    },
+    {
+      "tPerf": 744034854.140336,
+      "durationMillis": 23285
+    },
+    {
+      "tPerf": 744035589.254347,
+      "durationMillis": 24020
+    },
+    {
+      "tPerf": 744036324.354242,
+      "durationMillis": 24755
+    },
+    {
+      "tPerf": 744037058.833877,
+      "durationMillis": 25490
+    },
+    {
+      "tPerf": 744037793.374346,
+      "durationMillis": 26224
+    },
+    {
+      "tPerf": 744038528.200908,
+      "durationMillis": 26959
+    },
+    {
+      "tPerf": 744039263.182939,
+      "durationMillis": 27694
+    },
+    {
+      "tPerf": 744039997.899553,
+      "durationMillis": 28429
+    },
+    {
+      "tPerf": 744040733.474918,
+      "durationMillis": 29164
+    },
+    {
+      "tPerf": 744041467.545386,
+      "durationMillis": 29898
+    },
+    {
+      "tPerf": 744042202.597157,
+      "durationMillis": 30633
+    },
+    {
+      "tPerf": 744042937.213562,
+      "durationMillis": 31368
+    },
+    {
+      "tPerf": 744043672.547989,
+      "durationMillis": 32103
+    },
+    {
+      "tPerf": 744044407.611739,
+      "durationMillis": 32838
+    },
+    {
+      "tPerf": 744045138.821791,
+      "durationMillis": 33570
+    },
+    {
+      "tPerf": 744045874.788666,
+      "durationMillis": 34306
+    },
+    {
+      "tPerf": 744046609.744342,
+      "durationMillis": 35041
+    },
+    {
+      "tPerf": 744047345.623144,
+      "durationMillis": 35776
+    },
+    {
+      "tPerf": 744048063.863821,
+      "durationMillis": 36495
+    },
+    {
+      "tPerf": 744048800.277675,
+      "durationMillis": 37231
+    },
+    {
+      "tPerf": 744049535.9958,
+      "durationMillis": 37967
+    },
+    {
+      "tPerf": 744050271.907883,
+      "durationMillis": 38703
+    },
+    {
+      "tPerf": 744051007.128559,
+      "durationMillis": 39438
+    },
+    {
+      "tPerf": 744051743.168611,
+      "durationMillis": 40174
+    },
+    {
+      "tPerf": 744052478.743038,
+      "durationMillis": 40909
+    },
+    {
+      "tPerf": 744053214.183506,
+      "durationMillis": 41645
+    },
+    {
+      "tPerf": 744053950.6271,
+      "durationMillis": 42381
+    },
+    {
+      "tPerf": 744055956.929703,
+      "durationMillis": 44388
+    },
+    {
+      "tPerf": 744056676.20137,
+      "durationMillis": 45107
+    },
+    {
+      "tPerf": 744057389.208869,
+      "durationMillis": 45820
+    },
+    {
+      "tPerf": 744058107.897203,
+      "durationMillis": 46539
+    },
+    {
+      "tPerf": 744058826.335431,
+      "durationMillis": 47257
+    },
+    {
+      "tPerf": 744059542.551681,
+      "durationMillis": 47974
+    },
+    {
+      "tPerf": 744060264.274702,
+      "durationMillis": 48695
+    },
+    {
+      "tPerf": 744060983.394337,
+      "durationMillis": 49414
+    },
+    {
+      "tPerf": 744061702.078816,
+      "durationMillis": 50133
+    },
+    {
+      "tPerf": 744062420.784076,
+      "durationMillis": 50851
+    },
+    {
+      "tPerf": 744063139.123346,
+      "durationMillis": 51570
+    },
+    {
+      "tPerf": 744063858.372409,
+      "durationMillis": 52289
+    },
+    {
+      "tPerf": 744064577.974335,
+      "durationMillis": 53009
+    },
+    {
+      "tPerf": 744065297.11621,
+      "durationMillis": 53728
+    },
+    {
+      "tPerf": 744066016.167252,
+      "durationMillis": 54447
+    },
+    {
+      "tPerf": 744066736.076678,
+      "durationMillis": 55167
+    },
+    {
+      "tPerf": 744067455.183501,
+      "durationMillis": 55886
+    },
+    {
+      "tPerf": 744068174.43423,
+      "durationMillis": 56605
+    },
+    {
+      "tPerf": 744068893.796105,
+      "durationMillis": 57325
+    },
+    {
+      "tPerf": 744069607.038969,
+      "durationMillis": 58038
+    },
+    {
+      "tPerf": 744070325.397146,
+      "durationMillis": 58756
+    },
+    {
+      "tPerf": 744071043.140791,
+      "durationMillis": 59474
+    },
+    {
+      "tPerf": 744071761.62876,
+      "durationMillis": 60192
+    },
+    {
+      "tPerf": 744072479.039957,
+      "durationMillis": 60910
+    },
+    {
+      "tPerf": 744073197.366207,
+      "durationMillis": 61628
+    },
+    {
+      "tPerf": 744073915.669436,
+      "durationMillis": 62347
+    },
+    {
+      "tPerf": 744074633.923186,
+      "durationMillis": 63065
+    },
+    {
+      "tPerf": 744075352.021363,
+      "durationMillis": 63783
+    },
+    {
+      "tPerf": 744076069.521519,
+      "durationMillis": 64500
+    },
+    {
+      "tPerf": 744076787.702456,
+      "durationMillis": 65219
+    },
+    {
+      "tPerf": 744077506.223185,
+      "durationMillis": 65937
+    },
+    {
+      "tPerf": 744078224.315007,
+      "durationMillis": 66655
+    },
+    {
+      "tPerf": 744078943.026882,
+      "durationMillis": 67374
+    },
+    {
+      "tPerf": 744079660.801726,
+      "durationMillis": 68091
+    },
+    {
+      "tPerf": 744080378.428392,
+      "durationMillis": 68809
+    },
+    {
+      "tPerf": 744081096.870944,
+      "durationMillis": 69528
+    },
+    {
+      "tPerf": 744081815.171725,
+      "durationMillis": 70246
+    },
+    {
+      "tPerf": 744082533.095006,
+      "durationMillis": 70964
+    },
+    {
+      "tPerf": 744083251.103026,
+      "durationMillis": 71682
+    },
+    {
+      "tPerf": 744083969.355057,
+      "durationMillis": 72400
+    },
+    {
+      "tPerf": 744084687.008703,
+      "durationMillis": 73118
+    },
+    {
+      "tPerf": 744085405.523286,
+      "durationMillis": 73836
+    },
+    {
+      "tPerf": 744086123.587088,
+      "durationMillis": 74554
+    },
+    {
+      "tPerf": 744086841.534587,
+      "durationMillis": 75272
+    },
+    {
+      "tPerf": 744087559.387139,
+      "durationMillis": 75990
+    },
+    {
+      "tPerf": 744088278.65667,
+      "durationMillis": 76709
+    },
+    {
+      "tPerf": 744088996.158962,
+      "durationMillis": 77427
+    },
+    {
+      "tPerf": 744089713.993701,
+      "durationMillis": 78145
+    },
+    {
+      "tPerf": 744090432.683909,
+      "durationMillis": 78863
+    },
+    {
+      "tPerf": 744091150.475575,
+      "durationMillis": 79581
+    },
+    {
+      "tPerf": 744091868.592294,
+      "durationMillis": 80299
+    },
+    {
+      "tPerf": 744092586.914064,
+      "durationMillis": 81018
+    },
+    {
+      "tPerf": 744093304.591043,
+      "durationMillis": 81735
+    },
+    {
+      "tPerf": 744094023.607449,
+      "durationMillis": 82454
+    },
+    {
+      "tPerf": 744094741.291511,
+      "durationMillis": 83172
+    },
+    {
+      "tPerf": 744095459.015053,
+      "durationMillis": 83890
+    },
+    {
+      "tPerf": 744096177.522084,
+      "durationMillis": 84608
+    },
+    {
+      "tPerf": 744096895.501302,
+      "durationMillis": 85326
+    },
+    {
+      "tPerf": 744098916.011979,
+      "durationMillis": 87347
+    }
+  ],
+  "stoppedPerf": 744099032.811093,
+  "notes": [],
+  "audioPullPath": "cache/book-effect-latency-probe-1780096227125.m4a"
+}

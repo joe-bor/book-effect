@@ -16,8 +16,8 @@ import { join } from "node:path";
 
 import {
   detectOnsets,
+  detectOnsetsGuided,
   fitClock,
-  pairFiresToOnsets,
   percentile,
   round,
   summarizeByLibrary,
@@ -41,13 +41,35 @@ function main(): void {
   const [logPath, audioPath] = positional;
   const log = JSON.parse(readFileSync(logPath, "utf8")) as ProbeLog;
 
+  const numFlag = (name: string): number | undefined => {
+    const a = args.find((x) => x.startsWith(`--${name}=`));
+    return a === undefined ? undefined : Number(a.slice(name.length + 3));
+  };
+  const guidedOptions = {
+    minLatencyMs: numFlag("minLatencyMs"),
+    maxLatencyMs: numFlag("maxLatencyMs"),
+    peakFraction: numFlag("peakFraction"),
+    validityRatio: numFlag("validityRatio"),
+  };
+
   const wavPath = join(mkdtempSync(join(tmpdir(), "p6-")), "decoded.wav");
   execFileSync("afconvert", ["-f", "WAVE", "-d", "LEI16", audioPath, wavPath]);
   const { samples, sampleRate } = parseWav(readFileSync(wavPath));
 
-  const onsets = detectOnsets(samples, sampleRate);
   const clock = fitClock(log.clockSamples);
-  const pairing = pairFiresToOnsets(log.fires, onsets, clock);
+  const definedGuided = Object.fromEntries(
+    Object.entries(guidedOptions).filter(([, v]) => v !== undefined),
+  );
+  // Guided detection (uses the fire schedule + clock fit) is the primary path.
+  const pairing = detectOnsetsGuided(
+    samples,
+    sampleRate,
+    log.fires,
+    clock,
+    definedGuided,
+  );
+  // Blind detection is reported as an independent sanity cross-check only.
+  const blindOnsets = detectOnsets(samples, sampleRate);
   const stats = summarizeByLibrary(pairing.paired);
 
   const measuredFires = log.fires.filter((f) => !f.warmup).length;
@@ -57,7 +79,7 @@ function main(): void {
   lines.push("=== P6 Audio Latency — single-device acoustic self-capture ===");
   lines.push(`recording: ${durationSec}s @ ${sampleRate} Hz`);
   lines.push(
-    `onsets detected: ${onsets.length} | fires: ${log.fires.length} (measured ${measuredFires}, warmups ${log.fires.length - measuredFires})`,
+    `fires: ${log.fires.length} (measured ${measuredFires}, warmups ${log.fires.length - measuredFires}) | blind-onset cross-check: ${blindOnsets.length}`,
   );
   lines.push(
     `clock fit: offset=${round(clock.offsetMs, 2)}ms slope=${round(clock.slope, 5)} residualStd=${round(clock.residualStdMs, 2)}ms (n=${clock.sampleCount})`,
@@ -121,7 +143,7 @@ function main(): void {
     logPath,
     sampleRate,
     durationSec,
-    onsetsDetected: onsets.length,
+    blindOnsetCrossCheck: blindOnsets.length,
     measuredFires,
     clock,
     pairing: {

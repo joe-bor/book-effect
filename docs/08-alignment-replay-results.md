@@ -334,3 +334,13 @@ Honest caveats carried forward despite the PASS:
 - **Device JS-thread cost still unconfirmed.** P5 replayed the recorded streams **offline**; the
   P4 device caveat (real on-S10 matcher cost contending with Sherpa + UI) is not yet closed.
 - **Child speech (Gate 3) untouched.** This is adult-only.
+
+## P6 — Audio playback-start latency (Workstream B)
+
+Done. Full results in a sibling doc: **[09-audio-latency-results.md](./09-audio-latency-results.md)**.
+Headline: neither `expo-audio` nor `react-native-sound` exposes a software first-sample signal, so
+latency was measured by acoustic self-capture on the S10. Both land at **~180–260 ms** command →
+first-audible-sample (~±40 ms per-run systematic) — 4–5× over the ~50 ms "instant" target. **Native
+player required for v1 one-shots.** `react-native-sound` additionally **dropped ~37–41% of one-shot
+replays** while the mic was recording (the production condition). iPhone portion pending
+[P8](./phase-2-prompts/P8-ios-unblock.md). Leads to [P7](./phase-2-prompts/P7-sustained-session.md).

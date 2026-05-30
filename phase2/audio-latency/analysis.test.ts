@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import {
   detectOnsets,
+  detectOnsetsGuided,
   fitClock,
   pairFiresToOnsets,
   percentile,
@@ -88,6 +89,30 @@ test("detectOnsets finds each click near its true position", () => {
       `onset ${i}: got ${onsets[i].toFixed(1)} expected ~${clicks[i]}`,
     );
   }
+});
+
+test("detectOnsetsGuided finds clicks in each fire window and flags a silent one", () => {
+  const sr = 44100;
+  // Clicks present at 300 and 1000 ms; the window after the third fire is silent.
+  const signal = buildClickSignal(sr, 2200, [300, 1000]);
+  const clock = { offsetMs: 0, slope: 1, residualStdMs: 0, sampleCount: 10 };
+  const fires: ProbeFire[] = [
+    { lib: "a", index: 0, warmup: false, tCmdPerf: 150, tAfterPlayPerf: 151 }, // click@300 => 150ms
+    { lib: "a", index: 1, warmup: false, tCmdPerf: 840, tAfterPlayPerf: 841 }, // click@1000 => 160ms
+    { lib: "a", index: 2, warmup: false, tCmdPerf: 1550, tAfterPlayPerf: 1551 }, // no click
+  ];
+  const result = detectOnsetsGuided(signal, sr, fires, clock);
+  assert.equal(result.paired.length, 2);
+  assert.equal(result.unmatchedFires.length, 1);
+  assert.equal(result.unmatchedFires[0].index, 2);
+  assert.ok(
+    Math.abs(result.paired[0].latencyMs - 150) < 6,
+    `lat0 ${result.paired[0].latencyMs}`,
+  );
+  assert.ok(
+    Math.abs(result.paired[1].latencyMs - 160) < 6,
+    `lat1 ${result.paired[1].latencyMs}`,
+  );
 });
 
 test("fitClock recovers the recording->perf offset with slope ~1", () => {
