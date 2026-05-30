@@ -30,7 +30,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 | 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | todo |
 | 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | **done** (7 real-human reads in `phase2/corpus/real-human/`; 20/21 = 95.2% recovery, 0 false-stale, 0 wrong-occurrence, all in-corridor; see `docs/08` §P5) |
 | — | **◆ GATE 2 (real human read)** | — | P5 | **PASS** — founder call May 29, 2026; A track closed, main line → P6 |
-| 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **todo (next)** |
+| 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **done (Android)** — acoustic self-capture on S10: both libs ~180–260 ms (4–5× over the ~50 ms target) → native player required; react-native-sound dropped 37–41% of replays; see `docs/09`. iPhone pending P8 |
 | 8 | [P7 — Sustained continuous read](./phase-2-prompts/P7-sustained-session.md) | C | — (Sherpa path) | todo |
 | 9 | [P8 — iOS native unblock](./phase-2-prompts/P8-ios-unblock.md) | D | — | todo |
 | ⑂ | [P9 — Whisper rework (FORK)](./phase-2-prompts/P9-fork-whisper-rework.md) | E | inserted by Gate 1/2 | conditional |
@@ -121,6 +121,11 @@ Original criteria:
 ### P6 — Audio latency probe (B)
 - **Done when:** true command→first-sample latency is measured for `expo-audio` and
   `react-native-sound` on the S10 (≥30 reps each). iPhone measurement is a follow-on gated on P8.
+- **Result (Android, done):** neither library exposes a software first-sample signal, so measured
+  by acoustic self-capture. Both ~180–260 ms command→first-audible-sample (≥30 valid reps each;
+  ~±40 ms per-run systematic) — 4–5× over the ~50 ms target → **native one-shot player required for
+  v1**. `react-native-sound` also dropped 37–41 % of replays under concurrent recording. Full
+  writeup: `docs/09-audio-latency-results.md`. iPhone half pending P8.
 - **Leads to:** P7. No fork; result decides the v1 playback library and whether a tiny native
   player is needed.
 
