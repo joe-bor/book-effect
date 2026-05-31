@@ -15,7 +15,7 @@
     "expo-status-bar": "~56.0.4",
     "react": "19.2.3",
     "react-native": "0.85.3",
-    "react-native-fs": "^2.20.0",
+    "@dr.pogodin/react-native-fs": "^2.38.2",
     "react-native-sherpa-onnx": "^0.4.3",
     "react-native-sound": "^0.13.0",
     "whisper.rn": "^0.6.0"

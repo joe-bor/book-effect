@@ -273,7 +273,7 @@ async function loadSherpaOnnxRuntime(): Promise<SherpaOnnxRuntime> {
   const [{ createStreamingSTT }, { createPcmLiveStream }, fs] = await Promise.all([
     import('react-native-sherpa-onnx/stt'),
     import('react-native-sherpa-onnx/audio'),
-    import('react-native-fs'),
+    import('@dr.pogodin/react-native-fs'),
   ]);
 
   return {

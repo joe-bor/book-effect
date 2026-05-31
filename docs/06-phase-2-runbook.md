@@ -32,7 +32,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 | — | **◆ GATE 2 (real human read)** | — | P5 | **PASS** — founder call May 29, 2026; A track closed, main line → P6 |
 | 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **done (Android)** — acoustic self-capture on S10: both libs ~180–260 ms (4–5× over the ~50 ms target) → native player required; react-native-sound dropped 37–41% of replays; see `docs/09`. iPhone pending P8 |
 | 8 | [P7 — Sustained continuous read](./phase-2-prompts/P7-sustained-session.md) | C | — (Sherpa path) | todo |
-| 9 | [P8 — iOS native unblock](./phase-2-prompts/P8-ios-unblock.md) | D | — | todo |
+| 9 | [P8 — iOS native unblock](./phase-2-prompts/P8-ios-unblock.md) | D | — | **done (Simulator)** — duplicate RNFS resolved; build 0 errors; Measurement UI open on iPhone 17 Simulator; sound trigger requires manual tap (Accessibility blocked automation); iPhone 12 follow-on gated on device access |
 | ⑂ | [P9 — Whisper rework (FORK)](./phase-2-prompts/P9-fork-whisper-rework.md) | E | inserted by Gate 1/2 | conditional |
 | ⑂ | [P10 — Phoneme matching (FORK)](./phase-2-prompts/P10-fork-phoneme.md) | F | inserted by Gate 1/2/3 | conditional |
 
@@ -138,6 +138,21 @@ Original criteria:
 ### P8 — iOS native unblock (D)
 - **Done when:** the duplicate RNFS symbol is resolved and the spike builds/launches on the
   iPhone 12, **or** a written decision to defer iOS for Phase 2 with the rationale.
+- **Result (Simulator, done May 31, 2026):** Root cause was two RNFS forks both auto-linking as
+  iOS Pods: `react-native-fs@2.20.0` (direct dep) → `RNFS` pod and `@dr.pogodin/react-native-fs@2.38.2`
+  (transitive from sherpa) → `ReactNativeFs` pod. Fix: removed direct `react-native-fs` dep,
+  redirected both dynamic imports (`SherpaOnnxProvider.ts`, `WhisperRnProvider.ts`) to
+  `@dr.pogodin/react-native-fs` (API-identical fork), added thin `as unknown as WavFileWriterFs`
+  cast for `writeFile` signature narrowing. `pod install` confirmed "Removing RNFS"; build:
+  **0 errors, 1 benign `-lc++` duplicate warning**. iPhone 17 Simulator: app installs, Release
+  build loads embedded `main.jsbundle` directly (no Metro needed), **Measurement UI fully open**
+  (IDLE status, all session/audio/ASR provider controls rendered). Sound trigger requires one
+  manual tap in the booted Simulator — automated tap was blocked by macOS Accessibility permission
+  in this session; the UI state (all controls enabled, IDLE) confirms native modules loaded.
+  Android unaffected: `npm run typecheck` clean after the dep change.
+- **iPhone 12 follow-on:** Once the physical device is available, run `npm run ios` (dev build)
+  and confirm native sound plays. The blocker is resolved; this is just a device-access scheduling
+  item, not a code item.
 - **Leads to:** end of core sequence. Unblocks the iPhone half of P6.
 
 ### ⑂ P9 / P10 — conditional forks
