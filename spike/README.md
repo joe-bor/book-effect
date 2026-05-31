@@ -115,7 +115,12 @@ Last checked: May 24, 2026.
   `npm run ios -d "iPhone 17"` builds and installs on the iOS Simulator; the Release build loads
   `main.jsbundle` directly (no Metro needed), and the **Measurement UI opens cleanly** (IDLE
   status, ASR / Audio provider selectors, Session controls, Audio Latency Probe all rendered).
-  Manual sound trigger: requires a tap in the booted Simulator — automated tap was blocked by
-  macOS Accessibility permission in this session. iPhone 12 (physical device) follow-on: the code
-  blocker is resolved; connect the device and run `npm run ios` to confirm native audio plays.
+  **Manual sound trigger verified:** tapping a "Manual Audio" trigger (trigger-1: deadline →
+  `boom.wav`, expo-audio provider) showed the on-screen "Played trigger-1" success message and
+  incremented the event counter; the device log confirmed the full CoreMedia/CoreAudio playback
+  chain (`AVPlayer timeControlStatus=2` Playing, `AudioQueue` engaged, `seekErr 0`, no errors) —
+  i.e. audio actually rendered through the host. iPhone 12 (physical device) follow-on: the code
+  blocker is resolved; connect the device and run `npm run ios` to confirm native audio plays
+  there too. **Note:** do not run the "Run Latency Probe" on the Simulator — Mac-hosted audio
+  latency / battery / ASR-speed numbers are meaningless; those wait for the physical iPhone 12.
 - App visibility: the spike was visible on the Galaxy S10. It did not open on iOS during this check.
