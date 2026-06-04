@@ -27,7 +27,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 | 3 | [P2 — Fuzzy / token matcher](./phase-2-prompts/P2-fuzzy-matcher.md) | A | P1 | **done** (179/180 = 99.4%; 18/19 sherpa misses recovered, 0 false fires; see `docs/08`) |
 | 4 | [P3 — Cursor + corridors + arming](./phase-2-prompts/P3-cursor-corridors.md) | A | P2 | **done** (`phase2/matcher-lab/src/engine/`; 4 synthetic full-read fixtures: 0 false-stale, 0 wrong-occurrence, P2 recoveries preserved, cursor monotonic; see `docs/08`) |
 | — | **◆ GATE 1 (synthetic replay)** | — | P2, P3 | **PASS — on track** (synthetic; cost → P4, real read → P5). Founder call May 29, 2026; main line continues, no P9/P10 fork |
-| 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | todo |
+| 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | **done** — p95 ≈ 3.5 ms/eval = ~1.8% of the 200 ms 5 Hz frame (~56× headroom) → **keep matcher in JS for v1**; reproduced June 4, 2026. See `docs/08` §P4 |
 | 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | **done** (7 real-human reads in `phase2/corpus/real-human/`; 20/21 = 95.2% recovery, 0 false-stale, 0 wrong-occurrence, all in-corridor; see `docs/08` §P5) |
 | — | **◆ GATE 2 (real human read)** | — | P5 | **PASS** — founder call May 29, 2026; A track closed, main line → P6 |
 | 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **done (Android)** — acoustic self-capture on S10: both libs ~180–260 ms (4–5× over the ~50 ms target) → native player required; react-native-sound dropped 37–41% of replays; see `docs/09`. iPhone pending P8 |
@@ -95,6 +95,13 @@ Evaluate against [05 §Q3](./05-phase-2-plan.md#q3--evidence-that-lets-us-keep-s
 ### P4 — Matcher JS cost @ 5Hz (A)
 - **Done when:** measured per-eval cost over the corpus at 5 Hz, with a JS-vs-native call. Expect
   < ~1 ms/eval; if it's surprisingly high, that's a finding, not a blocker.
+- **Result (done):** full-read p50 ≈ 2.5 ms, **p95 ≈ 3.5 ms/eval** (offline, Node 22, Apple-silicon)
+  = ~1.8% of the 200 ms 5 Hz frame → **~56× headroom → keep the matcher in JS for v1** (no native
+  matcher module). The <1 ms comfort guess wasn't met (actual ~2.5 ms p50) but is immaterial vs the
+  frame budget. Benchmark `phase2/matcher-lab/src/cli/benchmark.ts` (`npm run bench`); written up in
+  `docs/08` §P4; reproduced June 4, 2026. **Device caveat:** offline Mac number — the S10 JS thread
+  is materially slower (~5–10×); even at 10× p95 ≈ 35 ms stays under the frame, but on-device cost of
+  the *production* engine (contending with Sherpa + UI) is still unconfirmed → validate during v1.
 - **Leads to:** P5. No fork (informs v1 architecture later).
 
 ### P5 — Gate 2: real adult read on S10 (A)

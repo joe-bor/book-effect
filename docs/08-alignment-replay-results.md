@@ -178,6 +178,11 @@ alignment window is the full ~120-token `lookAhead` slice throughout; the carrie
 near 0 with a shorter window. The full-read number is therefore the honest continuous-read cost.
 The `max` is a GC/scheduler outlier, not steady-state.
 
+**Reproduced June 4, 2026** (independent re-run, same machine/Node): headline p50 2.50 ms / p95
+3.55 ms; corpus p50 1.02 ms / p95 2.75 ms — steady-state matches the table within run-to-run noise
+(only `max` varies, 81 ms this run, confirming it is a GC/scheduler outlier rather than the engine).
+The KEEP-IN-JS recommendation is stable across runs.
+
 ### Recommendation: **KEEP THE MATCHER IN JS for v1.**
 
 The 5 Hz cadence gives a **200 ms per-frame budget**. Headline **p95 = 3.26 ms = 1.6 % of one
