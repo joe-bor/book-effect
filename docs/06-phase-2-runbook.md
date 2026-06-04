@@ -31,7 +31,7 @@ file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from 
 | 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | **done** (7 real-human reads in `phase2/corpus/real-human/`; 20/21 = 95.2% recovery, 0 false-stale, 0 wrong-occurrence, all in-corridor; see `docs/08` §P5) |
 | — | **◆ GATE 2 (real human read)** | — | P5 | **PASS** — founder call May 29, 2026; A track closed, main line → P6 |
 | 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **done (Android)** — acoustic self-capture on S10: both libs ~180–260 ms (4–5× over the ~50 ms target) → native player required; react-native-sound dropped 37–41% of replays; see `docs/09`. iPhone pending P8 |
-| 8 | [P7 — Sustained continuous read](./phase-2-prompts/P7-sustained-session.md) | C | — (Sherpa path) | todo |
+| 8 | [P7 — Sustained continuous read](./phase-2-prompts/P7-sustained-session.md) | C | — (Sherpa path) | **done (preliminary)** — recognizer + thermal **PASS** on S10 (0 stalls/drops, CPU ≤55 °C, batt +1.9 °C); battery **preliminary** (~9 min read, 93→89 % ≈ ~25 %/hr, coarse). 15–20 min confirmation run deferred. See `docs/10` |
 | 9 | [P8 — iOS native unblock](./phase-2-prompts/P8-ios-unblock.md) | D | — | **done (Simulator)** — duplicate RNFS resolved; build 0 errors; Measurement UI open on iPhone 17 Simulator; manual sound trigger verified (expo-audio played boom.wav, AVPlayer/AudioQueue engaged, 0 errors); iPhone 12 follow-on gated on device access |
 | ⑂ | [P9 — Whisper rework (FORK)](./phase-2-prompts/P9-fork-whisper-rework.md) | E | inserted by Gate 1/2 | conditional |
 | ⑂ | [P10 — Phoneme matching (FORK)](./phase-2-prompts/P10-fork-phoneme.md) | F | inserted by Gate 1/2/3 | conditional |
@@ -132,8 +132,20 @@ Original criteria:
 ### P7 — Sustained continuous read (C)
 - **Done when:** one **unplugged** 15–20 min continuous Sherpa read on the S10 with start/end
   battery %, thermal readings, and a recognizer-stability log (errors, stalls, drops).
-- **Leads to:** P8. If severe throttling/drain/recognizer loss appears → insert a mitigation task
-  (eco mode / shorter sessions) and note it for v1 scope.
+- **Result (preliminary, done June 4, 2026):** unplugged Sherpa read on the S10 (`SM-G973U`). The two
+  gate risks came back clean: **recognizer stayed alive end-to-end** (0 error/stall/drop, VAD cycling
+  normally, clean stop; pre-flight also survived a 90 s unplug / Metro loss, events 128→245) and
+  **thermals are a non-issue** (CPU cores 43–55 °C, no throttling, battery +1.9 °C). **Battery is
+  preliminary only:** the book finished in ~9 min (short of the 15–20 min window), 93→89 % = 4 pts ≈
+  ~25 %/hr — coarse (1 % granularity, large relative error), implying ~7–9 % per real session.
+  Founder accepted the preliminary result; a 15–20 min confirmation run is deferred (not gate-blocking).
+  Full writeup: `docs/10-sustained-session-results.md`.
+- **Tooling notes (for the rerun):** dev-build audio assets are Metro-served, so `ExpoAudio.preload`
+  needs the `adb reverse :8081` tunnel — **start the session while plugged**, then unplug; the reverse
+  tunnel drops on unplug. The spike logger is a 500-event ring buffer (`SpikeScreen.tsx:52`), so a long
+  read only retains the final ~4.5 min — raise the cap or save periodically for a full stability record.
+- **Leads to:** P8 (already done). If severe throttling/drain/recognizer loss appears → insert a
+  mitigation task (eco mode / shorter sessions) and note it for v1 scope.
 
 ### P8 — iOS native unblock (D)
 - **Done when:** the duplicate RNFS symbol is resolved and the spike builds/launches on the
