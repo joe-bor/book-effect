@@ -1,0 +1,25 @@
+{
+  "provider": "sherpa-onnx",
+  "phraseSlug": "pushes-hard",
+  "triggerId": "trigger-3",
+  "carrier": "working at full speed all day he pushes hard to clear the way",
+  "trialNumber": 27,
+  "startedAt": "2026-05-28T19:10:11.686Z",
+  "playbackStartAt": "2026-05-28T19:10:22.528Z",
+  "playbackEndAt": "2026-05-28T19:10:27.070Z",
+  "stopStartedAt": "2026-05-28T19:10:34.075Z",
+  "stoppedAt": "2026-05-28T19:10:39.334Z",
+  "cacheFilename": "cache/book-effect-spike-log-1779995436359.json",
+  "success": true,
+  "triggerEventCount": 1,
+  "allTriggerIds": [
+    "trigger-3"
+  ],
+  "hostEndToTriggerMs": -769,
+  "vadStartToTriggerMs": 1602,
+  "stopDurationMs": 0,
+  "latestPartial": "Y PUSHES HARD TO CLEAR THE WAY",
+  "latestFinal": "Y PUSHES HARD TO CLEAR THE WAY",
+  "providerErrors": [],
+  "eventCount": 13
+}

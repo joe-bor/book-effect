@@ -642,12 +642,12 @@ async function loadWhisperRnRuntime(): Promise<WhisperRnRuntime> {
   const whisper = await import('whisper.rn');
   const realtime = await import('whisper.rn/realtime-transcription');
   const adapter = await import('whisper.rn/realtime-transcription/adapters/AudioPcmStreamAdapter');
-  const fs = await import('react-native-fs');
+  const fs = await import('@dr.pogodin/react-native-fs');
 
   return {
     documentDirectoryPath: fs.DocumentDirectoryPath,
     exists: fs.exists,
-    fs,
+    fs: fs as unknown as WavFileWriterFs,
     initWhisper: whisper.initWhisper,
     initWhisperVad: whisper.initWhisperVad,
     createRealtimeVad: (vadContext, options) => new realtime.RingBufferVad(vadContext, options),

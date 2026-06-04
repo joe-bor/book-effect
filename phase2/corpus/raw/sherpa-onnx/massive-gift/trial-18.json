@@ -1,0 +1,131 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 679989019.539924,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:52:43.124Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 679996897.974452,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:52:51.003Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679996898.038307,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS"
+    },
+    "wallClock": "2026-05-28T18:52:51.003Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679997297.929869,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY"
+    },
+    "wallClock": "2026-05-28T18:52:51.403Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679997592.381379,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MAS"
+    },
+    "wallClock": "2026-05-28T18:52:51.697Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679997937.551015,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MASSIVE"
+    },
+    "wallClock": "2026-05-28T18:52:52.042Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679998196.882733,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MASSIVE GIFT"
+    },
+    "wallClock": "2026-05-28T18:52:52.302Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 679998197.011379,
+    "triggerId": "trigger-2",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:52:52.302Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 679999798.317837,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN HIS WAY A MASSIVE GIFT"
+    },
+    "wallClock": "2026-05-28T18:52:53.903Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 679999798.453826,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:52:53.903Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 680007271.523615,
+    "wallClock": "2026-05-28T18:53:01.376Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 680007271.614344,
+    "wallClock": "2026-05-28T18:53:01.376Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 12,
+      "filename": "book-effect-spike-log-1779994381376.json",
+      "pullPath": "cache/book-effect-spike-log-1779994381376.json",
+      "reason": "stop"
+    }
+  }
+]

@@ -1,0 +1,573 @@
+{
+  "root": "/private/tmp/book-effect-asr-comparison",
+  "total": 180,
+  "groups": {
+    "sherpa-onnx": {
+      "deadline": {
+        "trials": 30,
+        "trialNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "successes": 27,
+        "misses": 3,
+        "hostEndToTriggerMs": {
+          "min": -977,
+          "p50": -640,
+          "p95": -135,
+          "p99": -116,
+          "max": -116,
+          "avg": -558.7037037037037
+        },
+        "vadStartToTriggerMs": {
+          "min": 581,
+          "p50": 973,
+          "p95": 1032,
+          "p99": 1308,
+          "max": 1308,
+          "avg": 923.1111111111111
+        },
+        "stopDurationMs": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "max": 3,
+          "avg": 0.16666666666666666
+        },
+        "providerErrors": 0,
+        "missesDetail": [
+          {
+            "trialNumber": 3,
+            "latestPartial": "INE",
+            "latestFinal": "INE",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 5,
+            "latestPartial": "THE WORD IS DEAD LINE",
+            "latestFinal": "THE WORD IS DEAD LINE",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 28,
+            "latestPartial": "THE WORD IS DEAD LINE WHERE THERE ARE",
+            "latestFinal": "THE WORD IS DEAD LINE WHERE THERE ARE",
+            "allTriggerIds": []
+          }
+        ],
+        "unusualSuccesses": []
+      },
+      "massive-gift": {
+        "trials": 30,
+        "trialNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "successes": 23,
+        "misses": 7,
+        "hostEndToTriggerMs": {
+          "min": -692,
+          "p50": -585,
+          "p95": -90,
+          "p99": -29,
+          "max": -29,
+          "avg": -553.3913043478261
+        },
+        "vadStartToTriggerMs": {
+          "min": 1237,
+          "p50": 1302,
+          "p95": 1378,
+          "p99": 1619,
+          "max": 1619,
+          "avg": 1323.2173913043478
+        },
+        "stopDurationMs": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "max": 3,
+          "avg": 0.16666666666666666
+        },
+        "providerErrors": 0,
+        "missesDetail": [
+          {
+            "trialNumber": 1,
+            "latestPartial": "IN HIS WAY A MASSIVE GUEST",
+            "latestFinal": "IN HIS WAY A MASSIVE GUEST",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 5,
+            "latestPartial": "IN HIS WAY A MASSIVE GUEST",
+            "latestFinal": "IN HIS WAY A MASSIVE GUEST",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 11,
+            "latestPartial": "IN HIS WAY A MASSIVE GUEST",
+            "latestFinal": "IN HIS WAY A MASSIVE GUEST",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 21,
+            "latestPartial": "IN HIS WAY A MASSIVE GUEST",
+            "latestFinal": "IN HIS WAY A MASSIVE GUEST",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 27,
+            "latestPartial": "IN HIS WAY A MASS IS GIFT",
+            "latestFinal": "IN HIS WAY A MASS IS GIFT",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 28,
+            "latestPartial": "IN HIS WAY A MASSIVE GUEST",
+            "latestFinal": "IN HIS WAY A MASSIVE GUEST",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 29,
+            "latestPartial": "IN HIS WAY A MASSIVE GUEST",
+            "latestFinal": "IN HIS WAY A MASSIVE GUEST",
+            "allTriggerIds": []
+          }
+        ],
+        "unusualSuccesses": []
+      },
+      "pushes-hard": {
+        "trials": 30,
+        "trialNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "successes": 21,
+        "misses": 9,
+        "hostEndToTriggerMs": {
+          "min": -1013,
+          "p50": -699,
+          "p95": -248,
+          "p99": -164,
+          "max": -164,
+          "avg": -690.6666666666666
+        },
+        "vadStartToTriggerMs": {
+          "min": 1221,
+          "p50": 2241,
+          "p95": 2599,
+          "p99": 2601,
+          "max": 2601,
+          "avg": 2227.0476190476193
+        },
+        "stopDurationMs": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "max": 3,
+          "avg": 0.16666666666666666
+        },
+        "providerErrors": 0,
+        "missesDetail": [
+          {
+            "trialNumber": 1,
+            "latestPartial": "'S HARD TO CLEAR THE WAY",
+            "latestFinal": "'S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 3,
+            "latestPartial": "'S HARD TO CLEAR THE WAY",
+            "latestFinal": "'S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 5,
+            "latestPartial": "'S HEART TO CLEAR THE WAY",
+            "latestFinal": "'S HEART TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 8,
+            "latestPartial": "S HARD TO CLEAR THE WAY",
+            "latestFinal": "S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 12,
+            "latestPartial": "S HARD TO CLEAR THE WAY",
+            "latestFinal": "S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 17,
+            "latestPartial": "'S HARD TO CLEAR THE WAY",
+            "latestFinal": "'S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 21,
+            "latestPartial": "'S HARD TO CLEAR THE WAY",
+            "latestFinal": "'S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 29,
+            "latestPartial": "'S HARD TO CLEAR THE WAY",
+            "latestFinal": "'S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          },
+          {
+            "trialNumber": 30,
+            "latestPartial": "'S HARD TO CLEAR THE WAY",
+            "latestFinal": "'S HARD TO CLEAR THE WAY",
+            "allTriggerIds": []
+          }
+        ],
+        "unusualSuccesses": [
+          {
+            "trialNumber": 2,
+            "latestPartial": "AT FULL SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -823,
+            "vadStartToTriggerMs": 2501
+          },
+          {
+            "trialNumber": 4,
+            "latestPartial": "ULS SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -248,
+            "vadStartToTriggerMs": 2500
+          },
+          {
+            "trialNumber": 6,
+            "latestPartial": "UL'S SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -993,
+            "vadStartToTriggerMs": 2239
+          },
+          {
+            "trialNumber": 7,
+            "latestPartial": "ULS SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -514,
+            "vadStartToTriggerMs": 2241
+          },
+          {
+            "trialNumber": 11,
+            "latestPartial": "'S SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -673,
+            "vadStartToTriggerMs": 2601
+          },
+          {
+            "trialNumber": 13,
+            "latestPartial": "ULSPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -477,
+            "vadStartToTriggerMs": 2243
+          },
+          {
+            "trialNumber": 14,
+            "latestPartial": "UL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -737,
+            "vadStartToTriggerMs": 1868
+          },
+          {
+            "trialNumber": 15,
+            "latestPartial": "D ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -164,
+            "vadStartToTriggerMs": 2322
+          },
+          {
+            "trialNumber": 16,
+            "latestPartial": "ULSPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -514,
+            "vadStartToTriggerMs": 2207
+          },
+          {
+            "trialNumber": 18,
+            "latestPartial": "'S SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY",
+            "hostEndToTriggerMs": -646,
+            "vadStartToTriggerMs": 2588
+          }
+        ]
+      }
+    },
+    "whisper-rn": {
+      "deadline": {
+        "trials": 30,
+        "trialNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "successes": 30,
+        "misses": 0,
+        "hostEndToTriggerMs": {
+          "min": 122,
+          "p50": 1988,
+          "p95": 4368,
+          "p99": 4412,
+          "max": 4412,
+          "avg": 2213.766666666667
+        },
+        "vadStartToTriggerMs": {
+          "min": 1355,
+          "p50": 3318,
+          "p95": 5150,
+          "p99": 5679,
+          "max": 5679,
+          "avg": 3382.866666666667
+        },
+        "stopDurationMs": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "max": 3,
+          "avg": 0.2
+        },
+        "providerErrors": 0,
+        "missesDetail": [],
+        "unusualSuccesses": []
+      },
+      "massive-gift": {
+        "trials": 30,
+        "trialNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "successes": 30,
+        "misses": 0,
+        "hostEndToTriggerMs": {
+          "min": 1307,
+          "p50": 2442,
+          "p95": 5471,
+          "p99": 6092,
+          "max": 6092,
+          "avg": 3130.5
+        },
+        "vadStartToTriggerMs": {
+          "min": 2736,
+          "p50": 3879,
+          "p95": 7115,
+          "p99": 7657,
+          "max": 7657,
+          "avg": 4624.466666666666
+        },
+        "stopDurationMs": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "max": 1,
+          "avg": 0.2
+        },
+        "providerErrors": 0,
+        "missesDetail": [],
+        "unusualSuccesses": [
+          {
+            "trialNumber": 19,
+            "latestPartial": "\"Don't miss their helper. What did you do today?\" In his way, a massive gift.",
+            "hostEndToTriggerMs": 4822,
+            "vadStartToTriggerMs": 6323
+          }
+        ]
+      },
+      "pushes-hard": {
+        "trials": 30,
+        "trialNumbers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "successes": 30,
+        "misses": 0,
+        "hostEndToTriggerMs": {
+          "min": 3622,
+          "p50": 6068,
+          "p95": 8807,
+          "p99": 9202,
+          "max": 9202,
+          "avg": 6149.666666666667
+        },
+        "vadStartToTriggerMs": {
+          "min": 7187,
+          "p50": 9634,
+          "p95": 12263,
+          "p99": 14686,
+          "max": 14686,
+          "avg": 9677.833333333334
+        },
+        "stopDurationMs": {
+          "min": 0,
+          "p50": 0,
+          "p95": 1,
+          "max": 1,
+          "avg": 0.1
+        },
+        "providerErrors": 0,
+        "missesDetail": [],
+        "unusualSuccesses": []
+      }
+    }
+  }
+}

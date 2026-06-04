@@ -1,0 +1,131 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 678773549.490909,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:32:27.655Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 678781252.482312,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:32:35.360Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678781254.936479,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE"
+    },
+    "wallClock": "2026-05-28T18:32:35.360Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678781544.591166,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS"
+    },
+    "wallClock": "2026-05-28T18:32:35.649Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678781845.294864,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEAD"
+    },
+    "wallClock": "2026-05-28T18:32:35.950Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678782232.644499,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEADLI"
+    },
+    "wallClock": "2026-05-28T18:32:36.337Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678782563.165176,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEADLINE"
+    },
+    "wallClock": "2026-05-28T18:32:36.668Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 678782563.279187,
+    "triggerId": "trigger-1",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:32:36.668Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 678784209.116894,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEADLINE"
+    },
+    "wallClock": "2026-05-28T18:32:38.314Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 678784209.239655,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:32:38.314Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 678790500.547152,
+    "wallClock": "2026-05-28T18:32:44.605Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 678790503.48085,
+    "wallClock": "2026-05-28T18:32:44.608Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 12,
+      "filename": "book-effect-spike-log-1779993164607.json",
+      "pullPath": "cache/book-effect-spike-log-1779993164607.json",
+      "reason": "stop"
+    }
+  }
+]

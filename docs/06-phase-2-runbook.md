@@ -1,0 +1,189 @@
+# Phase 2 Runbook
+
+Status: Active sequencing guide. Created May 28, 2026.
+
+This is the operational companion to [`05-phase-2-plan.md`](./05-phase-2-plan.md). It tells you
+**which prompt to run, in what order, how to tell if its output is done, and whether the result
+leads straight to the next prompt or should trigger a fork / inserted task.**
+
+We run everything **sequentially — no parallel work.** Each prompt is a self-contained, scoped
+file in [`phase-2-prompts/`](./phase-2-prompts/) that an agent can execute from a fresh context.
+
+## How to use this runbook
+
+1. Run prompts top to bottom in the **Run order** below.
+2. After each prompt, check its **Done when** box. If unmet → it "needs more work"; re-run /
+   extend the same prompt, do not advance.
+3. At each **◆ DECISION GATE**, stop and evaluate against the criteria. The gate tells you
+   whether to continue, fork (insert P9/P10), or stop and write product docs.
+4. Update the **Status** column as you go (`todo` → `in-progress` → `done` / `needs-more-work`).
+
+## Run order at a glance
+
+| # | Prompt | Workstream | Depends on (must be `done`/PASS) | Status |
+|---|--------|------------|----------------------------------|--------|
+| 1 | [P0 — Preserve corpus](./phase-2-prompts/P0-preserve-corpus.md) | A0 | — | **done** (`phase2/corpus/`, 365 files; counts validated vs `docs/03`) |
+| 2 | [P1 — Replay harness + baseline](./phase-2-prompts/P1-replay-harness.md) | A | P0 | **done** (`phase2/matcher-lab/`; baseline 27/23/21 + 30/30/30, 0 mismatches, 23 tests) |
+| 3 | [P2 — Fuzzy / token matcher](./phase-2-prompts/P2-fuzzy-matcher.md) | A | P1 | **done** (179/180 = 99.4%; 18/19 sherpa misses recovered, 0 false fires; see `docs/08`) |
+| 4 | [P3 — Cursor + corridors + arming](./phase-2-prompts/P3-cursor-corridors.md) | A | P2 | **done** (`phase2/matcher-lab/src/engine/`; 4 synthetic full-read fixtures: 0 false-stale, 0 wrong-occurrence, P2 recoveries preserved, cursor monotonic; see `docs/08`) |
+| — | **◆ GATE 1 (synthetic replay)** | — | P2, P3 | **PASS — on track** (synthetic; cost → P4, real read → P5). Founder call May 29, 2026; main line continues, no P9/P10 fork |
+| 5 | [P4 — Matcher JS cost @ 5Hz](./phase-2-prompts/P4-matcher-cost.md) | A | P2 (ideally P3) | **done** — p95 ≈ 3.5 ms/eval = ~1.8% of the 200 ms 5 Hz frame (~56× headroom) → **keep matcher in JS for v1**; reproduced June 4, 2026. See `docs/08` §P4 |
+| 6 | [P5 — Gate 2: real adult read on S10](./phase-2-prompts/P5-gate2-human-read.md) | A | P3 (Gate 1 PASS) | **done** (7 real-human reads in `phase2/corpus/real-human/`; 20/21 = 95.2% recovery, 0 false-stale, 0 wrong-occurrence, all in-corridor; see `docs/08` §P5) |
+| — | **◆ GATE 2 (real human read)** | — | P5 | **PASS** — founder call May 29, 2026; A track closed, main line → P6 |
+| 7 | [P6 — Audio latency probe](./phase-2-prompts/P6-audio-latency.md) | B | — (device) | **done (Android)** — acoustic self-capture on S10: both libs ~180–260 ms (4–5× over the ~50 ms target) → native player required; react-native-sound dropped 37–41% of replays; see `docs/09`. iPhone pending P8 |
+| 8 | [P7 — Sustained continuous read](./phase-2-prompts/P7-sustained-session.md) | C | — (Sherpa path) | **done (preliminary)** — recognizer + thermal **PASS** on S10 (0 stalls/drops, CPU ≤55 °C, batt +1.9 °C); battery **preliminary** (~9 min read, 93→89 % ≈ ~25 %/hr, coarse). 15–20 min confirmation run deferred. See `docs/10` |
+| 9 | [P8 — iOS native unblock](./phase-2-prompts/P8-ios-unblock.md) | D | — | **done (Simulator)** — duplicate RNFS resolved; build 0 errors; Measurement UI open on iPhone 17 Simulator; manual sound trigger verified (expo-audio played boom.wav, AVPlayer/AudioQueue engaged, 0 errors); iPhone 12 follow-on gated on device access |
+| ⑂ | [P9 — Whisper rework (FORK)](./phase-2-prompts/P9-fork-whisper-rework.md) | E | inserted by Gate 1/2 | conditional |
+| ⑂ | [P10 — Phoneme matching (FORK)](./phase-2-prompts/P10-fork-phoneme.md) | F | inserted by Gate 1/2/3 | conditional |
+
+`P6`, `P7`, `P8` are independent of A and of each other; this order is the recommended
+single-threaded sequence (gate-defining work first). If device access is your constraint, you may
+reorder P6/P7/P8 among themselves — they do not feed each other.
+
+## Sequence + decision flow
+
+```
+ P0 ──► P1 ──► P2 ──► P3 ──► ◆ GATE 1 ──► P4 ──► P5 ──► ◆ GATE 2 ──► P6 ──► P7 ──► P8
+preserve replay fuzzy  cursor  synthetic  cost  human   real-human  audio  sustain iOS
+ data   +base  matcher corridors PASS?           read    PASS?       latency session unblock
+                                   │                       │
+                          PARTIAL/FAIL                 FAIL │
+                                   ▼                        ▼
+                         INSERT P9 (E) or P10 (F)   diagnose: Sherpa-specific → P9
+                         per Q4/Q5 discriminator     | text-layer/child       → P10
+```
+
+## Per-prompt: done-criteria + what it leads to
+
+### P0 — Preserve corpus (A0)
+- **Done when:** the raw `/private/tmp/book-effect-asr-comparison/` logs are copied into a
+  committed fixtures dir, with a short manifest mapping each file to provider/trigger/trial.
+- **Leads to:** P1, always. No fork. **Urgent** — `/private/tmp` may be cleared on reboot.
+
+### P1 — Replay harness + baseline (A)
+- **Done when:** an offline harness replays recorded `asr.partial`/`asr.final` text through a
+  pluggable matcher and re-derives trigger fires; running the *current substring matcher*
+  reproduces the Phase 1 baseline (deadline 27/30, massive gift 23/30, pushes 21/30, ±small
+  margin). If it can't reproduce baseline, the harness is wrong — fix before P2.
+- **Leads to:** P2, always.
+
+### P2 — Fuzzy / token matcher (A)
+- **Done when:** the new matcher recovers ≥ 95% of triggers across the corpus, and you can name
+  which technique fixed each Phase 1 miss class (split compound / substitution / dropped token).
+- **Leads to:** P3. If recovery stalls well below 95% → this is the **Gate 1 PARTIAL/FAIL** path;
+  go to the Gate 1 decision block before doing anything else.
+
+### P3 — Cursor + corridors + arming (A)
+- **Done when:** with cursor + corridor + arming wired, a full simulated read produces **0
+  false-stale fires** and **0 wrong-occurrence fires**, including on a synthetic repeated-phrase
+  fixture (goodnight ×12 stress case).
+- **Leads to:** ◆ GATE 1.
+
+### ◆ GATE 1 — synthetic replay decision
+**Decided May 29, 2026: PASS — on track.** Recovery 99.4%, 0 false-stale, 0 wrong-occurrence on the
+synthetic full-read fixtures (see `docs/08` §P3 / §Gate 1). Keep Sherpa + fuzzy + cursor; continue
+→ P4 → P5; no P9/P10 fork. Caveat: synthetic TTS only — cost is confirmed in P4 and the decisive
+evidence is the P5 real-human read; revisit via Q4/Q5 if either disappoints.
+
+Evaluate against [05 §Q3](./05-phase-2-plan.md#q3--evidence-that-lets-us-keep-sherpa--fuzzy-matching).
+- **PASS** (≥95% recovery, 0 false-stale, 0 wrong-occurrence): continue → P4, then P5.
+- **PARTIAL/FAIL:** diagnose *where* it fails using the [Q4/Q5 discriminator](./05-phase-2-plan.md#q5--evidence-that-justifies-jumping-to-phoneme-matching-early-f--p10).
+  - Sherpa emitted wrong/absent word, Whisper would've nailed it → **INSERT P9** here.
+  - Sound was right but text layer mangled it (and it's not engine-specific) → **INSERT P10**.
+  - Otherwise: stay in P2, tune thresholds, re-evaluate.
+
+### P4 — Matcher JS cost @ 5Hz (A)
+- **Done when:** measured per-eval cost over the corpus at 5 Hz, with a JS-vs-native call. Expect
+  < ~1 ms/eval; if it's surprisingly high, that's a finding, not a blocker.
+- **Result (done):** full-read p50 ≈ 2.5 ms, **p95 ≈ 3.5 ms/eval** (offline, Node 22, Apple-silicon)
+  = ~1.8% of the 200 ms 5 Hz frame → **~56× headroom → keep the matcher in JS for v1** (no native
+  matcher module). The <1 ms comfort guess wasn't met (actual ~2.5 ms p50) but is immaterial vs the
+  frame budget. Benchmark `phase2/matcher-lab/src/cli/benchmark.ts` (`npm run bench`); written up in
+  `docs/08` §P4; reproduced June 4, 2026. **Device caveat:** offline Mac number — the S10 JS thread
+  is materially slower (~5–10×); even at 10× p95 ≈ 35 ms stays under the frame, but on-device cost of
+  the *production* engine (contending with Sherpa + UI) is still unconfirmed → validate during v1.
+- **Leads to:** P5. No fork (informs v1 architecture later).
+
+### P5 — Gate 2: real adult read on S10 (A)
+- **Done when:** the founder reads the actual book on the S10 via the spike (Sherpa), logs are
+  pulled, and the P2/P3 matcher is replayed against this fresh **real-human** corpus with recovery
+  and false-fire numbers recorded. A clean phrase-end→fire latency delta is captured if feasible.
+- **Leads to:** ◆ GATE 2.
+
+### ◆ GATE 2 — real human read decision
+**Decided May 29, 2026: PASS.** On the first real adult read (Galaxy S10, Sherpa, 7 continuous
+reads) the P2/P3 engine hit 20/21 = 95.2% recovery with 0 false-stale and 0 wrong-occurrence, all
+fires in-corridor (see `docs/08` §P5 / §Gate 2). **Sherpa + fuzzy + cursor is the v1 path.** A track
+closed; main line continues → P6 → P7 → P8, then unlock the gated product docs; no P9/P10 fork. The
+sole miss (`deadline` → "stead line") is recognition-layer and was logged for the E-vs-F record;
+the single-word fragility is a watch-item for v1, not a gate-blocker.
+
+Original criteria:
+- **PASS** (triggers fire in-corridor within ~1.5s, no stale fires): **Sherpa + fuzzy is the v1
+  path.** Stop the A track. Continue to P6/P7/P8, then unlock the gated product docs (PRD →
+  architecture → test plan).
+- **FAIL:** diagnose with the same Q4/Q5 discriminator → **INSERT P9 or P10**. (Child read /
+  Gate 3 is deferred; if a later child read collapses, that is the P10 trigger.)
+
+### P6 — Audio latency probe (B)
+- **Done when:** true command→first-sample latency is measured for `expo-audio` and
+  `react-native-sound` on the S10 (≥30 reps each). iPhone measurement is a follow-on gated on P8.
+- **Result (Android, done):** neither library exposes a software first-sample signal, so measured
+  by acoustic self-capture. Both ~180–260 ms command→first-audible-sample (≥30 valid reps each;
+  ~±40 ms per-run systematic) — 4–5× over the ~50 ms target → **native one-shot player required for
+  v1**. `react-native-sound` also dropped 37–41 % of replays under concurrent recording. Full
+  writeup: `docs/09-audio-latency-results.md`. iPhone half pending P8.
+- **Leads to:** P7. No fork; result decides the v1 playback library and whether a tiny native
+  player is needed.
+
+### P7 — Sustained continuous read (C)
+- **Done when:** one **unplugged** 15–20 min continuous Sherpa read on the S10 with start/end
+  battery %, thermal readings, and a recognizer-stability log (errors, stalls, drops).
+- **Result (preliminary, done June 4, 2026):** unplugged Sherpa read on the S10 (`SM-G973U`). The two
+  gate risks came back clean: **recognizer stayed alive end-to-end** (0 error/stall/drop, VAD cycling
+  normally, clean stop; pre-flight also survived a 90 s unplug / Metro loss, events 128→245) and
+  **thermals are a non-issue** (CPU cores 43–55 °C, no throttling, battery +1.9 °C). **Battery is
+  preliminary only:** the book finished in ~9 min (short of the 15–20 min window), 93→89 % = 4 pts ≈
+  ~25 %/hr — coarse (1 % granularity, large relative error), implying ~7–9 % per real session.
+  Founder accepted the preliminary result; a 15–20 min confirmation run is deferred (not gate-blocking).
+  Full writeup: `docs/10-sustained-session-results.md`.
+- **Tooling notes (for the rerun):** dev-build audio assets are Metro-served, so `ExpoAudio.preload`
+  needs the `adb reverse :8081` tunnel — **start the session while plugged**, then unplug; the reverse
+  tunnel drops on unplug. The spike logger is a 500-event ring buffer (`SpikeScreen.tsx:52`), so a long
+  read only retains the final ~4.5 min — raise the cap or save periodically for a full stability record.
+- **Leads to:** P8 (already done). If severe throttling/drain/recognizer loss appears → insert a
+  mitigation task (eco mode / shorter sessions) and note it for v1 scope.
+
+### P8 — iOS native unblock (D)
+- **Done when:** the duplicate RNFS symbol is resolved and the spike builds/launches on the
+  iPhone 12, **or** a written decision to defer iOS for Phase 2 with the rationale.
+- **Result (Simulator, done May 31, 2026):** Root cause was two RNFS forks both auto-linking as
+  iOS Pods: `react-native-fs@2.20.0` (direct dep) → `RNFS` pod and `@dr.pogodin/react-native-fs@2.38.2`
+  (transitive from sherpa) → `ReactNativeFs` pod. Fix: removed direct `react-native-fs` dep,
+  redirected both dynamic imports (`SherpaOnnxProvider.ts`, `WhisperRnProvider.ts`) to
+  `@dr.pogodin/react-native-fs` (API-identical fork), added thin `as unknown as WavFileWriterFs`
+  cast for `writeFile` signature narrowing. `pod install` confirmed "Removing RNFS"; build:
+  **0 errors, 1 benign `-lc++` duplicate warning**. iPhone 17 Simulator: app installs, Release
+  build loads embedded `main.jsbundle` directly (no Metro needed), **Measurement UI fully open**
+  (IDLE status, all session/audio/ASR provider controls rendered). **Manual sound trigger
+  verified:** tapping "Manual Audio -> trigger-1: deadline" (expo-audio, `boom.wav`) produced the
+  on-screen "Played trigger-1" success message + event-count increment, and the iOS unified log
+  showed the full CoreMedia/CoreAudio playback chain firing (`AVPlayer timeControlStatus=2`
+  Playing, `AudioQueue` engaged, `seekErr 0`, no errors) — audio rendered through the host.
+  Android unaffected: `npm run typecheck` clean after the dep change.
+- **iPhone 12 follow-on:** Once the physical device is available, run `npm run ios` (dev build)
+  and confirm native sound plays. The blocker is resolved; this is just a device-access scheduling
+  item, not a code item.
+- **Leads to:** end of core sequence. Unblocks the iPhone half of P6.
+
+### ⑂ P9 / P10 — conditional forks
+Never scheduled up front. Inserted only by a Gate 1 or Gate 2 decision, per the discriminator.
+Each has its own internal kill criterion (P9: p95 < 1800ms on S10, or it dies).
+
+## Status legend
+
+- `todo` — not started.
+- `in-progress` — running.
+- `needs-more-work` — ran, but **Done when** unmet; do not advance.
+- `done` — **Done when** met; safe to advance.
+- `conditional` — fork; only runs if a gate inserts it.

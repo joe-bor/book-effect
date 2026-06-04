@@ -1,0 +1,85 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 678823320.216775,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:33:17.425Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 678830235.27021,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:33:24.340Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678830235.331616,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "IN"
+    },
+    "wallClock": "2026-05-28T18:33:24.340Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678830583.45172,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "INE"
+    },
+    "wallClock": "2026-05-28T18:33:24.688Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 678831835.865782,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "INE"
+    },
+    "wallClock": "2026-05-28T18:33:25.941Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 678831836.000053,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:33:25.941Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 678838258.834947,
+    "wallClock": "2026-05-28T18:33:32.364Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 678838258.915207,
+    "wallClock": "2026-05-28T18:33:32.364Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 8,
+      "filename": "book-effect-spike-log-1779993212364.json",
+      "pullPath": "cache/book-effect-spike-log-1779993212364.json",
+      "reason": "stop"
+    }
+  }
+]

@@ -1,0 +1,133 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 679410263.498426,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:43:04.368Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 679418176.577434,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:43:12.281Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679418176.640142,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD"
+    },
+    "wallClock": "2026-05-28T18:43:12.281Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679418632.994933,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS"
+    },
+    "wallClock": "2026-05-28T18:43:12.738Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679418890.273996,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEAD"
+    },
+    "wallClock": "2026-05-28T18:43:12.995Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679419214.316652,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEAD LINE"
+    },
+    "wallClock": "2026-05-28T18:43:13.319Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679420475.385714,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEAD LINE WHERE THERE"
+    },
+    "wallClock": "2026-05-28T18:43:14.580Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 679420744.390922,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEAD LINE WHERE THERE ARE"
+    },
+    "wallClock": "2026-05-28T18:43:14.849Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 679422078.286495,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEAD LINE WHERE THERE ARE"
+    },
+    "wallClock": "2026-05-28T18:43:16.183Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 679422078.454203,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:43:16.183Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 679427174.017534,
+    "wallClock": "2026-05-28T18:43:21.279Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 679427174.100555,
+    "wallClock": "2026-05-28T18:43:21.279Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 12,
+      "filename": "book-effect-spike-log-1779993801279.json",
+      "pullPath": "cache/book-effect-spike-log-1779993801279.json",
+      "reason": "stop"
+    }
+  }
+]

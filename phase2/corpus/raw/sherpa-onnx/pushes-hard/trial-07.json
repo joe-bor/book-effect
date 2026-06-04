@@ -1,0 +1,167 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 680504037.113894,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:01:18.142Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 680509716.692173,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:01:23.821Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680509716.754101,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS"
+    },
+    "wallClock": "2026-05-28T19:01:23.821Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680510014.605975,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED"
+    },
+    "wallClock": "2026-05-28T19:01:24.119Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680510368.700246,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAV"
+    },
+    "wallClock": "2026-05-28T19:01:24.473Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680510717.406809,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAVY PUS"
+    },
+    "wallClock": "2026-05-28T19:01:24.822Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680511029.17561,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAVY PUSHES"
+    },
+    "wallClock": "2026-05-28T19:01:25.134Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680511373.246965,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAVY PUSHES HARD TO"
+    },
+    "wallClock": "2026-05-28T19:01:25.478Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680511619.828787,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAVY PUSHES HARD TO CLEAR"
+    },
+    "wallClock": "2026-05-28T19:01:25.725Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 680511956.696079,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-28T19:01:26.061Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 680511956.994881,
+    "triggerId": "trigger-3",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:01:26.062Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 680513509.020766,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "ULS SPEED ALL DAVY PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-28T19:01:27.614Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 680513509.152797,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:01:27.614Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 680521729.155138,
+    "wallClock": "2026-05-28T19:01:35.834Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 680521729.247586,
+    "wallClock": "2026-05-28T19:01:35.834Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 15,
+      "filename": "book-effect-spike-log-1779994895834.json",
+      "pullPath": "cache/book-effect-spike-log-1779994895834.json",
+      "reason": "stop"
+    }
+  }
+]

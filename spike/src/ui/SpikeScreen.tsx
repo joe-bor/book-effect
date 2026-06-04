@@ -1,3 +1,9 @@
+import {
+  RecordingPresets,
+  requestRecordingPermissionsAsync,
+  setAudioModeAsync,
+  useAudioRecorder,
+} from 'expo-audio';
 import { File, Paths } from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -17,6 +23,7 @@ import type { ASRProvider, ASRProviderName } from '../asr/ASRProvider';
 import { ExpoAudioProvider } from '../audio/ExpoAudioProvider';
 import { ReactNativeSoundProvider } from '../audio/ReactNativeSoundProvider';
 import type { AudioProvider, AudioProviderName } from '../audio/AudioProvider';
+import { runLatencyProbe, type LatencyProbeLog } from '../audio/latencyProbe';
 import { constructionChristmasBook } from '../books/constructionChristmas';
 import type { BookTrigger } from '../books/types';
 import type { SpikeEvent } from '../logging/EventLogger';
@@ -44,6 +51,18 @@ const asrProviders: ASRProviderName[] = ['whisper-rn', 'sherpa-onnx'];
 const audioProviders: AudioProviderName[] = ['expo-audio', 'react-native-sound'];
 const loggerCapacity = 500;
 
+// MEASUREMENT-ONLY (P6 audio latency). Single-device acoustic self-capture config.
+const latencyClickTrigger: BookTrigger = {
+  id: 'latency-click',
+  phrase: 'latency click',
+  wordIndex: 0,
+  sound: 'latency-click.wav',
+  type: 'single-word',
+};
+const latencyProbeConfig = { reps: 56, warmups: 1, gapMs: 700, blockGapMs: 2000 };
+// 44.1 kHz mono AAC keeps files small; the analyzer downmixes to mono regardless.
+const latencyRecordingOptions = { ...RecordingPresets.HIGH_QUALITY, numberOfChannels: 1 };
+
 export function SpikeScreen() {
   const [selectedAsrProvider, setSelectedAsrProvider] = useState<ASRProviderName>('whisper-rn');
   const [selectedAudioProvider, setSelectedAudioProvider] =
@@ -51,7 +70,10 @@ export function SpikeScreen() {
   const [sessionPhase, setSessionPhase] = useState<SessionPhase>('idle');
   const [events, setEvents] = useState<SpikeEvent[]>([]);
   const [message, setMessage] = useState('Ready');
+  const [probeRunning, setProbeRunning] = useState(false);
+  const [probeMessage, setProbeMessage] = useState('Idle');
 
+  const latencyRecorder = useAudioRecorder(latencyRecordingOptions);
   const sessionRef = useRef<SpikeSession | null>(null);
   const activeProvidersRef = useRef<ActiveProviders | null>(null);
   const manualAudioProviderRef = useRef<ManualAudioProvider | null>(null);
@@ -323,6 +345,78 @@ export function SpikeScreen() {
     [recordEvent, selectedAudioProvider],
   );
 
+  const runLatencyProbeHandler = useCallback(async () => {
+    if (probeRunning || isRunning || isBusy) {
+      return;
+    }
+
+    setProbeRunning(true);
+    setProbeMessage('Requesting microphone permission...');
+
+    const providers = [
+      { lib: 'expo-audio', provider: new ExpoAudioProvider() as AudioProvider },
+      { lib: 'react-native-sound', provider: new ReactNativeSoundProvider() as AudioProvider },
+    ];
+
+    try {
+      const permission = await requestRecordingPermissionsAsync();
+
+      if (!permission.granted) {
+        throw new Error('Microphone permission denied');
+      }
+
+      // mixWithOthers => no exclusive audio focus, so playback and capture coexist.
+      await setAudioModeAsync({
+        playsInSilentMode: true,
+        interruptionMode: 'mixWithOthers',
+        allowsRecording: true,
+      });
+
+      const log = await runLatencyProbe({
+        recorder: latencyRecorder,
+        providers,
+        clickTrigger: latencyClickTrigger,
+        reps: latencyProbeConfig.reps,
+        warmups: latencyProbeConfig.warmups,
+        gapMs: latencyProbeConfig.gapMs,
+        blockGapMs: latencyProbeConfig.blockGapMs,
+        now,
+        sleep,
+        device: 'galaxy-s10-SM-G973U',
+        onProgress: setProbeMessage,
+      });
+
+      const timestamp = Date.now();
+      const logName = `book-effect-latency-probe-${timestamp}.json`;
+      const audioName = `book-effect-latency-probe-${timestamp}.m4a`;
+      const augmented: LatencyProbeLog & { audioPullPath?: string } = { ...log };
+      let savedAudio = 'recording uri missing';
+
+      if (log.recordingUri !== null) {
+        try {
+          await new File(log.recordingUri).copy(new File(Paths.cache, audioName));
+          savedAudio = `cache/${audioName}`;
+          augmented.audioPullPath = savedAudio;
+        } catch (copyError) {
+          savedAudio = `copy failed (${formatError(copyError)}) src=${log.recordingUri}`;
+        }
+      }
+
+      const logFile = new File(Paths.cache, logName);
+      logFile.create({ intermediates: true, overwrite: true });
+      logFile.write(JSON.stringify(augmented, null, 2));
+
+      setProbeMessage(
+        `Done · log cache/${logName} · audio ${savedAudio} · ${log.fires.length} fires`,
+      );
+    } catch (error) {
+      setProbeMessage(`Error: ${formatError(error)}`);
+    } finally {
+      await Promise.allSettled(providers.map(({ provider }) => provider.dispose()));
+      setProbeRunning(false);
+    }
+  }, [isBusy, isRunning, latencyRecorder, probeRunning]);
+
   const exportLog = useCallback(async () => {
     const exportEvent = buildUiEvent(
       'log.export.requested',
@@ -431,6 +525,23 @@ export function SpikeScreen() {
           {lastCue !== undefined ? `  Last cue: ${formatTimestamp(lastCue.timestamp)}` : ''}
           {formatLastLocalSave(lastLocalSave)}
         </Text>
+      </View>
+
+      <View style={styles.panel}>
+        <Text style={styles.sectionTitle}>Audio Latency Probe (P6)</Text>
+        <Text style={styles.meta}>
+          Records the mic while firing {latencyProbeConfig.reps}× preloaded clicks per library
+          (expo-audio, react-native-sound) + 1 warmup. Quiet room, mic near speaker. Pull the .m4a +
+          .json from cache afterward.
+        </Text>
+        <ActionButton
+          label={probeRunning ? 'Probe running…' : 'Run Latency Probe'}
+          disabled={probeRunning || isRunning || isBusy}
+          onPress={() => {
+            void runLatencyProbeHandler();
+          }}
+        />
+        <Text style={styles.message}>{probeMessage}</Text>
       </View>
 
       <View style={styles.panel}>
@@ -690,6 +801,12 @@ function formatError(error: unknown): string {
 
 function now(): number {
   return globalThis.performance?.now?.() ?? Date.now();
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 const styles = StyleSheet.create({

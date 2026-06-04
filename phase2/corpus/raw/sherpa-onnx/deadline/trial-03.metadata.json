@@ -1,0 +1,23 @@
+{
+  "provider": "sherpa-onnx",
+  "phraseSlug": "deadline",
+  "triggerId": "trigger-1",
+  "carrier": "the word is deadline",
+  "trialNumber": 3,
+  "startedAt": "2026-05-28T18:33:11.725Z",
+  "playbackStartAt": "2026-05-28T18:33:22.823Z",
+  "playbackEndAt": "2026-05-28T18:33:25.024Z",
+  "stopStartedAt": "2026-05-28T18:33:30.033Z",
+  "stoppedAt": "2026-05-28T18:33:35.439Z",
+  "cacheFilename": "cache/book-effect-spike-log-1779993212364.json",
+  "success": false,
+  "triggerEventCount": 0,
+  "allTriggerIds": [],
+  "hostEndToTriggerMs": null,
+  "vadStartToTriggerMs": null,
+  "stopDurationMs": 0,
+  "latestPartial": "INE",
+  "latestFinal": "INE",
+  "providerErrors": [],
+  "eventCount": 8
+}

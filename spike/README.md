@@ -104,5 +104,23 @@ Then open the already-installed app on the device. Rebuild with `npm run android
 Last checked: May 24, 2026.
 
 - Android: `npm run android` completed a native debug build, installed the app on a Galaxy S10 (`SM_G973U`) over wireless debugging, and opened the installed development build through Metro. After clearing Metro's cache with `npm run start -- --clear`, the spike UI rendered on the phone and manual sound trigger buttons played audio.
-- iOS: full Xcode and CocoaPods are installed, and `npm run ios` reached native linking on an iOS simulator build. The build failed with duplicate RNFS symbols because both `react-native-fs@2.20.0` and `@dr.pogodin/react-native-fs@2.38.2` are linked as iOS Pods (`RNFS` and `ReactNativeFs`). This is recorded as a build blocker; no dependency changes were made in Task 12.
+- iOS: **resolved (P8, May 31, 2026).** Root cause was both `react-native-fs@2.20.0` (direct
+  dep) and `@dr.pogodin/react-native-fs@2.38.2` (transitive from sherpa) auto-linking as iOS
+  Pods, producing a duplicate-symbol link error. Fix: removed the direct `react-native-fs` dep
+  from `package.json`, added `@dr.pogodin/react-native-fs` as the direct dep, redirected the two
+  dynamic `import('react-native-fs')` calls in `SherpaOnnxProvider.ts` and `WhisperRnProvider.ts`
+  to `@dr.pogodin/react-native-fs` (API-identical; added `as unknown as WavFileWriterFs` cast for
+  `writeFile` signature narrowing in TypeScript). `pod install` output confirmed "Removing RNFS"
+  — only `ReactNativeFs` (2.38.2) remains. Build: **0 errors**, 1 benign `-lc++` warning.
+  `npm run ios -d "iPhone 17"` builds and installs on the iOS Simulator; the Release build loads
+  `main.jsbundle` directly (no Metro needed), and the **Measurement UI opens cleanly** (IDLE
+  status, ASR / Audio provider selectors, Session controls, Audio Latency Probe all rendered).
+  **Manual sound trigger verified:** tapping a "Manual Audio" trigger (trigger-1: deadline →
+  `boom.wav`, expo-audio provider) showed the on-screen "Played trigger-1" success message and
+  incremented the event counter; the device log confirmed the full CoreMedia/CoreAudio playback
+  chain (`AVPlayer timeControlStatus=2` Playing, `AudioQueue` engaged, `seekErr 0`, no errors) —
+  i.e. audio actually rendered through the host. iPhone 12 (physical device) follow-on: the code
+  blocker is resolved; connect the device and run `npm run ios` to confirm native audio plays
+  there too. **Note:** do not run the "Run Latency Probe" on the Simulator — Mac-hosted audio
+  latency / battery / ASR-speed numbers are meaningless; those wait for the physical iPhone 12.
 - App visibility: the spike was visible on the Galaxy S10. It did not open on iOS during this check.

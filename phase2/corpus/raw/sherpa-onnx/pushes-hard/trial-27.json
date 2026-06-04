@@ -1,0 +1,143 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 681043039.696501,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:17.144Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 681050593.933061,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:24.699Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681050593.998998,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y"
+    },
+    "wallClock": "2026-05-28T19:10:24.699Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681050925.543738,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y PUSHE"
+    },
+    "wallClock": "2026-05-28T19:10:25.030Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681051297.326029,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y PUSHES HARD"
+    },
+    "wallClock": "2026-05-28T19:10:25.402Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681051593.444727,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y PUSHES HARD TO CLE"
+    },
+    "wallClock": "2026-05-28T19:10:25.698Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681051935.097175,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y PUSHES HARD TO CLEAR THE"
+    },
+    "wallClock": "2026-05-28T19:10:26.040Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 681052195.704414,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-28T19:10:26.300Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 681052195.864883,
+    "triggerId": "trigger-3",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:26.301Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 681053478.282018,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "Y PUSHES HARD TO CLEAR THE WAY"
+    },
+    "wallClock": "2026-05-28T19:10:27.583Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 681053478.411185,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T19:10:27.583Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 681062254.175713,
+    "wallClock": "2026-05-28T19:10:36.359Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 681062254.263838,
+    "wallClock": "2026-05-28T19:10:36.359Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 13,
+      "filename": "book-effect-spike-log-1779995436359.json",
+      "pullPath": "cache/book-effect-spike-log-1779995436359.json",
+      "reason": "stop"
+    }
+  }
+]

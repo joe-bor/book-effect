@@ -1,0 +1,119 @@
+[
+  {
+    "type": "session.start",
+    "timestamp": 678987404.755254,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:36:01.509Z"
+  },
+  {
+    "type": "asr.vadStart",
+    "timestamp": 678995274.380512,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:36:09.379Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678995274.44296,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD"
+    },
+    "wallClock": "2026-05-28T18:36:09.379Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678995725.965303,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS"
+    },
+    "wallClock": "2026-05-28T18:36:09.831Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678995969.522751,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEADLI"
+    },
+    "wallClock": "2026-05-28T18:36:10.074Z"
+  },
+  {
+    "type": "asr.partial",
+    "timestamp": 678996290.646865,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEADLINE"
+    },
+    "wallClock": "2026-05-28T18:36:10.395Z"
+  },
+  {
+    "type": "trigger.fire",
+    "timestamp": 678996290.754261,
+    "triggerId": "trigger-1",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:36:10.395Z"
+  },
+  {
+    "type": "asr.final",
+    "timestamp": 678997873.373636,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "text": "THE WORD IS DEADLINE"
+    },
+    "wallClock": "2026-05-28T18:36:11.978Z"
+  },
+  {
+    "type": "asr.vadEnd",
+    "timestamp": 678997873.510563,
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "wallClock": "2026-05-28T18:36:11.978Z"
+  },
+  {
+    "type": "session.stop",
+    "timestamp": 679004271.772748,
+    "wallClock": "2026-05-28T18:36:18.377Z"
+  },
+  {
+    "type": "log.localSave.requested",
+    "timestamp": 679004271.866706,
+    "wallClock": "2026-05-28T18:36:18.377Z",
+    "providers": {
+      "asr": "sherpa-onnx",
+      "audio": "expo-audio"
+    },
+    "payload": {
+      "eventCount": 11,
+      "filename": "book-effect-spike-log-1779993378377.json",
+      "pullPath": "cache/book-effect-spike-log-1779993378377.json",
+      "reason": "stop"
+    }
+  }
+]
