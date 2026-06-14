@@ -31,8 +31,10 @@ function phraseEditDistanceEndingAtEnd(
       let best = Math.min(
         (dp[(i - 1) * width + (j - 1)] as number) + subCost,
         (dp[(i - 1) * width + j] as number) + 1,
-        (dp[i * width + (j - 1)] as number) + 1,
       );
+      if (i < m) {
+        best = Math.min(best, (dp[i * width + (j - 1)] as number) + 1);
+      }
 
       for (let k = 2; k <= MAX_MERGE && j >= k; k += 1) {
         const merged = recent.slice(j - k, j).join('');

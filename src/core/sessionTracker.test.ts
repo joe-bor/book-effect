@@ -183,6 +183,34 @@ describe('SessionTracker repeated phrase (wrong-occurrence guard)', () => {
       { triggerId: 'second', chunkIndex: 4 },
     ]);
   });
+
+  it('does not fire a close repeated phrase trigger from an old phrase plus a new filler token', () => {
+    const first: Trigger = { id: 'first', phrase: 'goodnight moon', wordIndex: 4, type: 'phrase' };
+    const second: Trigger = {
+      id: 'second',
+      phrase: 'goodnight moon',
+      wordIndex: 8,
+      type: 'phrase',
+    };
+    const tracker = new SessionTracker(
+      toks('alpha bravo charlie delta goodnight moon foxtrot golf goodnight moon india'),
+      [first, second],
+      tight,
+    );
+
+    tracker.process(final('alpha bravo charlie delta'));
+    tracker.process(final('goodnight moon'));
+    tracker.process(final('foxtrot'));
+
+    expect([...tracker.fires]).toEqual([{ triggerId: 'first', chunkIndex: 1 }]);
+
+    tracker.process(final('golf goodnight moon'));
+
+    expect([...tracker.fires]).toEqual([
+      { triggerId: 'first', chunkIndex: 1 },
+      { triggerId: 'second', chunkIndex: 3 },
+    ]);
+  });
 });
 
 describe('SessionTracker hard-freeze', () => {
