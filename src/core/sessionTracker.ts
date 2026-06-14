@@ -71,6 +71,8 @@ export type SessionOptions = {
   maxLookbackPhrase?: number;
   freezeAfter?: number;
   cooldownChunks?: number;
+  reacquireLookAhead?: number;
+  reacquireChunks?: number;
 };
 
 type ResolvedOptions = Required<SessionOptions>;
@@ -85,6 +87,8 @@ export const DEFAULT_SESSION_OPTIONS: ResolvedOptions = {
   maxLookbackPhrase: 18,
   freezeAfter: 3,
   cooldownChunks: 4,
+  reacquireLookAhead: 220,
+  reacquireChunks: 4,
 };
 
 type TrackedTrigger = {
@@ -103,6 +107,7 @@ export class SessionTracker {
   private committed: string[] = [];
   private partialTokens: string[] = [];
   private lowConfidenceStreak = 0;
+  private reacquireUntilChunk = -1;
   private chunkIndex = -1;
   private readonly history: number[] = [];
   private readonly firedDecisions: FireDecision[] = [];
@@ -140,6 +145,11 @@ export class SessionTracker {
 
   stateOf(triggerId: string): TriggerState | undefined {
     return this.tracked.find((tracked) => tracked.trigger.id === triggerId)?.state;
+  }
+
+  forceReacquire(): void {
+    this.lowConfidenceStreak = 0;
+    this.reacquireUntilChunk = this.chunkIndex + this.opts.reacquireChunks;
   }
 
   process(chunk: AsrChunk): void {
@@ -184,7 +194,7 @@ export class SessionTracker {
     }
 
     const windowStart = Math.max(0, this.cursorIndex - this.opts.lookBehind);
-    const windowEnd = Math.min(this.book.length, this.cursorIndex + this.opts.lookAhead);
+    const windowEnd = Math.min(this.book.length, this.cursorIndex + this.activeLookAhead());
     const window = this.book.slice(windowStart, windowEnd);
     const { distance, end } = approxSubstringAlign(recent, window);
     const similarity = 1 - distance / recent.length;
@@ -196,6 +206,13 @@ export class SessionTracker {
     } else {
       this.lowConfidenceStreak += 1;
     }
+  }
+
+  private activeLookAhead(): number {
+    if (this.chunkIndex <= this.reacquireUntilChunk) {
+      return Math.max(this.opts.lookAhead, this.opts.reacquireLookAhead);
+    }
+    return this.opts.lookAhead;
   }
 
   private maxLookback(trigger: Trigger): number {
