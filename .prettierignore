@@ -2,7 +2,10 @@ node_modules
 .expo
 android
 ios
-docs
+docs/[0-9][0-9]-*.md
+docs/phase-2-prompts
+docs/research
+docs/superpowers
 phase2
 spike
 content/compiled/*.book.json

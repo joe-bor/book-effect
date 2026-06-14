@@ -45,4 +45,29 @@ describe('checkCoreBoundary', () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it('rejects relative imports that resolve outside src/core', () => {
+    const root = makeProject();
+    try {
+      mkdirSync(join(root, 'src/core'), { recursive: true });
+      writeFileSync(
+        join(root, 'src/core/bad-relative.ts'),
+        [
+          "import { play } from '../audio/AudioPlayer';",
+          "import plugin from '../../modules/audio-player';",
+          'export const value = String(play) + String(plugin);',
+        ].join('\n'),
+      );
+
+      const result = checkCoreBoundary(root);
+
+      expect(result.ok).toBe(false);
+      expect(result.violations.map((v) => v.specifier)).toEqual([
+        '../audio/AudioPlayer',
+        '../../modules/audio-player',
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

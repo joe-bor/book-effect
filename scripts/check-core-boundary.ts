@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 
 export type BoundaryViolation = {
   file: string;
@@ -30,7 +30,7 @@ const BLOCKED_PREFIXES = [
 ];
 
 export function checkCoreBoundary(root = process.cwd()): BoundaryResult {
-  const coreDir = join(root, 'src/core');
+  const coreDir = resolve(root, 'src/core');
   if (!existsSync(coreDir)) return { ok: true, violations: [] };
 
   const files = collectTsFiles(coreDir);
@@ -38,7 +38,7 @@ export function checkCoreBoundary(root = process.cwd()): BoundaryResult {
   for (const file of files) {
     const source = readFileSync(file, 'utf8');
     for (const specifier of extractImportSpecifiers(source)) {
-      if (isBlocked(specifier)) {
+      if (isBlocked(specifier, file, coreDir)) {
         violations.push({ file: relative(root, file), specifier });
       }
     }
@@ -70,13 +70,31 @@ function extractImportSpecifiers(source: string): string[] {
   return specs;
 }
 
-function isBlocked(specifier: string): boolean {
+function isBlocked(specifier: string, file: string, coreDir: string): boolean {
+  if (isRelativeSpecifier(specifier)) {
+    return !isInsideCore(resolve(dirname(file), specifier), coreDir);
+  }
+
   return BLOCKED_PREFIXES.some((prefix) => {
     if (prefix.endsWith('-') || prefix.endsWith('/')) {
       return specifier.startsWith(prefix);
     }
     return specifier === prefix || specifier.startsWith(`${prefix}/`);
   });
+}
+
+function isRelativeSpecifier(specifier: string): boolean {
+  return (
+    specifier === '.' ||
+    specifier === '..' ||
+    specifier.startsWith('./') ||
+    specifier.startsWith('../')
+  );
+}
+
+function isInsideCore(path: string, coreDir: string): boolean {
+  const relativePath = relative(coreDir, path);
+  return relativePath === '' || (!relativePath.startsWith('..') && !isAbsolute(relativePath));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
