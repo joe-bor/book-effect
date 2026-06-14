@@ -1,11 +1,9 @@
+import { compiledBooks } from '../../content/compiled/books';
 import type { BookIndexEntry, CompiledBook } from './types';
 
 const bookIndex = require('../../content/compiled/index.json') as BookIndexEntry[];
 
-const books: Record<string, CompiledBook> = {
-  'construction-christmas':
-    require('../../content/compiled/construction-christmas.book.json') as CompiledBook,
-};
+const books: Readonly<Record<string, CompiledBook>> = compiledBooks;
 
 export function listBooks(): BookIndexEntry[] {
   return [...bookIndex];

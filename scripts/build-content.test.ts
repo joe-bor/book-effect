@@ -1,6 +1,6 @@
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { buildAllContent, compileBookSource } from './build-content';
@@ -9,6 +9,41 @@ const root = (): string => mkdtempSync(join(tmpdir(), 'book-effect-content-'));
 const writeSound = (dir: string, name = 'boom.wav'): void => {
   mkdirSync(join(dir, 'sounds'), { recursive: true });
   writeFileSync(join(dir, 'sounds', name), 'seed');
+};
+const writeAsset = (dir: string, assetPath: string): void => {
+  const path = join(dir, assetPath);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, 'seed');
+};
+const writeAuthoredBook = (
+  project: string,
+  folder: string,
+  options?: {
+    id?: string;
+    sound?: string;
+  },
+): string => {
+  const id = options?.id ?? folder;
+  const sound = options?.sound ?? 'sounds/boom.wav';
+  const bookDir = join(project, 'content/books', folder);
+  mkdirSync(bookDir, { recursive: true });
+  writeAsset(bookDir, sound);
+  writeFileSync(
+    join(bookDir, 'book.ts'),
+    [
+      'const book = {',
+      `  id: ${JSON.stringify(id)},`,
+      "  title: 'Test Book',",
+      "  text: 'Alpha boom beta.',",
+      '  triggers: [',
+      `    { id: 'boom', phrase: 'boom', sound: ${JSON.stringify(sound)} },`,
+      '  ],',
+      '};',
+      'export default book;',
+      '',
+    ].join('\n'),
+  );
+  return bookDir;
 };
 
 describe('compileBookSource', () => {
@@ -117,6 +152,56 @@ describe('compileBookSource', () => {
       rmSync(dir, { recursive: true, force: true });
     }
   });
+
+  it('rejects unsafe book IDs', () => {
+    const dir = root();
+    try {
+      writeSound(dir);
+      expect(() =>
+        compileBookSource(
+          {
+            id: 'Bad Book',
+            title: 'Bad Book',
+            text: 'alpha boom',
+            triggers: [{ id: 'boom', phrase: 'boom', sound: 'sounds/boom.wav' }],
+          },
+          dir,
+        ),
+      ).toThrow('Invalid book id: Bad Book');
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects unsafe sound paths before asset existence checks', () => {
+    const unsafeSounds = [
+      '../outside.wav',
+      'audio/boom.wav',
+      'sounds\\boom.wav',
+      "sounds/bo'om.wav",
+      'sounds/bo\nom.wav',
+    ];
+
+    for (const sound of unsafeSounds) {
+      const dir = root();
+      try {
+        writeAsset(dir, sound);
+        expect(() =>
+          compileBookSource(
+            {
+              id: 'test-book',
+              title: 'Test Book',
+              text: 'alpha boom',
+              triggers: [{ id: 'boom', phrase: 'boom', sound }],
+            },
+            dir,
+          ),
+        ).toThrow(`Unsafe sound path: ${sound}`);
+      } finally {
+        rmSync(dir, { recursive: true, force: true });
+      }
+    }
+  });
 });
 
 describe('buildAllContent', () => {
@@ -179,6 +264,37 @@ describe('buildAllContent', () => {
       );
       expect(registry).toContain(
         "  'test-book/sounds/sparkle.wav': require('../books/test-book/sounds/sparkle.wav'),",
+      );
+
+      const bookRegistry = readFileSync(join(project, 'content/compiled/books.ts'), 'utf8');
+      expect(bookRegistry.match(/require\(/g)).toHaveLength(1);
+      expect(bookRegistry).toContain(
+        "  'test-book': require('./test-book.book.json') as CompiledBook,",
+      );
+    } finally {
+      rmSync(project, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects duplicate book IDs before writing generated files', async () => {
+    const project = root();
+    try {
+      writeAuthoredBook(project, 'duplicate');
+      writeAuthoredBook(project, 'duplicate-copy', { id: 'duplicate' });
+
+      await expect(buildAllContent(project)).rejects.toThrow('Duplicate book id: duplicate');
+    } finally {
+      rmSync(project, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects book IDs that do not match their folder name', async () => {
+    const project = root();
+    try {
+      writeAuthoredBook(project, 'folder-name', { id: 'actual-id' });
+
+      await expect(buildAllContent(project)).rejects.toThrow(
+        'Book id "actual-id" must match folder name "folder-name".',
       );
     } finally {
       rmSync(project, { recursive: true, force: true });
