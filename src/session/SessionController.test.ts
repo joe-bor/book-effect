@@ -36,12 +36,16 @@ class FakeAsr implements AsrEngine {
   starts = 0;
   stops = 0;
 
+  constructor(private readonly order: string[] = []) {}
+
   async start(onEvent: (event: AsrEvent) => void): Promise<void> {
+    this.order.push('asr.start');
     this.starts += 1;
     this.handler = onEvent;
   }
 
   async stop(): Promise<void> {
+    this.order.push('asr.stop');
     this.stops += 1;
   }
 
@@ -59,23 +63,30 @@ class RecordingAudio implements AudioPlayer {
   stopped = 0;
   tornDown = 0;
 
+  constructor(private readonly order: string[] = []) {}
+
   async init(opts?: { maxVoices?: number }): Promise<void> {
+    this.order.push('audio.init');
     this.inits.push(opts);
   }
 
   async preload(voices: { id: string; module: number }[]): Promise<void> {
+    this.order.push('audio.preload');
     this.preloads.push(voices);
   }
 
   play(id: string): void {
+    this.order.push(`audio.play:${id}`);
     this.plays.push(id);
   }
 
   stopAll(): void {
+    this.order.push('audio.stopAll');
     this.stopped += 1;
   }
 
   async teardown(): Promise<void> {
+    this.order.push('audio.teardown');
     this.tornDown += 1;
   }
 }
@@ -84,8 +95,9 @@ const granted: PermissionService = { requestMicrophone: async () => 'granted' };
 
 describe('SessionController', () => {
   it('preloads sounds before ASR starts and plays fired trigger ids in order', async () => {
-    const asr = new FakeAsr();
-    const audio = new RecordingAudio();
+    const order: string[] = [];
+    const asr = new FakeAsr(order);
+    const audio = new RecordingAudio(order);
     const controller = new SessionController({
       asr,
       audio,
@@ -104,6 +116,13 @@ describe('SessionController', () => {
         { id: 'boom', module: 1 },
         { id: 'gift', module: 2 },
       ],
+    ]);
+    expect(order).toEqual([
+      'audio.init',
+      'audio.preload',
+      'asr.start',
+      'audio.play:boom',
+      'audio.play:gift',
     ]);
     expect(asr.starts).toBe(1);
     expect(audio.plays).toEqual(['boom', 'gift']);
@@ -226,8 +245,9 @@ describe('SessionController', () => {
   });
 
   it('stops ASR, stops audio, tears down, and returns idle', async () => {
-    const asr = new FakeAsr();
-    const audio = new RecordingAudio();
+    const order: string[] = [];
+    const asr = new FakeAsr(order);
+    const audio = new RecordingAudio(order);
     const controller = new SessionController({
       asr,
       audio,
@@ -237,8 +257,19 @@ describe('SessionController', () => {
     });
 
     await controller.start(book);
+    order.length = 0;
+    controller.subscribe((status) => {
+      order.push(`status:${status}`);
+    });
     await controller.stop();
 
+    expect(order).toEqual([
+      'status:stopping',
+      'asr.stop',
+      'audio.stopAll',
+      'audio.teardown',
+      'status:idle',
+    ]);
     expect(asr.stops).toBe(1);
     expect(audio.stopped).toBe(1);
     expect(audio.tornDown).toBe(1);
