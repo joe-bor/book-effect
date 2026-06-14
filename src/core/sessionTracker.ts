@@ -1,7 +1,61 @@
-import { approxSubstringAlign, phraseEditDistance } from './align';
+import { approxSubstringAlign } from './align';
 import { editBudget } from './editBudget';
 import { normalizeWords } from './normalize';
+import { fuzzyTokenEqual } from './tokens';
 import type { AsrChunk, FireDecision, Trigger } from './types';
+
+const MAX_MERGE = 3;
+
+function phraseEditDistanceEndingAtEnd(
+  target: readonly string[],
+  recent: readonly string[],
+): number {
+  const m = target.length;
+  const n = recent.length;
+  if (m === 0) {
+    return 0;
+  }
+
+  const width = n + 1;
+  const dp = new Array<number>((m + 1) * width).fill(0);
+  for (let i = 1; i <= m; i += 1) {
+    dp[i * width] = i;
+  }
+
+  for (let i = 1; i <= m; i += 1) {
+    const targetToken = target[i - 1] as string;
+    for (let j = 1; j <= n; j += 1) {
+      const recentToken = recent[j - 1] as string;
+      const subCost = fuzzyTokenEqual(targetToken, recentToken) ? 0 : 1;
+
+      let best = Math.min(
+        (dp[(i - 1) * width + (j - 1)] as number) + subCost,
+        (dp[(i - 1) * width + j] as number) + 1,
+        (dp[i * width + (j - 1)] as number) + 1,
+      );
+
+      for (let k = 2; k <= MAX_MERGE && j >= k; k += 1) {
+        const merged = recent.slice(j - k, j).join('');
+        if (fuzzyTokenEqual(targetToken, merged)) {
+          best = Math.min(best, dp[(i - 1) * width + (j - k)] as number);
+        }
+      }
+
+      dp[i * width + j] = best;
+    }
+  }
+
+  return dp[m * width + n] as number;
+}
+
+function commonPrefixLength(a: readonly string[], b: readonly string[]): number {
+  const limit = Math.min(a.length, b.length);
+  let index = 0;
+  while (index < limit && a[index] === b[index]) {
+    index += 1;
+  }
+  return index;
+}
 
 export type TriggerState = 'pending' | 'armed' | 'fired' | 'expired';
 
@@ -45,6 +99,7 @@ export class SessionTracker {
 
   private cursorIndex = 0;
   private committed: string[] = [];
+  private partialTokens: string[] = [];
   private lowConfidenceStreak = 0;
   private chunkIndex = -1;
   private readonly history: number[] = [];
@@ -88,15 +143,25 @@ export class SessionTracker {
   process(chunk: AsrChunk): void {
     this.chunkIndex += 1;
     const tokens = normalizeWords(chunk.text);
+    const observedTokenCount = this.countNewlyObservedTokens(tokens, chunk.kind);
     const recent = this.buildRecentWindow(tokens, chunk.kind);
+    const newTokenCount = Math.min(observedTokenCount, recent.length);
 
     this.advanceCursor(recent);
     this.history.push(this.cursorIndex);
 
-    this.updateTriggerStates();
+    this.armTriggerStates();
     if (!this.frozen) {
-      this.fireMatches(recent);
+      this.fireMatches(recent, newTokenCount);
     }
+    this.expireTriggerStates();
+  }
+
+  private countNewlyObservedTokens(tokens: string[], kind: AsrChunk['kind']): number {
+    const sharedPrefix = commonPrefixLength(this.partialTokens, tokens);
+    const observedTokenCount = tokens.length - sharedPrefix;
+    this.partialTokens = kind === 'partial' ? tokens : [];
+    return observedTokenCount;
   }
 
   private buildRecentWindow(tokens: string[], kind: AsrChunk['kind']): readonly string[] {
@@ -137,14 +202,9 @@ export class SessionTracker {
       : this.opts.maxLookbackPhrase;
   }
 
-  private updateTriggerStates(): void {
+  private armTriggerStates(): void {
     for (const tracked of this.tracked) {
       if (tracked.state === 'fired' || tracked.state === 'expired') continue;
-
-      if (this.cursorIndex > tracked.trigger.wordIndex + this.maxLookback(tracked.trigger)) {
-        tracked.state = 'expired';
-        continue;
-      }
 
       if (
         tracked.state === 'pending' &&
@@ -156,13 +216,23 @@ export class SessionTracker {
     }
   }
 
-  private fireMatches(recent: readonly string[]): void {
+  private expireTriggerStates(): void {
+    for (const tracked of this.tracked) {
+      if (tracked.state === 'fired' || tracked.state === 'expired') continue;
+
+      if (this.cursorIndex > tracked.trigger.wordIndex + this.maxLookback(tracked.trigger)) {
+        tracked.state = 'expired';
+      }
+    }
+  }
+
+  private fireMatches(recent: readonly string[], newTokenCount: number): void {
     const eligible = this.tracked.filter(
       (tracked) =>
         tracked.state === 'armed' &&
         this.chunkIndex >= tracked.cooldownUntilChunk &&
         tracked.phraseTokens.length > 0 &&
-        phraseEditDistance(tracked.phraseTokens, recent) <= editBudget(tracked.phraseTokens.length),
+        this.matchesEndingInNewTokens(tracked.phraseTokens, recent, newTokenCount),
     );
 
     const winners = new Map<string, TrackedTrigger>();
@@ -185,5 +255,24 @@ export class SessionTracker {
 
   private distanceToCursor(tracked: TrackedTrigger): number {
     return Math.abs(tracked.trigger.wordIndex - this.cursorIndex);
+  }
+
+  private matchesEndingInNewTokens(
+    phraseTokens: readonly string[],
+    recent: readonly string[],
+    newTokenCount: number,
+  ): boolean {
+    if (newTokenCount === 0) {
+      return false;
+    }
+
+    const suffixStart = Math.max(0, recent.length - newTokenCount);
+    const budget = editBudget(phraseTokens.length);
+    for (let end = suffixStart; end < recent.length; end += 1) {
+      if (phraseEditDistanceEndingAtEnd(phraseTokens, recent.slice(0, end + 1)) <= budget) {
+        return true;
+      }
+    }
+    return false;
   }
 }

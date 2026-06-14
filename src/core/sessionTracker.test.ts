@@ -88,6 +88,17 @@ describe('SessionTracker arming + firing', () => {
     );
     expect([...tracker.fires]).toEqual([{ triggerId: 'boom', chunkIndex: 1 }]);
   });
+
+  it('fires a trigger heard in a long final chunk before expiring stale triggers', () => {
+    const tracker = run(
+      'alpha bravo charlie delta boom foxtrot golf hotel',
+      [boom],
+      [final('alpha bravo charlie delta boom foxtrot golf hotel')],
+    );
+
+    expect([...tracker.fires]).toEqual([{ triggerId: 'boom', chunkIndex: 0 }]);
+    expect(tracker.stateOf('boom')).toBe('fired');
+  });
 });
 
 describe('SessionTracker expiry (false-stale guard)', () => {
@@ -124,6 +135,53 @@ describe('SessionTracker repeated phrase (wrong-occurrence guard)', () => {
     expect((fired[0] as { chunkIndex: number }).chunkIndex).toBeLessThan(
       (fired[1] as { chunkIndex: number }).chunkIndex,
     );
+  });
+
+  it('does not fire a close repeated trigger from the previous phrase still in the buffer', () => {
+    const first: Trigger = { id: 'first', phrase: 'boom', wordIndex: 4, type: 'single-word' };
+    const second: Trigger = { id: 'second', phrase: 'boom', wordIndex: 8, type: 'single-word' };
+    const tracker = new SessionTracker(
+      toks('alpha bravo charlie delta boom foxtrot golf hotel boom india juliet'),
+      [first, second],
+      tight,
+    );
+
+    tracker.process(final('alpha bravo charlie delta'));
+    tracker.process(final('boom foxtrot'));
+    tracker.process(final('golf hotel'));
+
+    expect([...tracker.fires]).toEqual([{ triggerId: 'first', chunkIndex: 1 }]);
+
+    tracker.process(final('boom india'));
+
+    expect([...tracker.fires]).toEqual([
+      { triggerId: 'first', chunkIndex: 1 },
+      { triggerId: 'second', chunkIndex: 3 },
+    ]);
+  });
+
+  it('does not treat a restated partial prefix as a new close repeated phrase', () => {
+    const first: Trigger = { id: 'first', phrase: 'boom', wordIndex: 4, type: 'single-word' };
+    const second: Trigger = { id: 'second', phrase: 'boom', wordIndex: 8, type: 'single-word' };
+    const tracker = new SessionTracker(
+      toks('alpha bravo charlie delta boom foxtrot golf hotel boom india juliet'),
+      [first, second],
+      tight,
+    );
+
+    tracker.process(final('alpha bravo charlie delta'));
+    tracker.process(partial('boom foxtrot'));
+    tracker.process(partial('boom foxtrot golf hotel'));
+    tracker.process(final('boom foxtrot golf hotel'));
+
+    expect([...tracker.fires]).toEqual([{ triggerId: 'first', chunkIndex: 1 }]);
+
+    tracker.process(partial('boom india'));
+
+    expect([...tracker.fires]).toEqual([
+      { triggerId: 'first', chunkIndex: 1 },
+      { triggerId: 'second', chunkIndex: 4 },
+    ]);
   });
 });
 
