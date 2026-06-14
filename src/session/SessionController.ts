@@ -16,7 +16,6 @@ type SessionControllerDeps = {
   permissions: PermissionService;
   assets: Record<string, number>;
   createTracker: (tokens: readonly string[], triggers: readonly Trigger[]) => SessionTracker;
-  now?: () => number;
 };
 
 type StatusListener = (status: SessionStatus) => void;
@@ -28,6 +27,10 @@ export class SessionController {
   private currentError: SessionError | undefined;
   private tracker: SessionTracker | undefined;
   private fireCursor = 0;
+  private lifecycleToken = 0;
+  private startPromise: Promise<void> | undefined;
+  private audioInitialized = false;
+  private asrStopNeeded = false;
 
   constructor(deps: SessionControllerDeps) {
     this.deps = deps;
@@ -41,11 +44,37 @@ export class SessionController {
     return this.currentError;
   }
 
-  async start(book: CompiledBook): Promise<void> {
+  start(book: CompiledBook): Promise<void> {
+    if (this.startPromise) {
+      return this.startPromise;
+    }
+
+    if (this.audioInitialized || this.asrStopNeeded || !this.canStartFromStatus()) {
+      return Promise.resolve();
+    }
+
+    const token = this.nextLifecycleToken();
+    let startPromise: Promise<void>;
+    startPromise = this.startSession(book, token).finally(() => {
+      if (this.startPromise === startPromise) {
+        this.startPromise = undefined;
+      }
+    });
+    this.startPromise = startPromise;
+    return startPromise;
+  }
+
+  private async startSession(book: CompiledBook, token: number): Promise<void> {
     this.currentError = undefined;
+    let audioInitialized = false;
+    let asrStopNeeded = false;
 
     try {
       const permission = await this.deps.permissions.requestMicrophone();
+      if (!this.isCurrentLifecycle(token)) {
+        return;
+      }
+
       if (permission === 'denied') {
         this.setError({
           reason: 'permission',
@@ -59,15 +88,38 @@ export class SessionController {
       this.fireCursor = 0;
 
       await this.deps.audio.init({ maxVoices: 4 });
+      audioInitialized = true;
+      this.audioInitialized = true;
+      if (!this.isCurrentLifecycle(token)) {
+        await this.cancelStartup(audioInitialized, asrStopNeeded);
+        return;
+      }
+
       await this.deps.audio.preload(this.preloadVoices(book));
+      if (!this.isCurrentLifecycle(token)) {
+        await this.cancelStartup(audioInitialized, asrStopNeeded);
+        return;
+      }
+
+      asrStopNeeded = true;
+      this.asrStopNeeded = true;
       await this.deps.asr.start((event) => {
         this.handleAsrEvent(event);
       });
+      if (!this.isCurrentLifecycle(token)) {
+        await this.cancelStartup(audioInitialized, asrStopNeeded);
+        return;
+      }
+
       this.setStatus('listening');
     } catch (error) {
-      this.tracker = undefined;
-      this.fireCursor = 0;
-      this.setError({ reason: 'unknown', message: messageFrom(error) });
+      const sessionError = { reason: 'unknown' as const, message: messageFrom(error) };
+      await this.cleanupResources({ stopAsr: asrStopNeeded, teardownAudio: audioInitialized });
+      if (this.isCurrentLifecycle(token)) {
+        this.setError(sessionError);
+      } else {
+        this.setStatus('idle');
+      }
     }
   }
 
@@ -81,20 +133,29 @@ export class SessionController {
   }
 
   async stop(): Promise<void> {
+    const pendingStart = this.startPromise;
+    if (pendingStart) {
+      this.nextLifecycleToken();
+      if (this.currentStatus === 'idle') {
+        return;
+      }
+
+      this.setStatus('stopping');
+      await pendingStart;
+      return;
+    }
+
     if (this.currentStatus === 'idle') {
       return;
     }
 
+    this.nextLifecycleToken();
     this.setStatus('stopping');
-    try {
-      await this.deps.asr.stop();
-    } finally {
-      this.deps.audio.stopAll();
-      await this.deps.audio.teardown();
-      this.tracker = undefined;
-      this.fireCursor = 0;
-      this.setStatus('idle');
-    }
+    await this.cleanupResources({
+      stopAsr: this.asrStopNeeded,
+      teardownAudio: this.audioInitialized,
+    });
+    this.setStatus('idle');
   }
 
   subscribe(listener: StatusListener): () => void {
@@ -111,7 +172,7 @@ export class SessionController {
         return;
       case 'interrupted':
         this.setError({ reason: 'interrupted', message: event.message });
-        void this.stop();
+        void this.stop().catch(() => {});
         return;
       case 'vadStart':
       case 'vadEnd':
@@ -175,6 +236,53 @@ export class SessionController {
     for (const listener of this.listeners) {
       listener(status);
     }
+  }
+
+  private canStartFromStatus(): boolean {
+    return this.currentStatus === 'idle' || this.currentStatus === 'error';
+  }
+
+  private nextLifecycleToken(): number {
+    this.lifecycleToken += 1;
+    return this.lifecycleToken;
+  }
+
+  private isCurrentLifecycle(token: number): boolean {
+    return token === this.lifecycleToken;
+  }
+
+  private async cancelStartup(audioInitialized: boolean, asrStopNeeded: boolean): Promise<void> {
+    await this.cleanupResources({ stopAsr: asrStopNeeded, teardownAudio: audioInitialized });
+    this.setStatus('idle');
+  }
+
+  private async cleanupResources({
+    stopAsr,
+    teardownAudio,
+  }: {
+    stopAsr: boolean;
+    teardownAudio: boolean;
+  }): Promise<void> {
+    if (stopAsr) {
+      try {
+        await this.deps.asr.stop();
+      } catch {}
+      this.asrStopNeeded = false;
+    }
+
+    if (teardownAudio) {
+      try {
+        this.deps.audio.stopAll();
+      } catch {}
+
+      try {
+        await this.deps.audio.teardown();
+      } catch {}
+      this.audioInitialized = false;
+    }
+
+    this.tracker = undefined;
+    this.fireCursor = 0;
   }
 }
 
