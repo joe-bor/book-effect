@@ -1,0 +1,10 @@
+node_modules
+.expo
+android
+ios
+docs
+phase2
+spike
+content/compiled/*.book.json
+phase2/matcher-lab/BASELINE.md
+phase2/matcher-lab/FUZZY.md

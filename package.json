@@ -1,0 +1,47 @@
+{
+  "name": "book-effect",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "expo-router/entry",
+  "engines": {
+    "node": ">=22.13.0 <23",
+    "npm": ">=10.9.0"
+  },
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "prebuild": "expo prebuild",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "boundary": "tsx scripts/check-core-boundary.ts",
+    "lint": "npm run boundary",
+    "build:content": "tsx scripts/build-content.ts",
+    "verify": "npm run typecheck && npm run format:check && npm run lint && npm test"
+  },
+  "dependencies": {
+    "@dr.pogodin/react-native-fs": "^2.38.2",
+    "expo": "~56.0.3",
+    "expo-asset": "~12.0.9",
+    "expo-dev-client": "~56.0.20",
+    "expo-file-system": "~56.0.7",
+    "expo-keep-awake": "~56.0.3",
+    "expo-router": "~6.0.15",
+    "expo-status-bar": "~56.0.4",
+    "react": "19.2.3",
+    "react-native": "0.85.3",
+    "react-native-sherpa-onnx": "^0.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/react": "~19.2.2",
+    "prettier": "^3.8.3",
+    "tsx": "^4.22.3",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.7"
+  }
+}

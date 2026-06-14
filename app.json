@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Book Effect",
+    "slug": "book-effect",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "bookeffect",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "com.joebor.bookeffect",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Book Effect listens locally to match read-aloud phrases and play sound effects."
+      },
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.joebor.bookeffect",
+      "permissions": ["RECORD_AUDIO"],
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": ["expo-router", "expo-dev-client", "./modules/audio-player"]
+  }
+}
