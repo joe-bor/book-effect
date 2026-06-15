@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { normalizeWords } from '../core/normalize';
 import { SessionTracker } from '../core/sessionTracker';
 import type { CompiledBook } from '../content/types';
+import { DevLogger } from '../devlog/DevLogger';
 import { SessionController } from './SessionController';
 import type { AsrEngine, AsrEvent, AudioPlayer, PermissionService } from './types';
 
@@ -514,5 +515,68 @@ describe('SessionController', () => {
     expect(audio.stopped).toBe(1);
     expect(audio.tornDown).toBe(1);
     expect(controller.status).toBe('idle');
+  });
+
+  it('records lifecycle, ASR, engine timing, and trigger fire events when a dev logger is injected', async () => {
+    let now = 100;
+    const logger = new DevLogger({
+      enabled: true,
+      capacity: 10_000,
+      now: () => {
+        now += 2;
+        return now;
+      },
+    });
+    const asr = new FakeAsr();
+    const audio = new RecordingAudio();
+    const controller = new SessionController({
+      asr,
+      audio,
+      permissions: granted,
+      assets: { 'sounds/boom.wav': 1, 'sounds/gift.wav': 2 },
+      createTracker: (tokens, triggers) =>
+        new SessionTracker(tokens, triggers, { armLead: 2, advanceThreshold: 0.5 }),
+      log: logger,
+    });
+
+    await controller.start(book);
+    asr.emit({ type: 'partial', text: 'alpha bravo boom', timestamp: 10 });
+    await controller.stop();
+
+    expect(logger.snapshot()).toMatchObject([
+      { type: 'session.start', payload: { bookId: 'test' } },
+      { type: 'asr.partial', payload: { text: 'alpha bravo boom', timestamp: 10 } },
+      {
+        type: 'engine.process',
+        payload: { cursor: 3, frozen: false, fires: 1, durationMs: expect.any(Number) },
+      },
+      { type: 'trigger.fire', triggerId: 'boom' },
+      { type: 'session.stop', payload: { reason: 'user' } },
+    ]);
+  });
+
+  it('records interrupted cleanup with an interrupted stop reason', async () => {
+    const logger = new DevLogger({ enabled: true, capacity: 10_000, now: () => 1 });
+    const asr = new FakeAsr();
+    const audio = new RecordingAudio();
+    const controller = new SessionController({
+      asr,
+      audio,
+      permissions: granted,
+      assets: { 'sounds/boom.wav': 1, 'sounds/gift.wav': 2 },
+      createTracker: (tokens, triggers) => new SessionTracker(tokens, triggers),
+      log: logger,
+    });
+
+    await controller.start(book);
+    asr.emit({ type: 'interrupted', message: 'Audio session interrupted', timestamp: 40 });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(logger.snapshot()).toContainEqual(
+      expect.objectContaining({
+        type: 'session.stop',
+        payload: { reason: 'interrupted' },
+      }),
+    );
   });
 });

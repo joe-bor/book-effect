@@ -1,6 +1,7 @@
 import { SessionTracker } from '../core/sessionTracker';
 import type { Trigger } from '../core/types';
 import type { CompiledBook } from '../content/types';
+import type { DevLogger } from '../devlog/DevLogger';
 import type {
   AsrEngine,
   AsrEvent,
@@ -16,6 +17,7 @@ type SessionControllerDeps = {
   permissions: PermissionService;
   assets: Record<string, number>;
   createTracker: (tokens: readonly string[], triggers: readonly Trigger[]) => SessionTracker;
+  log?: DevLogger;
 };
 
 type StatusListener = (status: SessionStatus) => void;
@@ -70,6 +72,7 @@ export class SessionController {
     let asrStopNeeded = false;
 
     try {
+      this.deps.log?.record({ type: 'session.start', payload: { bookId: book.id } });
       const permission = await this.deps.permissions.requestMicrophone();
       if (!this.isCurrentLifecycle(token)) {
         return;
@@ -132,7 +135,7 @@ export class SessionController {
     this.setStatus('recovering');
   }
 
-  async stop(): Promise<void> {
+  async stop(reason: 'user' | 'interrupted' = 'user'): Promise<void> {
     const pendingStart = this.startPromise;
     if (pendingStart) {
       this.nextLifecycleToken();
@@ -152,6 +155,7 @@ export class SessionController {
 
     this.nextLifecycleToken();
     this.setStatus('stopping');
+    this.deps.log?.record({ type: 'session.stop', payload: { reason } });
     await this.cleanupResources({
       stopAsr: this.asrStopNeeded,
       teardownAudio: this.audioInitialized,
@@ -167,13 +171,15 @@ export class SessionController {
   }
 
   private handleAsrEvent(event: AsrEvent): void {
+    this.logAsrEvent(event);
+
     switch (event.type) {
       case 'error':
         this.setError({ reason: 'asr', message: event.message });
         return;
       case 'interrupted':
         this.setError({ reason: 'interrupted', message: event.message });
-        void this.stop().catch(() => {});
+        void this.stop('interrupted').catch(() => {});
         return;
       case 'vadStart':
       case 'vadEnd':
@@ -195,7 +201,18 @@ export class SessionController {
       return;
     }
 
+    const startedAt = this.deps.log === undefined ? 0 : performance.now();
     this.tracker.process({ kind: event.type, text: event.text });
+    const durationMs = this.deps.log === undefined ? 0 : performance.now() - startedAt;
+    this.deps.log?.record({
+      type: 'engine.process',
+      payload: {
+        cursor: this.tracker.cursor,
+        frozen: this.tracker.frozen,
+        durationMs,
+        fires: this.tracker.fires.length,
+      },
+    });
     this.playNewFires();
     this.setStatus(this.tracker.frozen ? 'recovering' : 'listening');
   }
@@ -209,6 +226,7 @@ export class SessionController {
     this.fireCursor = this.tracker.fires.length;
     for (const fire of fires) {
       this.deps.audio.play(fire.triggerId);
+      this.deps.log?.record({ type: 'trigger.fire', triggerId: fire.triggerId });
     }
   }
 
@@ -225,6 +243,10 @@ export class SessionController {
 
   private setError(error: SessionError): void {
     this.currentError = error;
+    this.deps.log?.record({
+      type: 'session.error',
+      payload: { reason: error.reason, message: error.message },
+    });
     this.setStatus('error');
   }
 
@@ -284,6 +306,37 @@ export class SessionController {
 
     this.tracker = undefined;
     this.fireCursor = 0;
+  }
+
+  private logAsrEvent(event: AsrEvent): void {
+    switch (event.type) {
+      case 'partial':
+      case 'final':
+        this.deps.log?.record({
+          type: `asr.${event.type}`,
+          payload: { text: event.text, timestamp: event.timestamp },
+        });
+        return;
+      case 'error':
+      case 'interrupted':
+        this.deps.log?.record({
+          type: `asr.${event.type}`,
+          payload: { message: event.message, timestamp: event.timestamp },
+        });
+        return;
+      case 'vadStart':
+      case 'vadEnd':
+        this.deps.log?.record({
+          type: `asr.${event.type}`,
+          payload: { timestamp: event.timestamp },
+        });
+        return;
+      case 'diag':
+        this.deps.log?.record({
+          type: 'asr.diag',
+          payload: { timestamp: event.timestamp, stage: event.stage, detail: event.detail },
+        });
+    }
   }
 }
 
