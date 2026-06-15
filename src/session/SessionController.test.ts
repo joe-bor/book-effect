@@ -356,6 +356,37 @@ describe('SessionController', () => {
     expect(controller.status).toBe('idle');
   });
 
+  it('waits for an in-progress start cancellation while permission is pending', async () => {
+    const permission = deferred<'granted' | 'denied'>();
+    const asr = new FakeAsr();
+    const audio = new RecordingAudio();
+    const controller = new SessionController({
+      asr,
+      audio,
+      permissions: { requestMicrophone: async () => permission.promise },
+      assets: { 'sounds/boom.wav': 1, 'sounds/gift.wav': 2 },
+      createTracker: (tokens, triggers) => new SessionTracker(tokens, triggers),
+    });
+
+    const startPromise = controller.start(book);
+    const stopPromise = controller.stop();
+    let stopSettled = false;
+    void stopPromise.then(() => {
+      stopSettled = true;
+    });
+    await Promise.resolve();
+
+    expect(stopSettled).toBe(false);
+
+    permission.resolve('granted');
+    await Promise.all([startPromise, stopPromise]);
+
+    expect(controller.status).toBe('idle');
+    expect(audio.inits).toEqual([]);
+    expect(asr.starts).toBe(0);
+    expect(stopSettled).toBe(true);
+  });
+
   it('notifies status subscribers until they unsubscribe', async () => {
     const asr = new FakeAsr();
     const audio = new RecordingAudio();

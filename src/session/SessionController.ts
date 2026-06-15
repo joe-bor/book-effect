@@ -137,6 +137,7 @@ export class SessionController {
     if (pendingStart) {
       this.nextLifecycleToken();
       if (this.currentStatus === 'idle') {
+        await pendingStart;
         return;
       }
 
