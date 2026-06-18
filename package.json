@@ -21,6 +21,7 @@
     "boundary": "tsx scripts/check-core-boundary.ts",
     "lint": "npm run boundary",
     "build:content": "tsx scripts/build-content.ts",
+    "regression:phase2:human": "tsx scripts/check-phase2-regression.ts",
     "verify": "npm run typecheck && npm run format:check && npm run lint && npm test"
   },
   "dependencies": {
