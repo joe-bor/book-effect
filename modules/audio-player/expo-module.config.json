@@ -1,0 +1,10 @@
+{
+  "platforms": ["android", "apple"],
+  "android": {
+    "modules": ["expo.modules.audioplayer.AudioPlayerModule"]
+  },
+  "apple": {
+    "modules": ["AudioPlayerModule"],
+    "podspecPath": "ios/AudioPlayer.podspec"
+  }
+}

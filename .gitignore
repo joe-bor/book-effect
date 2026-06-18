@@ -10,8 +10,8 @@
 # Generated app artifacts
 node_modules/
 .expo/
-android/
-ios/
+/android/
+/ios/
 
 # Claude Code local settings
 .claude/settings.local.json
