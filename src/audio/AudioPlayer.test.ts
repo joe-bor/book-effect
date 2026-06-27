@@ -87,7 +87,7 @@ describe('createAudioPlayer', () => {
     expect(nativeCalls).toEqual([['preload', [{ id: 'boom', uri: 'file:///local-boom.wav' }]]]);
   });
 
-  it('falls back to the Expo asset URI when no local URI is available', async () => {
+  it('rejects remote-only Expo assets instead of passing them to native preload', async () => {
     vi.mocked(Asset.fromModule).mockReturnValue({
       downloadAsync: vi.fn().mockResolvedValue(undefined),
       localUri: null,
@@ -96,14 +96,14 @@ describe('createAudioPlayer', () => {
     const { native, nativeCalls } = createRecordingNative();
     const player = createAudioPlayer({ native });
 
-    await player.preload([{ id: 'boom', module: 7 }]);
+    await expect(player.preload([{ id: 'boom', module: 7 }])).rejects.toThrow(
+      'Audio asset module 7 must be downloaded to a local URI before preload',
+    );
 
-    expect(nativeCalls).toEqual([
-      ['preload', [{ id: 'boom', uri: 'https://example.invalid/remote-boom.wav' }]],
-    ]);
+    expect(nativeCalls).toEqual([]);
   });
 
-  it('fails when Expo cannot resolve an asset URI', async () => {
+  it('fails when Expo cannot download an asset to a local URI', async () => {
     vi.mocked(Asset.fromModule).mockReturnValue({
       downloadAsync: vi.fn().mockResolvedValue(undefined),
       localUri: null,
@@ -113,7 +113,7 @@ describe('createAudioPlayer', () => {
     const player = createAudioPlayer({ native });
 
     await expect(player.preload([{ id: 'boom', module: 7 }])).rejects.toThrow(
-      'Unable to resolve audio asset module 7',
+      'Audio asset module 7 must be downloaded to a local URI before preload',
     );
   });
 });

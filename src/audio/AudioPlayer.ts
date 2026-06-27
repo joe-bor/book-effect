@@ -42,10 +42,11 @@ async function resolveExpoAssetUri(module: number): Promise<string> {
   const asset = Asset.fromModule(module);
   await asset.downloadAsync();
 
-  const uri = asset.localUri ?? asset.uri;
-  if (uri === null) {
-    throw new Error(`Unable to resolve audio asset module ${module}`);
+  if (asset.localUri === null) {
+    throw new Error(
+      `Audio asset module ${module} must be downloaded to a local URI before preload`,
+    );
   }
 
-  return uri;
+  return asset.localUri;
 }
