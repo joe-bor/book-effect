@@ -56,10 +56,22 @@ export function formatReferenceWarnings(summary: HumanReplaySummary): string[] {
   return warnings;
 }
 
+export function createHumanReplayCommand(
+  projectRoot: string,
+  nodePath = process.execPath,
+): { command: string; args: string[]; cwd: string } {
+  return {
+    command: nodePath,
+    args: ['--import', 'tsx', 'src/cli/replayHuman.ts'],
+    cwd: resolve(projectRoot, 'phase2/matcher-lab'),
+  };
+}
+
 export function runHumanReplayReference(): number {
   const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-  const result = spawnSync('npm', ['--prefix', 'phase2/matcher-lab', 'run', 'replay:human'], {
-    cwd: projectRoot,
+  const command = createHumanReplayCommand(projectRoot);
+  const result = spawnSync(command.command, command.args, {
+    cwd: command.cwd,
     encoding: 'utf8',
   });
 

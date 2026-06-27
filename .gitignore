@@ -12,6 +12,8 @@ node_modules/
 .expo/
 /android/
 /ios/
+modules/*/android/build/
+modules/*/ios/build/
 
 # Claude Code local settings
 .claude/settings.local.json

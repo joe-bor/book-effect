@@ -18,6 +18,6 @@
       "permissions": ["RECORD_AUDIO"],
       "predictiveBackGestureEnabled": false
     },
-    "plugins": ["expo-router", "expo-dev-client", "./modules/audio-player"]
+    "plugins": ["expo-router", "expo-dev-client"]
   }
 }
